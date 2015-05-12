@@ -38,6 +38,6 @@ NSData *decompressedData = [compressedData gunzippedData];
 
 ## Lisence
 
-© 2014 1024jp
+© 2014-2015 1024jp
 
 NSData+GZIP.swift is distributed under the terms of the __MIT License__. See [LISENCE](LISENCE) for details.
