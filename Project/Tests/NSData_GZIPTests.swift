@@ -40,7 +40,7 @@ class NSData_GZIPTests: XCTestCase {
         let data = testSentence.dataUsingEncoding(encoding, allowLossyConversion: true)!
         let gzipped = data.gzippedData()
         let uncompressed = gzipped?.gunzippedData()
-        let uncompressedSentence = NSString(data: uncompressed!, encoding: encoding)!
+        let uncompressedSentence = NSString(data: uncompressed!, encoding: encoding)! as String
         
         XCTAssertEqual(uncompressedSentence, testSentence)
     }
