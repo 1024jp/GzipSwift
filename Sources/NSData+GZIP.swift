@@ -1,12 +1,12 @@
 //
 //  NSData+GZIP.swift
 //
-//  Version 1.0.0
+//  Version 1.0.1
 
 /*
  The MIT License (MIT)
  
- © 2014 1024jp <wolfrosch.com>
+ © 2014-2015 1024jp <wolfrosch.com>
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ private let CHUNK_SIZE : Int = 2 ^ 14
 private let STREAM_SIZE : Int32 = Int32(sizeof(z_stream))
 
 
-extension NSData
+public extension NSData
 {
     /// Return gzip-compressed data object or nil.
     public func gzippedData() -> NSData?
