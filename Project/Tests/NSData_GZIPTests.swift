@@ -31,9 +31,10 @@ THE SOFTWARE.
 import Foundation
 import XCTest
 
-class NSData_GZIPTests: XCTestCase {
-    
-    func testGZip() {
+class NSData_GZIPTests: XCTestCase
+{
+    func testGZip()
+    {
         let testSentence = "foo"
         let encoding = NSUTF8StringEncoding
         
@@ -43,5 +44,14 @@ class NSData_GZIPTests: XCTestCase {
         let uncompressedSentence = NSString(data: uncompressed!, encoding: encoding)! as String
         
         XCTAssertEqual(uncompressedSentence, testSentence)
+    }
+    
+    
+    func testZeroLength()
+    {
+        let zeroLengthData = NSData()
+        
+        XCTAssertNil(zeroLengthData.gzippedData())
+        XCTAssertNil(zeroLengthData.gunzippedData())
     }
 }
