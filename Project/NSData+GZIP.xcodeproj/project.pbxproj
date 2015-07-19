@@ -250,6 +250,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/NSData+GZIPTests-Bridging-Header.h";
 			};
@@ -259,6 +260,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/NSData+GZIPTests-Bridging-Header.h";
 			};
 			name = Release;
