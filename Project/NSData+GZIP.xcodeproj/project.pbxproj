@@ -179,7 +179,7 @@
 		2A58A74D1B00F3A2005FBBC2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0640;
 				TargetAttributes = {
 					2A58A7561B00F414005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -250,6 +250,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/NSData+GZIPTests-Bridging-Header.h";
 			};
 			name = Debug;
