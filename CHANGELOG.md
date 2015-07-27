@@ -9,6 +9,7 @@ Change Log
 
 - Migrate code to Swift 2.0
 - Change to throw error instead returning `nil`.
+- Use Modulemap for zlib instead of `Bridging-Header.h` (see README for how to install).
 
 
 

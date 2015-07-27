@@ -23,8 +23,11 @@ let decompressedData : NSData = try! compressedData.gunzippedData()
 ## Installation
 
 1. Add `NSData+GZIP.swift` file to your project.
-2. Add `libz.tbd` library to your project.
-3. Add a line `#include <zlib.h>` to your ProjectName-Bridging-Header.h file.
+2. Add `zlib/` directory to your project.
+3. In *Build Phases*, add `libz.tbd` library to your project.
+    ![screenshot](Documentation/binary_link@2x.png)
+4. In *Build Settings* > *Swift Compiler - Search Paths*, Add path to `zlib/` to Import Paths (`SWIFT_INCLUDE_PATHS`).
+    ![screenshot](Documentation/search_paths@2x.png)
 4. Invoke from your Swift/ObjC files.
 
 
