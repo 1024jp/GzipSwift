@@ -2,7 +2,7 @@
 NSData+GZIP.swift
 ========================
 
-[![Build Status](http://img.shields.io/travis/1024jp/NSData-GZIP.svg?style=flat)](https://travis-ci.org/1024jp/NSData-GZIP)
+[![Build Status](http://img.shields.io/travis/1024jp/NSData-GZIP/master.svg?style=flat)](https://travis-ci.org/1024jp/NSData-GZIP)
 
 __NSData+GZIP.swift__ is an extension of NSData written in Swift langauge. It enables compress/decompress gzip using zlib.
 

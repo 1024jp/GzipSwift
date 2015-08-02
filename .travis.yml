@@ -7,3 +7,6 @@ matrix:
           xcode_sdk: macosx
         - xcode_scheme: Tests iOS
           xcode_sdk: iphonesimulator
+
+sudo: false
+cache: bundler

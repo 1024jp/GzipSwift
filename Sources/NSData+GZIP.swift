@@ -1,7 +1,7 @@
 //
 //  NSData+GZIP.swift
 //
-//  Version 1.0.1
+//  Version 1.1.0
 
 /*
  The MIT License (MIT)
@@ -38,67 +38,83 @@ public extension NSData
     /// Return gzip-compressed data object or nil.
     public func gzippedData() -> NSData?
     {
-        if self.length > 0 {
-            var stream = self.createZStream()
-            
-            if deflateInit2_(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE) != Z_OK {
-                return nil
-            }
-            
-            var data = NSMutableData(length: CHUNK_SIZE)!
-            while stream.avail_out == 0 {
-                if Int(stream.total_out) >= data.length {
-                    data.length += CHUNK_SIZE
-                }
-                
-                stream.next_out = UnsafeMutablePointer<Bytef>(data.mutableBytes).advancedBy(Int(stream.total_out))
-                stream.avail_out = uInt(data.length) - uInt(stream.total_out)
-                
-                deflate(&stream, Z_FINISH)
-            }
-            
-            deflateEnd(&stream)
-            data.length = Int(stream.total_out)
-            
-            return data
+        if self.length == 0 {
+            return NSData()
         }
-    
-        return nil
+        
+        var stream = self.createZStream()
+        var status : Int32
+        
+        status = deflateInit2_(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE)
+
+        if status != Z_OK {
+            if let errorMessage = String.fromCString(stream.msg) {
+                println(String(format: "Compression failed: %@", errorMessage))
+            }
+            
+            return nil
+        }
+        
+        var data = NSMutableData(length: CHUNK_SIZE)!
+        while stream.avail_out == 0 {
+            if Int(stream.total_out) >= data.length {
+                data.length += CHUNK_SIZE
+            }
+            
+            stream.next_out = UnsafeMutablePointer<Bytef>(data.mutableBytes).advancedBy(Int(stream.total_out))
+            stream.avail_out = uInt(data.length) - uInt(stream.total_out)
+            
+            deflate(&stream, Z_FINISH)
+        }
+        
+        deflateEnd(&stream)
+        data.length = Int(stream.total_out)
+        
+        return data
     }
     
     
     /// Return gzip-decompressed data object or nil.
     public func gunzippedData() -> NSData?
     {
-        if self.length > 0 {
-            var stream = self.createZStream()
-            
-            if inflateInit2_(&stream, 47, ZLIB_VERSION, STREAM_SIZE) != Z_OK {
-                return nil
-            }
-            
-            var data = NSMutableData(length: self.length * 2)!
-            var status : Int32
-            do {
-                if Int(stream.total_out) >= data.length {
-                    data.length += self.length / 2;
-                }
-                
-                stream.next_out = UnsafeMutablePointer<Bytef>(data.mutableBytes).advancedBy(Int(stream.total_out))
-                stream.avail_out = uInt(data.length) - uInt(stream.total_out)
-                
-                status = inflate(&stream, Z_SYNC_FLUSH)
-            } while status == Z_OK
-            
-            if inflateEnd(&stream) == Z_OK {
-                if status == Z_STREAM_END {
-                    data.length = Int(stream.total_out)
-                    return data
-                }
-            }
+        if self.length == 0 {
+            return NSData()
         }
         
-        return nil
+        var stream = self.createZStream()
+        var status : Int32
+        
+        status = inflateInit2_(&stream, 47, ZLIB_VERSION, STREAM_SIZE)
+        
+        if status != Z_OK {
+            if let errorMessage = String.fromCString(stream.msg) {
+                println(String(format: "Decompression failed: %@", errorMessage))
+            }
+            return nil
+        }
+        
+        var data = NSMutableData(length: self.length * 2)!
+        do {
+            if Int(stream.total_out) >= data.length {
+                data.length += self.length / 2;
+            }
+            
+            stream.next_out = UnsafeMutablePointer<Bytef>(data.mutableBytes).advancedBy(Int(stream.total_out))
+            stream.avail_out = uInt(data.length) - uInt(stream.total_out)
+            
+            status = inflate(&stream, Z_SYNC_FLUSH)
+        } while status == Z_OK
+        
+        if inflateEnd(&stream) != Z_OK || status != Z_STREAM_END {
+            if let errorMessage = String.fromCString(stream.msg) {
+                println(String(format: "Decompression failed: %@", errorMessage))
+            }
+            return nil
+        }
+        
+        data.length = Int(stream.total_out)
+        
+        return data
     }
     
     

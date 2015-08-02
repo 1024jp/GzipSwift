@@ -25,6 +25,7 @@
 		2A58A77D1B00FBEF005FBBC2 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A58A7801B00FBF0005FBBC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A58A7861B00FC7C005FBBC2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = ../../../../iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		2AF7F0BE1B6E1CD100EBA69A /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +51,7 @@
 		2A58A74C1B00F3A2005FBBC2 = {
 			isa = PBXGroup;
 			children = (
+				2AF7F0BE1B6E1CD100EBA69A /* CHANGELOG.md */,
 				2A58A7631B00F437005FBBC2 /* NSData+GZIP */,
 				2A58A7881B00FD11005FBBC2 /* Tests */,
 				2A58A7581B00F414005FBBC2 /* Products */,
@@ -179,7 +181,7 @@
 		2A58A74D1B00F3A2005FBBC2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0640;
 				TargetAttributes = {
 					2A58A7561B00F414005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -250,6 +252,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/NSData+GZIPTests-Bridging-Header.h";
 			};
 			name = Debug;
@@ -258,6 +262,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/NSData+GZIPTests-Bridging-Header.h";
 			};
 			name = Release;
