@@ -43,8 +43,15 @@ public extension NSData
         }
         
         var stream = self.createZStream()
+        var status : Int32
         
-        if deflateInit2_(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE) != Z_OK {
+        status = deflateInit2_(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE)
+
+        if status != Z_OK {
+            if let errorMessage = String.fromCString(stream.msg) {
+                println(String(format: "Compression failed: %@", errorMessage))
+            }
+            
             return nil
         }
         
@@ -75,13 +82,18 @@ public extension NSData
         }
         
         var stream = self.createZStream()
+        var status : Int32
         
-        if inflateInit2_(&stream, 47, ZLIB_VERSION, STREAM_SIZE) != Z_OK {
+        status = inflateInit2_(&stream, 47, ZLIB_VERSION, STREAM_SIZE)
+        
+        if status != Z_OK {
+            if let errorMessage = String.fromCString(stream.msg) {
+                println(String(format: "Decompression failed: %@", errorMessage))
+            }
             return nil
         }
         
         var data = NSMutableData(length: self.length * 2)!
-        var status : Int32
         do {
             if Int(stream.total_out) >= data.length {
                 data.length += self.length / 2;
@@ -94,6 +106,9 @@ public extension NSData
         } while status == Z_OK
         
         if inflateEnd(&stream) != Z_OK || status != Z_STREAM_END {
+            if let errorMessage = String.fromCString(stream.msg) {
+                println(String(format: "Decompression failed: %@", errorMessage))
+            }
             return nil
         }
         

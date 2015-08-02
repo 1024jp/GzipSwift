@@ -54,4 +54,12 @@ class NSData_GZIPTests: XCTestCase
         XCTAssertEqual(zeroLengthData.gzippedData()!, zeroLengthData)
         XCTAssertEqual(zeroLengthData.gunzippedData()!, zeroLengthData)
     }
+    
+    func testWrongUngzip()
+    {
+        // data not compressed
+        let data = ("testString" as NSString).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
+        
+        XCTAssertNil(data.gunzippedData())
+    }
 }
