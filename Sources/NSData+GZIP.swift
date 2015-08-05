@@ -29,8 +29,8 @@
 
 import Foundation
 
-private let CHUNK_SIZE : Int = 2 ^ 14
-private let STREAM_SIZE : Int32 = Int32(sizeof(z_stream))
+private let CHUNK_SIZE: Int = 2 ^ 14
+private let STREAM_SIZE: Int32 = Int32(sizeof(z_stream))
 
 
 public extension NSData
@@ -43,9 +43,9 @@ public extension NSData
         }
         
         var stream = self.createZStream()
-        var status : Int32
+        var status: Int32
         
-        status = deflateInit2_(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE)
+        status = deflateInit2_(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, MAX_WBITS + 16, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE)
 
         if status != Z_OK {
             if let errorMessage = String.fromCString(stream.msg) {
@@ -82,9 +82,9 @@ public extension NSData
         }
         
         var stream = self.createZStream()
-        var status : Int32
+        var status: Int32
         
-        status = inflateInit2_(&stream, 47, ZLIB_VERSION, STREAM_SIZE)
+        status = inflateInit2_(&stream, MAX_WBITS + 32, ZLIB_VERSION, STREAM_SIZE)
         
         if status != Z_OK {
             if let errorMessage = String.fromCString(stream.msg) {
