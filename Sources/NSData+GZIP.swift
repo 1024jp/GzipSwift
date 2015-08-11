@@ -35,7 +35,12 @@ private let STREAM_SIZE: Int32 = Int32(sizeof(z_stream))
 
 public extension NSData
 {
-    /// Return gzip-compressed data object or nil.
+    /**
+    Create a new `NSData` object by compressing the reciver using zlib.
+    Returns `nil` if decompression failed.
+    
+    :returns: Gzip-compressed `NSData` object or `nil`.
+    */
     public func gzippedData() -> NSData?
     {
         if self.length == 0 {
@@ -74,7 +79,12 @@ public extension NSData
     }
     
     
-    /// Return gzip-decompressed data object or nil.
+    /**
+    Create a new `NSData` object by decompressing the reciver using zlib.
+    Returns `nil` if decompression failed.
+    
+    :returns: Gzip-decompressed `NSData` object or `nil`.
+    */
     public func gunzippedData() -> NSData?
     {
         if self.length == 0 {
