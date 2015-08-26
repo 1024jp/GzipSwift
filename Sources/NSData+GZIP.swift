@@ -59,7 +59,7 @@ public extension NSData
             return nil
         }
         
-        var data = NSMutableData(length: CHUNK_SIZE)!
+        let data = NSMutableData(length: CHUNK_SIZE)!
         while stream.avail_out == 0 {
             if Int(stream.total_out) >= data.length {
                 data.length += CHUNK_SIZE
@@ -102,7 +102,7 @@ public extension NSData
             return nil
         }
         
-        var data = NSMutableData(length: self.length * 2)!
+        let data = NSMutableData(length: self.length * 2)!
         do {
             if Int(stream.total_out) >= data.length {
                 data.length += self.length / 2;
