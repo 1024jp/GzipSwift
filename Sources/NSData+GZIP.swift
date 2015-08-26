@@ -53,9 +53,8 @@ public extension NSData
         status = deflateInit2_(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, MAX_WBITS + 16, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE)
 
         if status != Z_OK {
-            if let errorMessage = String.fromCString(stream.msg) {
-                println(String(format: "Compression failed: %@", errorMessage))
-            }
+            let errorMessage =  String.fromCString(stream.msg) ?? "Unknown error"
+            println(String(format: "Compression failed: %@", errorMessage))
             
             return nil
         }
@@ -97,9 +96,9 @@ public extension NSData
         status = inflateInit2_(&stream, MAX_WBITS + 32, ZLIB_VERSION, STREAM_SIZE)
         
         if status != Z_OK {
-            if let errorMessage = String.fromCString(stream.msg) {
-                println(String(format: "Decompression failed: %@", errorMessage))
-            }
+            let errorMessage =  String.fromCString(stream.msg) ?? "Unknown error"
+            println(String(format: "Compression failed: %@", errorMessage))
+            
             return nil
         }
         
@@ -116,9 +115,9 @@ public extension NSData
         } while status == Z_OK
         
         if inflateEnd(&stream) != Z_OK || status != Z_STREAM_END {
-            if let errorMessage = String.fromCString(stream.msg) {
-                println(String(format: "Decompression failed: %@", errorMessage))
-            }
+            let errorMessage =  String.fromCString(stream.msg) ?? "Unknown error"
+            println(String(format: "Compression failed: %@", errorMessage))
+            
             return nil
         }
         
