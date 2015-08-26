@@ -8,6 +8,7 @@ Change Log
 ### Changes
 
 - Migrate code to Swift 2.0
+- Change to throw error instead returning `nil`.
 
 
 
