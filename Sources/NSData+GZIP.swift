@@ -39,7 +39,7 @@ public extension NSData
     Create a new `NSData` object by compressing the reciver using zlib.
     Returns `nil` if decompression failed.
     
-    :returns: Gzip-compressed `NSData` object or `nil`.
+    - returns: Gzip-compressed `NSData` object or `nil`.
     */
     public func gzippedData() -> NSData?
     {
@@ -54,7 +54,7 @@ public extension NSData
 
         if status != Z_OK {
             let errorMessage =  String.fromCString(stream.msg) ?? "Unknown error"
-            println("Compression failed: " + errorMessage)
+            print("Compression failed: " + errorMessage)
             
             return nil
         }
@@ -82,7 +82,7 @@ public extension NSData
     Create a new `NSData` object by decompressing the reciver using zlib.
     Returns `nil` if decompression failed.
     
-    :returns: Gzip-decompressed `NSData` object or `nil`.
+    - returns: Gzip-decompressed `NSData` object or `nil`.
     */
     public func gunzippedData() -> NSData?
     {
@@ -97,13 +97,14 @@ public extension NSData
         
         if status != Z_OK {
             let errorMessage =  String.fromCString(stream.msg) ?? "Unknown error"
-            println("Decompression failed: " + errorMessage)
+            print("Decompression failed: " + errorMessage)
             
             return nil
         }
         
         let data = NSMutableData(length: self.length * 2)!
-        do {
+        
+        repeat {
             if Int(stream.total_out) >= data.length {
                 data.length += self.length / 2;
             }
@@ -116,7 +117,7 @@ public extension NSData
         
         if inflateEnd(&stream) != Z_OK || status != Z_STREAM_END {
             let errorMessage =  String.fromCString(stream.msg) ?? "Unknown error"
-            println("Decompression failed: " + errorMessage)
+            print("Decompression failed: " + errorMessage)
             
             return nil
         }
