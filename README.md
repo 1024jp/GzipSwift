@@ -13,20 +13,10 @@ __NSData+GZIP.swift__ is an extension of NSData written in Swift 2.0. It enables
 
 ```swift
 // gzip
-let compressedData : NSData = data.gzippedData()
+let compressedData : NSData = try! data.gzippedData()
 
 // gunzip
-let decompressedData : NSData = compressedData.gunzippedData()
-```
-
-```objc
-#import "ProjectName-Swift.h"
-
-// gzip
-NSData *compressedData = [data gzippedData];
-
-// gunzip
-NSData *decompressedData = [compressedData gunzippedData];
+let decompressedData : NSData = try! compressedData.gunzippedData()
 ```
 
 
