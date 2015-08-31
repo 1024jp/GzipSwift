@@ -43,7 +43,7 @@ public extension NSData
     */
     public func gzippedData() -> NSData?
     {
-        if self.length == 0 {
+        guard self.length > 0 else {
             return NSData()
         }
         
@@ -86,7 +86,7 @@ public extension NSData
     */
     public func gunzippedData() -> NSData?
     {
-        if self.length == 0 {
+        guard self.length > 0 else {
             return NSData()
         }
         
