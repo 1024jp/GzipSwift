@@ -1,7 +1,7 @@
 //
 //  NSData+GZIP.swift
 //
-//  Version 1.1.0
+//  Version 2.0.0
 
 /*
  The MIT License (MIT)
@@ -28,34 +28,124 @@
  */
 
 import Foundation
+import zlib
 
-private let CHUNK_SIZE : Int = 2 ^ 14
-private let STREAM_SIZE : Int32 = Int32(sizeof(z_stream))
+private let CHUNK_SIZE: Int = 2 ^ 14
+private let STREAM_SIZE: Int32 = Int32(sizeof(z_stream))
+
+
+/**
+Errors on gzipping/gunzipping based on the zlib error codes.
+*/
+public enum GzipError: ErrorType {
+    // cf. http://www.zlib.net/manual.html
+    
+    /**
+    The stream structure was inconsistent.
+    
+    - underlying zlib error: `Z_STREAM_ERROR` (-2)
+    - parameter message: returned message by zlib
+    */
+    case Stream(message: String)
+    
+    /**
+    The input data was corrupted (input stream not conforming to the zlib format or incorrect check value).
+    
+    - underlying zlib error: `Z_DATA_ERROR` (-3)
+    - parameter message: returned message by zlib
+    */
+    case Data(message: String)
+    
+    /**
+    There was not enough memory.
+    
+    - underlying zlib error: `Z_MEM_ERROR` (-4)
+    - parameter message: returned message by zlib
+    */
+    case Memory(message: String)
+    
+    /**
+    No progress is possible or there was not enough room in the output buffer.
+    
+    - underlying zlib error: `Z_BUF_ERROR` (-5)
+    - parameter message: returned message by zlib
+    */
+    case Buffer(message: String)
+    
+    /**
+    The zlib library version is incompatible with the version assumed by the caller.
+    
+    - underlying zlib error: `Z_VERSION_ERROR` (-6)
+    - parameter message: returned message by zlib
+    */
+    case Version(message: String)
+    
+    /**
+    An unknown error occurred.
+    
+    - parameter message: returned message by zlib
+    - parameter code: return error by zlib
+    */
+    case Unknown(message: String, code: Int)
+    
+    
+    private init(code: Int32, msg: UnsafePointer<CChar>)
+    {
+        let message =  String.fromCString(msg) ?? "Unknown error"
+        
+        switch code {
+        case Z_STREAM_ERROR:
+            self = .Stream(message: message)
+
+        case Z_DATA_ERROR:
+            self = .Data(message: message)
+            
+        case Z_MEM_ERROR:
+            self = .Memory(message: message)
+            
+        case Z_BUF_ERROR:
+            self = .Buffer(message: message)
+            
+        case Z_VERSION_ERROR:
+            self = .Version(message: message)
+            
+        default:
+            self = .Unknown(message: message, code: Int(code))
+        }
+    }
+}
 
 
 public extension NSData
 {
-    /// Return gzip-compressed data object or nil.
-    public func gzippedData() -> NSData?
+    /**
+    Create a new `NSData` object by compressing the reciver using zlib.
+    Throws an error if compression failed.
+    
+    - throws: `GzipError`
+    - returns: Gzip-compressed `NSData` object.
+    */
+    public func gzippedData() throws -> NSData
     {
-        if self.length == 0 {
+        guard self.length > 0 else {
             return NSData()
         }
         
         var stream = self.createZStream()
-        var status : Int32
+        var status: Int32
         
-        status = deflateInit2_(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE)
+        status = deflateInit2_(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, MAX_WBITS + 16, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE)
 
-        if status != Z_OK {
-            if let errorMessage = String.fromCString(stream.msg) {
-                println(String(format: "Compression failed: %@", errorMessage))
-            }
+        guard status == Z_OK else {
+            // deflateInit2 returns:
+            // Z_VERSION_ERROR  The zlib library version is incompatible with the version assumed by the caller.
+            // Z_MEM_ERROR      There was not enough memory.
+            // Z_STREAM_ERROR   A parameter is invalid.
             
-            return nil
+            throw GzipError(code: status, msg: stream.msg)
         }
         
-        var data = NSMutableData(length: CHUNK_SIZE)!
+        let data = NSMutableData(length: CHUNK_SIZE)!
         while stream.avail_out == 0 {
             if Int(stream.total_out) >= data.length {
                 data.length += CHUNK_SIZE
@@ -70,31 +160,40 @@ public extension NSData
         deflateEnd(&stream)
         data.length = Int(stream.total_out)
         
-        return data
+        return NSData(data: data)
     }
     
     
-    /// Return gzip-decompressed data object or nil.
-    public func gunzippedData() -> NSData?
+    /**
+    Create a new `NSData` object by decompressing the reciver using zlib.
+    Throws an error if decompression failed.
+    
+    - throws: `GzipError`
+    - returns: Gzip-decompressed `NSData` object.
+    */
+    public func gunzippedData() throws -> NSData
     {
-        if self.length == 0 {
+        guard self.length > 0 else {
             return NSData()
         }
         
         var stream = self.createZStream()
-        var status : Int32
+        var status: Int32
         
-        status = inflateInit2_(&stream, 47, ZLIB_VERSION, STREAM_SIZE)
+        status = inflateInit2_(&stream, MAX_WBITS + 32, ZLIB_VERSION, STREAM_SIZE)
         
-        if status != Z_OK {
-            if let errorMessage = String.fromCString(stream.msg) {
-                println(String(format: "Decompression failed: %@", errorMessage))
-            }
-            return nil
+        guard status == Z_OK else {
+            // inflateInit2 returns:
+            // Z_VERSION_ERROR   The zlib library version is incompatible with the version assumed by the caller.
+            // Z_MEM_ERROR       There was not enough memory.
+            // Z_STREAM_ERROR    A parameters are invalid.
+            
+            throw GzipError(code: status, msg: stream.msg)
         }
         
-        var data = NSMutableData(length: self.length * 2)!
-        do {
+        let data = NSMutableData(length: self.length * 2)!
+        
+        repeat {
             if Int(stream.total_out) >= data.length {
                 data.length += self.length / 2;
             }
@@ -105,16 +204,19 @@ public extension NSData
             status = inflate(&stream, Z_SYNC_FLUSH)
         } while status == Z_OK
         
-        if inflateEnd(&stream) != Z_OK || status != Z_STREAM_END {
-            if let errorMessage = String.fromCString(stream.msg) {
-                println(String(format: "Decompression failed: %@", errorMessage))
-            }
-            return nil
+        guard inflateEnd(&stream) == Z_OK && status == Z_STREAM_END else {
+            // inflate returns:
+            // Z_DATA_ERROR   The input data was corrupted (input stream not conforming to the zlib format or incorrect check value).
+            // Z_STREAM_ERROR The stream structure was inconsistent (for example if next_in or next_out was NULL).
+            // Z_MEM_ERROR    There was not enough memory.
+            // Z_BUF_ERROR    No progress is possible or there was not enough room in the output buffer when Z_FINISH is used.
+            
+            throw GzipError(code: status, msg: stream.msg)
         }
         
         data.length = Int(stream.total_out)
         
-        return data
+        return NSData(data: data)
     }
     
     
