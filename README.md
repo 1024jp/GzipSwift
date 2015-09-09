@@ -5,7 +5,7 @@ NSData+GZIP.swift
 [![Build Status](http://img.shields.io/travis/1024jp/NSData-GZIP/master.svg?style=flat)](https://travis-ci.org/1024jp/NSData-GZIP)
 [![License](https://img.shields.io/github/license/1024jp/NSData-GZIP.svg)](https://github.com/1024jp/NSData-GZIP/blob/develop/LICENSE)
 
-__NSData+GZIP.swift__ is an extension of NSData written in Swift langauge. It enables compress/decompress gzip using zlib.
+__NSData+GZIP.swift__ is an extension of NSData written in Swift 2.0. It enables compress/decompress gzip using zlib.
 
 - __Requirements__: OS X 10.9 / iOS 7 or later
 
@@ -14,28 +14,21 @@ __NSData+GZIP.swift__ is an extension of NSData written in Swift langauge. It en
 
 ```swift
 // gzip
-let compressedData : NSData = data.gzippedData()
+let compressedData : NSData = try! data.gzippedData()
 
 // gunzip
-let decompressedData : NSData = compressedData.gunzippedData()
-```
-
-```objc
-#import "ProjectName-Swift.h"
-
-// gzip
-NSData *compressedData = [data gzippedData];
-
-// gunzip
-NSData *decompressedData = [compressedData gunzippedData];
+let decompressedData : NSData = try! compressedData.gunzippedData()
 ```
 
 
 ## Installation
 
 1. Add `NSData+GZIP.swift` file to your project.
-2. Add `libz.dylib` library to your project.
-3. Add a line `#include <zlib.h>` to your ProjectName-Bridging-Header.h file.
+2. Add `zlib/` directory to your project.
+3. In *Build Phases*, add `libz.tbd` library to your project.
+    ![screenshot](Documentation/binary_link@2x.png)
+4. In *Build Settings* > *Swift Compiler - Search Paths*, Add path to `zlib/` to Import Paths (`SWIFT_INCLUDE_PATHS`).
+    ![screenshot](Documentation/search_paths@2x.png)
 4. Invoke from your Swift/ObjC files.
 
 
