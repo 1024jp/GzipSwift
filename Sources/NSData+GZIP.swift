@@ -31,7 +31,7 @@ import Foundation
 import zlib
 
 private let CHUNK_SIZE: Int = 2 ^ 14
-private let STREAM_SIZE: Int32 = Int32(sizeof(z_stream))
+private let STREAM_SIZE: Int32 = Int32(sizeof(z_stream.self))
 
 
 /**
