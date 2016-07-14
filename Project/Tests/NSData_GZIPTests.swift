@@ -36,12 +36,12 @@ class NSData_GZIPTests: XCTestCase
     func testGZip()
     {
         let testSentence = "foo"
-        let encoding = NSUTF8StringEncoding
+        let encoding = String.Encoding.utf8
         
-        let data = testSentence.dataUsingEncoding(encoding, allowLossyConversion: true)!
+        let data = testSentence.data(using: encoding, allowLossyConversion: true)!
         let gzipped = try! data.gzippedData()
         let uncompressed = try! gzipped.gunzippedData()
-        let uncompressedSentence = NSString(data: uncompressed, encoding: encoding) as! String
+        let uncompressedSentence = String(data: uncompressed, encoding: encoding)
         
         XCTAssertEqual(uncompressedSentence, testSentence)
     }
@@ -49,7 +49,7 @@ class NSData_GZIPTests: XCTestCase
     
     func testZeroLength()
     {
-        let zeroLengthData = NSData()
+        let zeroLengthData = Data()
         
         XCTAssertEqual(try! zeroLengthData.gzippedData(), zeroLengthData)
         XCTAssertEqual(try! zeroLengthData.gunzippedData(), zeroLengthData)
@@ -59,12 +59,12 @@ class NSData_GZIPTests: XCTestCase
     func testWrongUngzip()
     {
         // data not compressed
-        let data = ("testString" as NSString).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
+        let data = "testString".data(using: .utf8, allowLossyConversion: true)!
         
-        var uncompressed: NSData?
+        var uncompressed: Data?
         do {
             uncompressed = try data.gunzippedData()
-        } catch GzipError.Data(let message){
+        } catch GzipError.data(let message){
             XCTAssertEqual(message, "incorrect header check")
         } catch _ {
         }

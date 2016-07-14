@@ -1,12 +1,12 @@
 //
 //  NSData+GZIP.swift
 //
-//  Version 2.0.0
+//  Version 3.0.0
 
 /*
  The MIT License (MIT)
  
- © 2014-2015 1024jp <wolfrosch.com>
+ © 2014-2016 1024jp <wolfrosch.com>
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ private let STREAM_SIZE: Int32 = Int32(sizeof(z_stream))
 /**
 Errors on gzipping/gunzipping based on the zlib error codes.
 */
-public enum GzipError: ErrorType {
+public enum GzipError: ErrorProtocol {
     // cf. http://www.zlib.net/manual.html
     
     /**
@@ -46,7 +46,7 @@ public enum GzipError: ErrorType {
     - underlying zlib error: `Z_STREAM_ERROR` (-2)
     - parameter message: returned message by zlib
     */
-    case Stream(message: String)
+    case stream(message: String)
     
     /**
     The input data was corrupted (input stream not conforming to the zlib format or incorrect check value).
@@ -54,7 +54,7 @@ public enum GzipError: ErrorType {
     - underlying zlib error: `Z_DATA_ERROR` (-3)
     - parameter message: returned message by zlib
     */
-    case Data(message: String)
+    case data(message: String)
     
     /**
     There was not enough memory.
@@ -62,7 +62,7 @@ public enum GzipError: ErrorType {
     - underlying zlib error: `Z_MEM_ERROR` (-4)
     - parameter message: returned message by zlib
     */
-    case Memory(message: String)
+    case memory(message: String)
     
     /**
     No progress is possible or there was not enough room in the output buffer.
@@ -70,7 +70,7 @@ public enum GzipError: ErrorType {
     - underlying zlib error: `Z_BUF_ERROR` (-5)
     - parameter message: returned message by zlib
     */
-    case Buffer(message: String)
+    case buffer(message: String)
     
     /**
     The zlib library version is incompatible with the version assumed by the caller.
@@ -78,7 +78,7 @@ public enum GzipError: ErrorType {
     - underlying zlib error: `Z_VERSION_ERROR` (-6)
     - parameter message: returned message by zlib
     */
-    case Version(message: String)
+    case version(message: String)
     
     /**
     An unknown error occurred.
@@ -86,37 +86,37 @@ public enum GzipError: ErrorType {
     - parameter message: returned message by zlib
     - parameter code: return error by zlib
     */
-    case Unknown(message: String, code: Int)
+    case unknown(message: String, code: Int)
     
     
     private init(code: Int32, msg: UnsafePointer<CChar>)
     {
-        let message =  String.fromCString(msg) ?? "Unknown error"
+        let message =  String(cString: msg) ?? "Unknown error"
         
         switch code {
         case Z_STREAM_ERROR:
-            self = .Stream(message: message)
+            self = .stream(message: message)
 
         case Z_DATA_ERROR:
-            self = .Data(message: message)
+            self = .data(message: message)
             
         case Z_MEM_ERROR:
-            self = .Memory(message: message)
+            self = .memory(message: message)
             
         case Z_BUF_ERROR:
-            self = .Buffer(message: message)
+            self = .buffer(message: message)
             
         case Z_VERSION_ERROR:
-            self = .Version(message: message)
+            self = .version(message: message)
             
         default:
-            self = .Unknown(message: message, code: Int(code))
+            self = .unknown(message: message, code: Int(code))
         }
     }
 }
 
 
-public extension NSData
+public extension Data
 {
     /**
     Create a new `NSData` object by compressing the reciver using zlib.
@@ -125,10 +125,10 @@ public extension NSData
     - throws: `GzipError`
     - returns: Gzip-compressed `NSData` object.
     */
-    public func gzippedData() throws -> NSData
+    public func gzippedData() throws -> Data
     {
-        guard self.length > 0 else {
-            return NSData()
+        guard self.count > 0 else {
+            return Data()
         }
         
         var stream = self.createZStream()
@@ -151,7 +151,7 @@ public extension NSData
                 data.length += CHUNK_SIZE
             }
             
-            stream.next_out = UnsafeMutablePointer<Bytef>(data.mutableBytes).advancedBy(Int(stream.total_out))
+            stream.next_out = UnsafeMutablePointer<Bytef>(data.mutableBytes).advanced(by: Int(stream.total_out))
             stream.avail_out = uInt(data.length) - uInt(stream.total_out)
             
             deflate(&stream, Z_FINISH)
@@ -160,7 +160,7 @@ public extension NSData
         deflateEnd(&stream)
         data.length = Int(stream.total_out)
         
-        return NSData(data: data)
+        return (NSData(data: data as Data) as Data)
     }
     
     
@@ -171,10 +171,10 @@ public extension NSData
     - throws: `GzipError`
     - returns: Gzip-decompressed `NSData` object.
     */
-    public func gunzippedData() throws -> NSData
+    public func gunzippedData() throws -> Data
     {
-        guard self.length > 0 else {
-            return NSData()
+        guard self.count > 0 else {
+            return Data()
         }
         
         var stream = self.createZStream()
@@ -191,14 +191,14 @@ public extension NSData
             throw GzipError(code: status, msg: stream.msg)
         }
         
-        let data = NSMutableData(length: self.length * 2)!
+        let data = NSMutableData(length: self.count * 2)!
         
         repeat {
             if Int(stream.total_out) >= data.length {
-                data.length += self.length / 2;
+                data.length += self.count / 2;
             }
             
-            stream.next_out = UnsafeMutablePointer<Bytef>(data.mutableBytes).advancedBy(Int(stream.total_out))
+            stream.next_out = UnsafeMutablePointer<Bytef>(data.mutableBytes).advanced(by: Int(stream.total_out))
             stream.avail_out = uInt(data.length) - uInt(stream.total_out)
             
             status = inflate(&stream, Z_SYNC_FLUSH)
@@ -216,15 +216,15 @@ public extension NSData
         
         data.length = Int(stream.total_out)
         
-        return NSData(data: data)
+        return (NSData(data: data as Data) as Data)
     }
     
     
     private func createZStream() -> z_stream
     {
         return z_stream(
-            next_in: UnsafeMutablePointer<Bytef>(self.bytes),
-            avail_in: uint(self.length),
+            next_in: UnsafeMutablePointer<Bytef>((self as NSData).bytes),
+            avail_in: uint(self.count),
             total_in: 0,
             next_out: nil,
             avail_out: 0,

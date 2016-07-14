@@ -195,6 +195,7 @@
 				TargetAttributes = {
 					2A58A7561B00F414005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0800;
 					};
 					2A58A77C1B00FBEF005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -326,6 +327,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -369,6 +371,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wolfrosch.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
