@@ -9,6 +9,7 @@ Change Log
 
 - Migrate code to Swift 3.0
 - Add `level` option to `gzipped()` method.
+- Add `isGzipped` property (readonly).
 
 
 

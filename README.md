@@ -14,11 +14,17 @@ __NSData+GZIP.swift__ is an extension of Data written in Swift 3.0. It enables c
 
 ```swift
 // gzip
-let compressedData : Data = try! data.gzipped()
-let optimizedData : Data = try! data.gzipped(level: .bestCompression)
+let compressedData: Data = try! data.gzipped()
+let optimizedData: Data = try! data.gzipped(level: .bestCompression)
 
 // gunzip
-let decompressedData : Data = try! compressedData.gunzipped()
+let decompressedData: Data
+if data.isGzipped {
+    decompressedData = try! data.gunzipped()
+} else {
+    decompressedData = data
+}
+
 ```
 
 
@@ -30,7 +36,7 @@ let decompressedData : Data = try! compressedData.gunzipped()
     ![screenshot](Documentation/binary_link@2x.png)
 4. In *Build Settings* > *Swift Compiler - Search Paths*, Add path to `zlib/` to Import Paths (`SWIFT_INCLUDE_PATHS`).
     ![screenshot](Documentation/search_paths@2x.png)
-4. Invoke from your Swift/ObjC files.
+5. Invoke from your Swift/ObjC files.
 
 
 ## Lisence

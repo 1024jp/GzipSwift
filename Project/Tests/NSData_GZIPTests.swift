@@ -44,6 +44,10 @@ class NSData_GZIPTests: XCTestCase
         
         XCTAssertNotEqual(gzipped, data)
         XCTAssertEqual(uncompressedSentence, testSentence)
+        
+        XCTAssertTrue(gzipped.isGzipped)
+        XCTAssertFalse(data.isGzipped)
+        XCTAssertFalse(uncompressed.isGzipped)
     }
     
     

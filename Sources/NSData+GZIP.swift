@@ -132,8 +132,22 @@ public enum GzipError: ErrorProtocol {
 
 public extension Data
 {
+    
     /**
-    Create a new `Data` object by compressing the reciver using zlib.
+     Check if the reciever is already gzipped.
+     
+     - returns: Whether the data is compressed.
+     */
+    public var isGzipped: Bool {
+        
+        guard self.count >= 2 else { return false }
+        
+        return self[0] == 0x1f && self[1] == 0x8b  // check magic number
+    }
+    
+    
+    /**
+    Create a new `Data` object by compressing the receiver using zlib.
     Throws an error if compression failed.
      
     - parameters:
@@ -184,7 +198,7 @@ public extension Data
     
     
     /**
-    Create a new `Data` object by decompressing the reciver using zlib.
+    Create a new `Data` object by decompressing the receiver using zlib.
     Throws an error if decompression failed.
     
     - throws: `GzipError`
