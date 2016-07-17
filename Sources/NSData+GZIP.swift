@@ -119,13 +119,13 @@ public enum GzipError: ErrorProtocol {
 public extension Data
 {
     /**
-    Create a new `NSData` object by compressing the reciver using zlib.
+    Create a new `Data` object by compressing the reciver using zlib.
     Throws an error if compression failed.
     
     - throws: `GzipError`
-    - returns: Gzip-compressed `NSData` object.
+    - returns: Gzip-compressed `Data` object.
     */
-    public func gzippedData() throws -> Data
+    public func gzipped() throws -> Data
     {
         guard self.count > 0 else {
             return Data()
@@ -160,18 +160,18 @@ public extension Data
         deflateEnd(&stream)
         data.length = Int(stream.total_out)
         
-        return (NSData(data: data as Data) as Data)
+        return data as Data
     }
     
     
     /**
-    Create a new `NSData` object by decompressing the reciver using zlib.
+    Create a new `Data` object by decompressing the reciver using zlib.
     Throws an error if decompression failed.
     
     - throws: `GzipError`
-    - returns: Gzip-decompressed `NSData` object.
+    - returns: Gzip-decompressed `Data` object.
     */
-    public func gunzippedData() throws -> Data
+    public func gunzipped() throws -> Data
     {
         guard self.count > 0 else {
             return Data()
@@ -216,7 +216,7 @@ public extension Data
         
         data.length = Int(stream.total_out)
         
-        return (NSData(data: data as Data) as Data)
+        return data as Data
     }
     
     

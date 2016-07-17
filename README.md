@@ -5,7 +5,7 @@ NSData+GZIP.swift
 [![Build Status](http://img.shields.io/travis/1024jp/NSData-GZIP/master.svg?style=flat)](https://travis-ci.org/1024jp/NSData-GZIP)
 [![License](https://img.shields.io/github/license/1024jp/NSData-GZIP.svg)](https://github.com/1024jp/NSData-GZIP/blob/develop/LICENSE)
 
-__NSData+GZIP.swift__ is an extension of NSData written in Swift 2.0. It enables compress/decompress gzip using zlib.
+__NSData+GZIP.swift__ is an extension of Data written in Swift 3.0. It enables compress/decompress gzip using zlib.
 
 - __Requirements__: OS X 10.9 / iOS 7 or later
 
@@ -14,10 +14,10 @@ __NSData+GZIP.swift__ is an extension of NSData written in Swift 2.0. It enables
 
 ```swift
 // gzip
-let compressedData : NSData = try! data.gzippedData()
+let compressedData : Data = try! data.gzipped()
 
 // gunzip
-let decompressedData : NSData = try! compressedData.gunzippedData()
+let decompressedData : Data = try! compressedData.gunzipped()
 ```
 
 
@@ -34,6 +34,6 @@ let decompressedData : NSData = try! compressedData.gunzippedData()
 
 ## Lisence
 
-© 2014-2015 1024jp
+© 2014-2016 1024jp
 
 NSData+GZIP.swift is distributed under the terms of the __MIT License__. See [LISENCE](LISENCE) for details.

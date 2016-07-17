@@ -7,7 +7,7 @@
 /*
 The MIT License (MIT)
 
-© 2015 1024jp
+© 2015-2016 1024jp
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -39,8 +39,8 @@ class NSData_GZIPTests: XCTestCase
         let encoding = String.Encoding.utf8
         
         let data = testSentence.data(using: encoding, allowLossyConversion: true)!
-        let gzipped = try! data.gzippedData()
-        let uncompressed = try! gzipped.gunzippedData()
+        let gzipped = try! data.gzipped()
+        let uncompressed = try! gzipped.gunzipped()
         let uncompressedSentence = String(data: uncompressed, encoding: encoding)
         
         XCTAssertEqual(uncompressedSentence, testSentence)
@@ -51,8 +51,8 @@ class NSData_GZIPTests: XCTestCase
     {
         let zeroLengthData = Data()
         
-        XCTAssertEqual(try! zeroLengthData.gzippedData(), zeroLengthData)
-        XCTAssertEqual(try! zeroLengthData.gunzippedData(), zeroLengthData)
+        XCTAssertEqual(try! zeroLengthData.gzipped(), zeroLengthData)
+        XCTAssertEqual(try! zeroLengthData.gunzipped(), zeroLengthData)
     }
     
     
@@ -63,10 +63,11 @@ class NSData_GZIPTests: XCTestCase
         
         var uncompressed: Data?
         do {
-            uncompressed = try data.gunzippedData()
+            uncompressed = try data.gunzipped()
         } catch GzipError.data(let message){
             XCTAssertEqual(message, "incorrect header check")
         } catch _ {
+            XCTFail("Caught incorrect error.")
         }
         XCTAssertNil(uncompressed)
     }
