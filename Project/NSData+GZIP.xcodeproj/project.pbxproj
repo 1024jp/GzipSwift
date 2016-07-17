@@ -155,7 +155,6 @@
 			buildPhases = (
 				2A58A7531B00F414005FBBC2 /* Sources */,
 				2A58A7541B00F414005FBBC2 /* Frameworks */,
-				2A58A7551B00F414005FBBC2 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -172,7 +171,6 @@
 			buildPhases = (
 				2A58A7791B00FBEF005FBBC2 /* Sources */,
 				2A58A77A1B00FBEF005FBBC2 /* Frameworks */,
-				2A58A77B1B00FBEF005FBBC2 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -219,23 +217,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		2A58A7551B00F414005FBBC2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2A58A77B1B00FBEF005FBBC2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2A58A7531B00F414005FBBC2 /* Sources */ = {
