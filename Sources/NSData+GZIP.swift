@@ -145,22 +145,24 @@ public extension Data
             throw GzipError(code: status, msg: stream.msg)
         }
         
-        let data = NSMutableData(length: CHUNK_SIZE)!
+        var data = Data(capacity: CHUNK_SIZE)!
         while stream.avail_out == 0 {
-            if Int(stream.total_out) >= data.length {
-                data.length += CHUNK_SIZE
+            if Int(stream.total_out) >= data.count {
+                data.count += CHUNK_SIZE
             }
             
-            stream.next_out = UnsafeMutablePointer<Bytef>(data.mutableBytes).advanced(by: Int(stream.total_out))
-            stream.avail_out = uInt(data.length) - uInt(stream.total_out)
+            let _ = data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
+                stream.next_out = bytes.advanced(by: Int(stream.total_out))
+            }
+            stream.avail_out = uInt(data.count) - uInt(stream.total_out)
             
             deflate(&stream, Z_FINISH)
         }
         
         deflateEnd(&stream)
-        data.length = Int(stream.total_out)
+        data.count = Int(stream.total_out)
         
-        return data as Data
+        return data
     }
     
     
@@ -191,17 +193,20 @@ public extension Data
             throw GzipError(code: status, msg: stream.msg)
         }
         
-        let data = NSMutableData(length: self.count * 2)!
+        var data = Data(capacity: self.count * 2)!
         
         repeat {
-            if Int(stream.total_out) >= data.length {
-                data.length += self.count / 2;
+            if Int(stream.total_out) >= data.count {
+                data.count += self.count / 2;
             }
             
-            stream.next_out = UnsafeMutablePointer<Bytef>(data.mutableBytes).advanced(by: Int(stream.total_out))
-            stream.avail_out = uInt(data.length) - uInt(stream.total_out)
+            let _ = data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
+                stream.next_out = bytes.advanced(by: Int(stream.total_out))
+            }
+            stream.avail_out = uInt(data.count) - uInt(stream.total_out)
             
             status = inflate(&stream, Z_SYNC_FLUSH)
+            
         } while status == Z_OK
         
         guard inflateEnd(&stream) == Z_OK && status == Z_STREAM_END else {
@@ -214,9 +219,9 @@ public extension Data
             throw GzipError(code: status, msg: stream.msg)
         }
         
-        data.length = Int(stream.total_out)
+        data.count = Int(stream.total_out)
         
-        return data as Data
+        return data
     }
     
     

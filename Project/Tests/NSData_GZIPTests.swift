@@ -43,6 +43,7 @@ class NSData_GZIPTests: XCTestCase
         let uncompressed = try! gzipped.gunzipped()
         let uncompressedSentence = String(data: uncompressed, encoding: encoding)
         
+        XCTAssertNotEqual(gzipped, data)
         XCTAssertEqual(uncompressedSentence, testSentence)
     }
     
