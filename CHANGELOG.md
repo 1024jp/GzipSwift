@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+3.0.0
+--------------------------
+
+### Changes
+
+- Migrate code to Swift 3.0
+- Add `level` option to `gzipped()` method.
+
+
+
 2.0.0
 --------------------------
 

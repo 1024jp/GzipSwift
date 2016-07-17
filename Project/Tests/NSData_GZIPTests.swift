@@ -36,12 +36,11 @@ class NSData_GZIPTests: XCTestCase
     func testGZip()
     {
         let testSentence = "foo"
-        let encoding = String.Encoding.utf8
         
-        let data = testSentence.data(using: encoding, allowLossyConversion: true)!
+        let data = testSentence.data(using: .utf8)!
         let gzipped = try! data.gzipped()
         let uncompressed = try! gzipped.gunzipped()
-        let uncompressedSentence = String(data: uncompressed, encoding: encoding)
+        let uncompressedSentence = String(data: uncompressed, encoding: .utf8)
         
         XCTAssertNotEqual(gzipped, data)
         XCTAssertEqual(uncompressedSentence, testSentence)
@@ -60,7 +59,7 @@ class NSData_GZIPTests: XCTestCase
     func testWrongUngzip()
     {
         // data not compressed
-        let data = "testString".data(using: .utf8, allowLossyConversion: true)!
+        let data = "testString".data(using: .utf8)!
         
         var uncompressed: Data?
         do {
@@ -71,5 +70,35 @@ class NSData_GZIPTests: XCTestCase
             XCTFail("Caught incorrect error.")
         }
         XCTAssertNil(uncompressed)
+    }
+    
+    
+    func testCompressionLevel()
+    {
+        let data = String.lorem(length: 100_000).data(using: .utf8)!
+        
+        XCTAssertGreaterThan(try! data.gzipped(level: .bestSpeed).count,
+                             try! data.gzipped(level: .bestCompression).count)
+    }
+    
+}
+
+
+private extension String {
+    
+    /// Generate random letters string for test.
+    static func lorem(length : Int) -> String {
+        
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        
+        var string = ""
+        for _ in 0..<length {
+            let rand = Int(arc4random_uniform(UInt32(letters.characters.count)))
+            let index = letters.index(letters.startIndex, offsetBy: rand)
+            let character = letters.characters[index]
+            string.append(character)
+        }
+        
+        return string
     }
 }

@@ -34,6 +34,20 @@ private let CHUNK_SIZE: Int = 2 ^ 14
 private let STREAM_SIZE: Int32 = Int32(sizeof(z_stream.self))
 
 
+public typealias CompressionLevel = Int32
+
+/**
+ Constants for compression level based on the zlib's constants.
+ */
+public extension CompressionLevel {
+    public static let noCompression = Z_NO_COMPRESSION
+    public static let bestSpeed = Z_BEST_SPEED
+    public static let bestCompression = Z_BEST_COMPRESSION
+    
+    public static let defaultCompression = Z_DEFAULT_COMPRESSION
+}
+
+
 /**
 Errors on gzipping/gunzipping based on the zlib error codes.
 */
@@ -121,11 +135,14 @@ public extension Data
     /**
     Create a new `Data` object by compressing the reciver using zlib.
     Throws an error if compression failed.
+     
+    - parameters:
+        - level: Compression level in the range of `0` (no compression) to `9` (maximum compression).
     
     - throws: `GzipError`
     - returns: Gzip-compressed `Data` object.
     */
-    public func gzipped() throws -> Data
+    public func gzipped(level: CompressionLevel = .defaultCompression) throws -> Data
     {
         guard self.count > 0 else {
             return Data()
@@ -134,7 +151,7 @@ public extension Data
         var stream = self.createZStream()
         var status: Int32
         
-        status = deflateInit2_(&stream, Z_DEFAULT_COMPRESSION, Z_DEFLATED, MAX_WBITS + 16, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE)
+        status = deflateInit2_(&stream, level, Z_DEFLATED, MAX_WBITS + 16, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE)
 
         guard status == Z_OK else {
             // deflateInit2 returns:
