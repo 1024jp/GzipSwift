@@ -30,16 +30,12 @@
 import Foundation
 import zlib
 
-private let CHUNK_SIZE: Int = 2 ^ 14
-private let STREAM_SIZE: Int32 = Int32(sizeof(z_stream.self))
-
-
-public typealias CompressionLevel = Int32
-
 /**
- Constants for compression level based on the zlib's constants.
+ Compression level with constants based on the zlib's constants.
  */
+public typealias CompressionLevel = Int32
 public extension CompressionLevel {
+    
     public static let noCompression = Z_NO_COMPRESSION
     public static let bestSpeed = Z_BEST_SPEED
     public static let bestCompression = Z_BEST_COMPRESSION
@@ -103,8 +99,8 @@ public enum GzipError: ErrorProtocol {
     case unknown(message: String, code: Int)
     
     
-    private init(code: Int32, msg: UnsafePointer<CChar>)
-    {
+    private init(code: Int32, msg: UnsafePointer<CChar>) {
+        
         let message =  String(cString: msg) ?? "Unknown error"
         
         switch code {
@@ -130,8 +126,7 @@ public enum GzipError: ErrorProtocol {
 }
 
 
-public extension Data
-{
+public extension Data {
     
     /**
      Check if the reciever is already gzipped.
@@ -156,8 +151,8 @@ public extension Data
     - throws: `GzipError`
     - returns: Gzip-compressed `Data` object.
     */
-    public func gzipped(level: CompressionLevel = .defaultCompression) throws -> Data
-    {
+    public func gzipped(level: CompressionLevel = .defaultCompression) throws -> Data {
+        
         guard self.count > 0 else {
             return Data()
         }
@@ -204,8 +199,8 @@ public extension Data
     - throws: `GzipError`
     - returns: Gzip-decompressed `Data` object.
     */
-    public func gunzipped() throws -> Data
-    {
+    public func gunzipped() throws -> Data {
+        
         guard self.count > 0 else {
             return Data()
         }
@@ -256,8 +251,8 @@ public extension Data
     }
     
     
-    private func createZStream() -> z_stream
-    {
+    private func createZStream() -> z_stream {
+        
         return z_stream(
             next_in: UnsafeMutablePointer<Bytef>((self as NSData).bytes),
             avail_in: uint(self.count),
@@ -275,4 +270,9 @@ public extension Data
             reserved: 0
         )
     }
+    
 }
+
+
+private let CHUNK_SIZE: Int = 2 ^ 14
+private let STREAM_SIZE: Int32 = Int32(sizeof(z_stream.self))

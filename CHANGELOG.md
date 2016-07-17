@@ -29,7 +29,7 @@ Change Log
 
 ### Changes
 
-- Change to return just empty NSData instead nil if given data is empty
+- Change to return just an empty NSData instead of nil if given data is empty
 - Log error message if compression/decompression is failed.
     - [Note] This is a temporaly improvement.
-      I'll migrate functions to throw NSError when Swift 2.0 becomes stable.
+      I'll migrate functions to throw NSError when Swift 2.0 becomes stable. -> Done.

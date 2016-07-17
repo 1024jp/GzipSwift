@@ -31,10 +31,10 @@ THE SOFTWARE.
 import Foundation
 import XCTest
 
-class NSData_GZIPTests: XCTestCase
-{
-    func testGZip()
-    {
+class NSData_GZIPTests: XCTestCase {
+    
+    func testGZip() {
+        
         let testSentence = "foo"
         
         let data = testSentence.data(using: .utf8)!
@@ -51,8 +51,8 @@ class NSData_GZIPTests: XCTestCase
     }
     
     
-    func testZeroLength()
-    {
+    func testZeroLength() {
+        
         let zeroLengthData = Data()
         
         XCTAssertEqual(try! zeroLengthData.gzipped(), zeroLengthData)
@@ -60,8 +60,8 @@ class NSData_GZIPTests: XCTestCase
     }
     
     
-    func testWrongUngzip()
-    {
+    func testWrongUngzip() {
+        
         // data not compressed
         let data = "testString".data(using: .utf8)!
         
@@ -77,8 +77,8 @@ class NSData_GZIPTests: XCTestCase
     }
     
     
-    func testCompressionLevel()
-    {
+    func testCompressionLevel() {
+        
         let data = String.lorem(length: 100_000).data(using: .utf8)!
         
         XCTAssertGreaterThan(try! data.gzipped(level: .bestSpeed).count,
@@ -105,4 +105,5 @@ private extension String {
         
         return string
     }
+    
 }
