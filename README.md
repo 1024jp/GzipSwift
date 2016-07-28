@@ -5,7 +5,7 @@ Data+Gzip.swift
 [![macOS](http://img.shields.io/badge/macOS-10.9%2B-blue.svg)]()
 [![iOS](http://img.shields.io/badge/iOS-8.0%2B-blue.svg)]()
 [![Swift](http://img.shields.io/badge/Swift-3.0-blue.svg)]()
-
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible.svg)](https://github.com/Carthage/Carthage)
 [![Build Status](http://img.shields.io/travis/1024jp/NSData-GZIP/master.svg?style=flat)](https://travis-ci.org/1024jp/NSData-GZIP)
 [![License](https://img.shields.io/github/license/1024jp/NSData-GZIP.svg)](https://github.com/1024jp/NSData-GZIP/blob/develop/LICENSE)
 
