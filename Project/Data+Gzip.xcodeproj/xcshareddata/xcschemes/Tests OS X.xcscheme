@@ -17,7 +17,7 @@
                BlueprintIdentifier = "2A58A7561B00F414005FBBC2"
                BuildableName = "Tests OS X.xctest"
                BlueprintName = "Tests OS X"
-               ReferencedContainer = "container:NSData+GZIP.xcodeproj">
+               ReferencedContainer = "container:Data+Gzip.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -36,7 +36,7 @@
                BlueprintIdentifier = "2A58A7561B00F414005FBBC2"
                BuildableName = "Tests OS X.xctest"
                BlueprintName = "Tests OS X"
-               ReferencedContainer = "container:NSData+GZIP.xcodeproj">
+               ReferencedContainer = "container:Data+Gzip.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -46,7 +46,7 @@
             BlueprintIdentifier = "2A58A7561B00F414005FBBC2"
             BuildableName = "Tests OS X.xctest"
             BlueprintName = "Tests OS X"
-            ReferencedContainer = "container:NSData+GZIP.xcodeproj">
+            ReferencedContainer = "container:Data+Gzip.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -68,7 +68,7 @@
             BlueprintIdentifier = "2A58A7561B00F414005FBBC2"
             BuildableName = "Tests OS X.xctest"
             BlueprintName = "Tests OS X"
-            ReferencedContainer = "container:NSData+GZIP.xcodeproj">
+            ReferencedContainer = "container:Data+Gzip.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -86,7 +86,7 @@
             BlueprintIdentifier = "2A58A7561B00F414005FBBC2"
             BuildableName = "Tests OS X.xctest"
             BlueprintName = "Tests OS X"
-            ReferencedContainer = "container:NSData+GZIP.xcodeproj">
+            ReferencedContainer = "container:Data+Gzip.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

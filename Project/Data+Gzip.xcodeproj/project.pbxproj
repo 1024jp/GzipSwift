@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A58A75D1B00F414005FBBC2 /* NSData_GZIPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* NSData_GZIPTests.swift */; };
-		2A58A7621B00F42C005FBBC2 /* NSData+GZIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* NSData+GZIP.swift */; };
-		2A58A7891B00FE5E005FBBC2 /* NSData_GZIPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* NSData_GZIPTests.swift */; };
-		2A58A78A1B00FE81005FBBC2 /* NSData+GZIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* NSData+GZIP.swift */; };
+		2A58A75D1B00F414005FBBC2 /* Data_GzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* Data_GzipTests.swift */; };
+		2A58A7621B00F42C005FBBC2 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
+		2A58A7891B00FE5E005FBBC2 /* Data_GzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* Data_GzipTests.swift */; };
+		2A58A78A1B00FE81005FBBC2 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
 		2AD497391B8E2A2D00AFBA1B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD497381B8E2A2D00AFBA1B /* libz.tbd */; };
 		2AD4973B1B8E2A3800AFBA1B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD4973A1B8E2A3800AFBA1B /* libz.tbd */; };
 /* End PBXBuildFile section */
@@ -18,8 +18,8 @@
 /* Begin PBXFileReference section */
 		2A58A7571B00F414005FBBC2 /* Tests OS X.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests OS X.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A58A75B1B00F414005FBBC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A58A75C1B00F414005FBBC2 /* NSData_GZIPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSData_GZIPTests.swift; sourceTree = "<group>"; };
-		2A58A7611B00F42C005FBBC2 /* NSData+GZIP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+GZIP.swift"; sourceTree = "<group>"; };
+		2A58A75C1B00F414005FBBC2 /* Data_GzipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data_GzipTests.swift; sourceTree = "<group>"; };
+		2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Gzip.swift"; sourceTree = "<group>"; };
 		2A58A77D1B00FBEF005FBBC2 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A58A7801B00FBF0005FBBC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AD497381B8E2A2D00AFBA1B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				2AF7F0BE1B6E1CD100EBA69A /* CHANGELOG.md */,
-				2A58A7631B00F437005FBBC2 /* NSData+GZIP */,
+				2A58A7631B00F437005FBBC2 /* Data+Gzip */,
 				2AFCA7941B661CBA006DF1F4 /* Modules */,
 				2A58A7881B00FD11005FBBC2 /* Tests */,
 				2A58A7581B00F414005FBBC2 /* Products */,
@@ -86,12 +86,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2A58A7631B00F437005FBBC2 /* NSData+GZIP */ = {
+		2A58A7631B00F437005FBBC2 /* Data+Gzip */ = {
 			isa = PBXGroup;
 			children = (
-				2A58A7611B00F42C005FBBC2 /* NSData+GZIP.swift */,
+				2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */,
 			);
-			name = "NSData+GZIP";
+			name = "Data+Gzip";
 			path = ../Sources;
 			sourceTree = "<group>";
 		};
@@ -123,7 +123,7 @@
 		2A58A7881B00FD11005FBBC2 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				2A58A75C1B00F414005FBBC2 /* NSData_GZIPTests.swift */,
+				2A58A75C1B00F414005FBBC2 /* Data_GzipTests.swift */,
 				2A58A7591B00F414005FBBC2 /* OS X */,
 				2A58A77E1B00FBEF005FBBC2 /* iOS */,
 			);
@@ -200,7 +200,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2A58A7501B00F3A2005FBBC2 /* Build configuration list for PBXProject "NSData+GZIP" */;
+			buildConfigurationList = 2A58A7501B00F3A2005FBBC2 /* Build configuration list for PBXProject "Data+Gzip" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -223,8 +223,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A58A7621B00F42C005FBBC2 /* NSData+GZIP.swift in Sources */,
-				2A58A75D1B00F414005FBBC2 /* NSData_GZIPTests.swift in Sources */,
+				2A58A7621B00F42C005FBBC2 /* Data+Gzip.swift in Sources */,
+				2A58A75D1B00F414005FBBC2 /* Data_GzipTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,8 +232,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A58A78A1B00FE81005FBBC2 /* NSData+GZIP.swift in Sources */,
-				2A58A7891B00FE5E005FBBC2 /* NSData_GZIPTests.swift in Sources */,
+				2A58A78A1B00FE81005FBBC2 /* Data+Gzip.swift in Sources */,
+				2A58A7891B00FE5E005FBBC2 /* Data_GzipTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +484,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2A58A7501B00F3A2005FBBC2 /* Build configuration list for PBXProject "NSData+GZIP" */ = {
+		2A58A7501B00F3A2005FBBC2 /* Build configuration list for PBXProject "Data+Gzip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A58A7511B00F3A2005FBBC2 /* Debug */,

@@ -1,5 +1,5 @@
 //
-//  NSData+GZIP.swift
+//  Data+Gzip.swift
 //
 //  Version 3.0.0
 
