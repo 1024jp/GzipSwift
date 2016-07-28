@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2A321EE11D4A5CFB002B0245 /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE050881D4A2C070040E4C9 /* Gzip.framework */; };
+		2A321EFD1D4A617C002B0245 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
+		2A321F011D4A61B1002B0245 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A321EFF1D4A61A4002B0245 /* libz.tbd */; };
+		2A321F111D4A6398002B0245 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A321F101D4A6398002B0245 /* libz.tbd */; };
+		2A321F121D4A63D9002B0245 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
 		2A58A75D1B00F414005FBBC2 /* GzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* GzipTests.swift */; };
 		2A58A7891B00FE5E005FBBC2 /* GzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* GzipTests.swift */; };
 		2AE050901D4A2D370040E4C9 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
@@ -35,6 +39,12 @@
 
 /* Begin PBXFileReference section */
 		2A321EDF1D4A58C7002B0245 /* zlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zlib; sourceTree = "<group>"; };
+		2A321EE71D4A6138002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A321EFF1D4A61A4002B0245 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		2A321F071D4A635F002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A321F091D4A635F002B0245 /* Gzip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gzip.h; sourceTree = "<group>"; };
+		2A321F0A1D4A635F002B0245 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A321F101D4A6398002B0245 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		2A58A7571B00F414005FBBC2 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A58A75C1B00F414005FBBC2 /* GzipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GzipTests.swift; sourceTree = "<group>"; };
 		2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Gzip.swift"; sourceTree = "<group>"; };
@@ -49,6 +59,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2A321EE31D4A6138002B0245 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A321F011D4A61B1002B0245 /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A321F031D4A635F002B0245 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A321F111D4A6398002B0245 /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A58A7541B00F414005FBBC2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -83,6 +109,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A321EFE1D4A61A4002B0245 /* watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				2A321EFF1D4A61A4002B0245 /* libz.tbd */,
+			);
+			name = watchOS;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		2A321F081D4A635F002B0245 /* Gzip */ = {
+			isa = PBXGroup;
+			children = (
+				2A321F091D4A635F002B0245 /* Gzip.h */,
+				2A321F0A1D4A635F002B0245 /* Info.plist */,
+			);
+			path = Gzip;
+			sourceTree = "<group>";
+		};
+		2A321F0F1D4A6398002B0245 /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				2A321F101D4A6398002B0245 /* libz.tbd */,
+			);
+			name = tvOS;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		2A58A74C1B00F3A2005FBBC2 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +144,7 @@
 				2AE050891D4A2C070040E4C9 /* Supporting Files */,
 				2AFCA7941B661CBA006DF1F4 /* Modules */,
 				2A58A7881B00FD11005FBBC2 /* Tests */,
+				2A321F081D4A635F002B0245 /* Gzip */,
 				2A58A7581B00F414005FBBC2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,6 +156,8 @@
 				2A58A77D1B00FBEF005FBBC2 /* Tests iOS.xctest */,
 				2AE050881D4A2C070040E4C9 /* Gzip.framework */,
 				2AE050991D4A2DC30040E4C9 /* Gzip.framework */,
+				2A321EE71D4A6138002B0245 /* Gzip.framework */,
+				2A321F071D4A635F002B0245 /* Gzip.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,6 +184,8 @@
 			children = (
 				2A58A7591B00F414005FBBC2 /* macOS */,
 				2A58A77E1B00FBEF005FBBC2 /* iOS */,
+				2A321EFE1D4A61A4002B0245 /* watchOS */,
+				2A321F0F1D4A6398002B0245 /* tvOS */,
 			);
 			name = Libraries;
 			path = Tests/iOS;
@@ -171,6 +229,38 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2A321EE61D4A6138002B0245 /* Gzip watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A321EEC1D4A6138002B0245 /* Build configuration list for PBXNativeTarget "Gzip watchOS" */;
+			buildPhases = (
+				2A321EE21D4A6138002B0245 /* Sources */,
+				2A321EE31D4A6138002B0245 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Gzip watchOS";
+			productName = Gzip;
+			productReference = 2A321EE71D4A6138002B0245 /* Gzip.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2A321F061D4A635F002B0245 /* Gzip tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A321F0C1D4A635F002B0245 /* Build configuration list for PBXNativeTarget "Gzip tvOS" */;
+			buildPhases = (
+				2A321F021D4A635F002B0245 /* Sources */,
+				2A321F031D4A635F002B0245 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Gzip tvOS";
+			productName = Gzip;
+			productReference = 2A321F071D4A635F002B0245 /* Gzip.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		2A58A7561B00F414005FBBC2 /* Tests macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A58A75E1B00F414005FBBC2 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
@@ -247,6 +337,18 @@
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0800;
 				TargetAttributes = {
+					2A321EE61D4A6138002B0245 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = HT3Z3A72WZ;
+						DevelopmentTeamName = "Mineko IMANISHI";
+						ProvisioningStyle = Automatic;
+					};
+					2A321F061D4A635F002B0245 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = HT3Z3A72WZ;
+						DevelopmentTeamName = "Mineko IMANISHI";
+						ProvisioningStyle = Automatic;
+					};
 					2A58A7561B00F414005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0800;
@@ -282,6 +384,8 @@
 			targets = (
 				2AE050871D4A2C070040E4C9 /* Gzip macOS */,
 				2AE050981D4A2DC30040E4C9 /* Gzip iOS */,
+				2A321EE61D4A6138002B0245 /* Gzip watchOS */,
+				2A321F061D4A635F002B0245 /* Gzip tvOS */,
 				2A58A7561B00F414005FBBC2 /* Tests macOS */,
 				2A58A77C1B00FBEF005FBBC2 /* Tests iOS */,
 			);
@@ -289,6 +393,22 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2A321EE21D4A6138002B0245 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A321EFD1D4A617C002B0245 /* Data+Gzip.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A321F021D4A635F002B0245 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A321F121D4A63D9002B0245 /* Data+Gzip.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A58A7531B00F414005FBBC2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -337,6 +457,98 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		2A321EED1D4A6138002B0245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_DYNAMIC_NO_PIC = NO;
+				INFOPLIST_FILE = Project/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.Gzip;
+				PRODUCT_NAME = Gzip;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = zlib;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		2A321EEE1D4A6138002B0245 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Project/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.Gzip;
+				PRODUCT_NAME = Gzip;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = zlib;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		2A321F0D1D4A635F002B0245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_DYNAMIC_NO_PIC = NO;
+				INFOPLIST_FILE = Project/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.Gzip;
+				PRODUCT_NAME = Gzip;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = zlib;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		2A321F0E1D4A635F002B0245 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Project/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.Gzip;
+				PRODUCT_NAME = Gzip;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = zlib;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		2A58A7511B00F3A2005FBBC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -541,7 +753,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -565,13 +776,28 @@
 				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2A321EEC1D4A6138002B0245 /* Build configuration list for PBXNativeTarget "Gzip watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A321EED1D4A6138002B0245 /* Debug */,
+				2A321EEE1D4A6138002B0245 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2A321F0C1D4A635F002B0245 /* Build configuration list for PBXNativeTarget "Gzip tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A321F0D1D4A635F002B0245 /* Debug */,
+				2A321F0E1D4A635F002B0245 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		2A58A7501B00F3A2005FBBC2 /* Build configuration list for PBXProject "Gzip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
