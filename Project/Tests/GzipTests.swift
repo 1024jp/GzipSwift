@@ -1,6 +1,6 @@
 //
-//  NSData_GZIPTests.swift
-//  NSData+GZIPTests
+//  GzipTests.swift
+//  GzipTests
 //
 //  Created by 1024jp on 2015-05-11.
 
@@ -30,6 +30,7 @@ THE SOFTWARE.
 
 import Foundation
 import XCTest
+import Gzip
 
 class NSData_GZIPTests: XCTestCase {
     

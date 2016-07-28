@@ -9,14 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A58A7561B00F414005FBBC2"
-               BuildableName = "Tests macOS.xctest"
-               BlueprintName = "Tests macOS"
+               BlueprintIdentifier = "2AE050981D4A2DC30040E4C9"
+               BuildableName = "Gzip iOS.framework"
+               BlueprintName = "Gzip iOS"
                ReferencedContainer = "container:Data+Gzip.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,16 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A58A7561B00F414005FBBC2"
-               BuildableName = "Tests macOS.xctest"
-               BlueprintName = "Tests macOS"
+               BlueprintIdentifier = "2A58A77C1B00FBEF005FBBC2"
+               BuildableName = "Tests iOS.xctest"
+               BlueprintName = "Tests iOS"
                ReferencedContainer = "container:Data+Gzip.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A58A7561B00F414005FBBC2"
-            BuildableName = "Tests macOS.xctest"
-            BlueprintName = "Tests macOS"
+            BlueprintIdentifier = "2AE050981D4A2DC30040E4C9"
+            BuildableName = "Gzip iOS.framework"
+            BlueprintName = "Gzip iOS"
             ReferencedContainer = "container:Data+Gzip.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A58A7561B00F414005FBBC2"
-            BuildableName = "Tests macOS.xctest"
-            BlueprintName = "Tests macOS"
+            BlueprintIdentifier = "2AE050981D4A2DC30040E4C9"
+            BuildableName = "Gzip iOS.framework"
+            BlueprintName = "Gzip iOS"
             ReferencedContainer = "container:Data+Gzip.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A58A7561B00F414005FBBC2"
-            BuildableName = "Tests macOS.xctest"
-            BlueprintName = "Tests macOS"
+            BlueprintIdentifier = "2AE050981D4A2DC30040E4C9"
+            BuildableName = "Gzip iOS.framework"
+            BlueprintName = "Gzip iOS"
             ReferencedContainer = "container:Data+Gzip.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

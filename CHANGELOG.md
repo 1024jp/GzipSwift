@@ -8,6 +8,7 @@ Change Log
 ### Changes
 
 - Migrate code to Swift 3.0
+- Become framework (for macOS and iOS).
 - Rename from "NSData+GZIP" to "Data+Gzip"
 - Add `level` option to `gzipped()` method.
 - Add `isGzipped` property (readonly).
