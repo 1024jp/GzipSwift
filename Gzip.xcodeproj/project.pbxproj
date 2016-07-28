@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A321EE11D4A5CFB002B0245 /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE050881D4A2C070040E4C9 /* Gzip.framework */; };
 		2A58A75D1B00F414005FBBC2 /* GzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* GzipTests.swift */; };
 		2A58A7891B00FE5E005FBBC2 /* GzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* GzipTests.swift */; };
 		2AE050901D4A2D370040E4C9 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A321EE11D4A5CFB002B0245 /* Gzip.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
