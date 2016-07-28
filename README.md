@@ -34,7 +34,7 @@ if data.isGzipped {
 }
 
 // check data is gzipped
-print(compressedData.isGgipped)
+print(compressedData.isGzipped)
 ```
 
 
