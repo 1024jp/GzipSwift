@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2AE050981D4A2DC30040E4C9"
-               BuildableName = "Gzip iOS.framework"
+               BuildableName = "Gzip.framework"
                BlueprintName = "Gzip iOS"
-               ReferencedContainer = "container:Data+Gzip.xcodeproj">
+               ReferencedContainer = "container:Gzip.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "2A58A77C1B00FBEF005FBBC2"
                BuildableName = "Tests iOS.xctest"
                BlueprintName = "Tests iOS"
-               ReferencedContainer = "container:Data+Gzip.xcodeproj">
+               ReferencedContainer = "container:Gzip.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2AE050981D4A2DC30040E4C9"
-            BuildableName = "Gzip iOS.framework"
+            BuildableName = "Gzip.framework"
             BlueprintName = "Gzip iOS"
-            ReferencedContainer = "container:Data+Gzip.xcodeproj">
+            ReferencedContainer = "container:Gzip.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2AE050981D4A2DC30040E4C9"
-            BuildableName = "Gzip iOS.framework"
+            BuildableName = "Gzip.framework"
             BlueprintName = "Gzip iOS"
-            ReferencedContainer = "container:Data+Gzip.xcodeproj">
+            ReferencedContainer = "container:Gzip.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2AE050981D4A2DC30040E4C9"
-            BuildableName = "Gzip iOS.framework"
+            BuildableName = "Gzip.framework"
             BlueprintName = "Gzip iOS"
-            ReferencedContainer = "container:Data+Gzip.xcodeproj">
+            ReferencedContainer = "container:Gzip.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

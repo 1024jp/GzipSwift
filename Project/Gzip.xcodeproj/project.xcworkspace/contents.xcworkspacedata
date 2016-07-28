@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Data+Gzip.xcodeproj">
+      location = "self:Gzip.xcodeproj">
    </FileRef>
 </Workspace>

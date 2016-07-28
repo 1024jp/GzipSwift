@@ -267,7 +267,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2A58A7501B00F3A2005FBBC2 /* Build configuration list for PBXProject "Data+Gzip" */;
+			buildConfigurationList = 2A58A7501B00F3A2005FBBC2 /* Build configuration list for PBXProject "Gzip" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -579,7 +579,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2A58A7501B00F3A2005FBBC2 /* Build configuration list for PBXProject "Data+Gzip" */ = {
+		2A58A7501B00F3A2005FBBC2 /* Build configuration list for PBXProject "Gzip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A58A7511B00F3A2005FBBC2 /* Debug */,
@@ -613,6 +613,7 @@
 				2AE0508E1D4A2C070040E4C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2AE0509E1D4A2DC30040E4C9 /* Build configuration list for PBXNativeTarget "Gzip iOS" */ = {
 			isa = XCConfigurationList;
@@ -621,6 +622,7 @@
 				2AE050A01D4A2DC30040E4C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
