@@ -99,9 +99,14 @@ public enum GzipError: ErrorProtocol {
     case unknown(message: String, code: Int)
     
     
-    private init(code: Int32, msg: UnsafePointer<CChar>) {
+    private init(code: Int32, msg: UnsafePointer<CChar>?) {
         
-        let message =  String(cString: msg) ?? "Unknown error"
+        let message: String = {
+            guard let msg = msg, let message = String(validatingUTF8: msg) else {
+                return "Unknown gzip error"
+            }
+            return message
+        }()
         
         switch code {
         case Z_STREAM_ERROR:
@@ -226,7 +231,7 @@ public extension Data {
                 data.count += self.count / 2;
             }
             
-            let _ = data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
+            data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
                 stream.next_out = bytes.advanced(by: Int(stream.total_out))
             }
             stream.avail_out = uInt(data.count) - uInt(stream.total_out)
