@@ -8,8 +8,8 @@ GzipSwift
 [![tvOS](https://img.shields.io/badge/tvOS-9.0%2B-blue.svg)]()
 [![Swift](https://img.shields.io/badge/Swift-3.0-blue.svg)]()
 [![Carthage compatible](https://img.shields.io/badge/Carthage-✓-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Build Status](https://img.shields.io/travis/1024jp/NSData-GZIP/master.svg?style=flat)](https://travis-ci.org/1024jp/NSData-GZIP)
-[![License](https://img.shields.io/github/license/1024jp/NSData-GZIP.svg)](https://github.com/1024jp/NSData-GZIP/blob/develop/LICENSE)
+[![Build Status](https://img.shields.io/travis/1024jp/GzipSwift/master.svg?style=flat)](https://travis-ci.org/1024jp/GzipSwift)
+[![License](https://img.shields.io/github/license/1024jp/GzipSwift.svg)](https://github.com/1024jp/GzipSwift/blob/develop/LICENSE)
 
 __GzipSwift__ is an extension of Data written in Swift 3.0. It enables compress/decompress gzip using zlib.
 
@@ -42,7 +42,7 @@ print(compressedData.isGgipped)
 
 1. Build Gzip framework.
 3. In *Build Phases*, add `Gzip.framework` library to your project.
-    <img src="Documentation/binary_link@2x.png" height="150"/>
+    <br /><img src="Documentation/binary_link@2x.png" height="150"/>
 5. `import Gzip` in your Swift file.
 6. Use in your code.
 
