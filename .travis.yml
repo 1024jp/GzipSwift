@@ -1,11 +1,11 @@
 language: objective-c
 
-xcode_project: Project/NSData+GZIP.xcodeproj
+xcode_project: Gzip.xcodeproj
 matrix:
     include:
-        - xcode_scheme: Tests OS X
+        - xcode_scheme: Gzip macOS
           xcode_sdk: macosx
-        - xcode_scheme: Tests iOS
+        - xcode_scheme: Gzip iOS
           xcode_sdk: iphonesimulator
 osx_image: xcode8
 
