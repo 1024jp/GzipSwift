@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2A321F061D4A635F002B0245"
-               BuildableName = "Gzip tvOS.framework"
+               BuildableName = "Gzip.framework"
                BlueprintName = "Gzip tvOS"
                ReferencedContainer = "container:Gzip.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A321F061D4A635F002B0245"
-            BuildableName = "Gzip tvOS.framework"
+            BuildableName = "Gzip.framework"
             BlueprintName = "Gzip tvOS"
             ReferencedContainer = "container:Gzip.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A321F061D4A635F002B0245"
-            BuildableName = "Gzip tvOS.framework"
+            BuildableName = "Gzip.framework"
             BlueprintName = "Gzip tvOS"
             ReferencedContainer = "container:Gzip.xcodeproj">
          </BuildableReference>
