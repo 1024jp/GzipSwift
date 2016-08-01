@@ -47,7 +47,7 @@ public extension CompressionLevel {
 /**
 Errors on gzipping/gunzipping based on the zlib error codes.
 */
-public enum GzipError: ErrorProtocol {
+public enum GzipError: Error {
     // cf. http://www.zlib.net/manual.html
     
     /**
@@ -108,26 +108,52 @@ public enum GzipError: ErrorProtocol {
             return message
         }()
         
-        switch code {
-        case Z_STREAM_ERROR:
-            self = .stream(message: message)
-
-        case Z_DATA_ERROR:
-            self = .data(message: message)
-            
-        case Z_MEM_ERROR:
-            self = .memory(message: message)
-            
-        case Z_BUF_ERROR:
-            self = .buffer(message: message)
-            
-        case Z_VERSION_ERROR:
-            self = .version(message: message)
-            
-        default:
-            self = .unknown(message: message, code: Int(code))
-        }
+        self = {
+            switch code {
+            case Z_STREAM_ERROR:
+                return .stream(message: message)
+                
+            case Z_DATA_ERROR:
+                return .data(message: message)
+                
+            case Z_MEM_ERROR:
+                return .memory(message: message)
+                
+            case Z_BUF_ERROR:
+                return .buffer(message: message)
+                
+            case Z_VERSION_ERROR:
+                return .version(message: message)
+                
+            default:
+                return .unknown(message: message, code: Int(code))
+            }
+        }()
     }
+    
+    
+    var localizedDescription: String {
+        
+        let description: String = {
+            switch self {
+            case .stream(let message):
+                return message
+            case .data(let message):
+                return message
+            case .memory(let message):
+                return message
+            case .buffer(let message):
+                return message
+            case .version(let message):
+                return message
+            case .unknown(let message, _):
+                return message
+            }
+        }()
+        
+        return NSLocalizedString(description, comment: "error message")
+    }
+    
 }
 
 
@@ -176,7 +202,7 @@ public extension Data {
             throw GzipError(code: status, msg: stream.msg)
         }
         
-        var data = Data(capacity: CHUNK_SIZE)!
+        var data = Data(capacity: CHUNK_SIZE)
         while stream.avail_out == 0 {
             if Int(stream.total_out) >= data.count {
                 data.count += CHUNK_SIZE
@@ -224,7 +250,7 @@ public extension Data {
             throw GzipError(code: status, msg: stream.msg)
         }
         
-        var data = Data(capacity: self.count * 2)!
+        var data = Data(capacity: self.count * 2)
         
         repeat {
             if Int(stream.total_out) >= data.count {
