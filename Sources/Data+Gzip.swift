@@ -132,7 +132,7 @@ public enum GzipError: Error {
     }
     
     
-    var localizedDescription: String {
+    public var localizedDescription: String {
         
         let description: String = {
             switch self {
