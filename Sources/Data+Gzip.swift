@@ -282,22 +282,14 @@ public extension Data {
     
     private func createZStream() -> z_stream {
         
-        return z_stream(
-            next_in: UnsafeMutablePointer<Bytef>((self as NSData).bytes),
-            avail_in: uint(self.count),
-            total_in: 0,
-            next_out: nil,
-            avail_out: 0,
-            total_out: 0,
-            msg: nil,
-            state: nil,
-            zalloc: nil,
-            zfree: nil,
-            opaque: nil,
-            data_type: 0,
-            adler: 0,
-            reserved: 0
-        )
+        var stream = z_stream()
+        
+        self.withUnsafeBytes { (bytes: UnsafePointer<Bytef>) in
+            stream.next_in = UnsafeMutablePointer<Bytef>(bytes)
+        }
+        stream.avail_in = uint(self.count)
+        
+        return stream
     }
     
 }
