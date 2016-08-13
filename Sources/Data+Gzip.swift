@@ -206,7 +206,7 @@ public extension Data {
                 data.count += CHUNK_SIZE
             }
             
-            let _ = data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
+            data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
                 stream.next_out = bytes.advanced(by: Int(stream.total_out))
             }
             stream.avail_out = uInt(data.count) - uInt(stream.total_out)
