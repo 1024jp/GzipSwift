@@ -11,9 +11,10 @@ GzipSwift
 [![Build Status](https://img.shields.io/travis/1024jp/GzipSwift/master.svg?style=flat)](https://travis-ci.org/1024jp/GzipSwift)
 [![License](https://img.shields.io/github/license/1024jp/GzipSwift.svg)](https://github.com/1024jp/GzipSwift/blob/develop/LICENSE)
 
-__GzipSwift__ is an extension of Data written in Swift 3.0. It enables compress/decompress gzip using zlib.
+__GzipSwift__ is a framework with an extension of Data written in Swift. It enables compress/decompress gzip using zlib.
 
 - __Requirements__: OS X 10.9 / iOS 8 / watchOS 2 / tvOS 9 or later
+- __Swift version__: 3.0 (beta 5)
 
 
 ## Usage
