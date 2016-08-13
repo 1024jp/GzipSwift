@@ -45,8 +45,8 @@ public extension CompressionLevel {
 
 
 /**
-Errors on gzipping/gunzipping based on the zlib error codes.
-*/
+ Errors on gzipping/gunzipping based on the zlib error codes.
+ */
 public enum GzipError: Error {
     // cf. http://www.zlib.net/manual.html
     
@@ -166,9 +166,7 @@ public extension Data {
      */
     public var isGzipped: Bool {
         
-        guard self.count >= 2 else { return false }
-        
-        return self[0] == 0x1f && self[1] == 0x8b  // check magic number
+        return self.starts(with: [0x1f, 0x8b])  // check magic number
     }
     
     

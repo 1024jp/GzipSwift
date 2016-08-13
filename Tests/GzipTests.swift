@@ -58,6 +58,7 @@ class NSData_GZIPTests: XCTestCase {
         
         XCTAssertEqual(try! zeroLengthData.gzipped(), zeroLengthData)
         XCTAssertEqual(try! zeroLengthData.gunzipped(), zeroLengthData)
+        XCTAssertFalse(zeroLengthData.isGzipped)
     }
     
     
@@ -69,7 +70,7 @@ class NSData_GZIPTests: XCTestCase {
         var uncompressed: Data?
         do {
             uncompressed = try data.gunzipped()
-        } catch GzipError.data(let message){
+        } catch GzipError.data(let message) {
             XCTAssertEqual(message, "incorrect header check")
         } catch _ {
             XCTFail("Caught incorrect error.")
