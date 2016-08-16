@@ -99,7 +99,7 @@ public enum GzipError: Error {
     case unknown(message: String, code: Int)
     
     
-    private init(code: Int32, msg: UnsafePointer<CChar>?) {
+    internal init(code: Int32, msg: UnsafePointer<CChar>?) {
         
         let message: String = {
             guard let msg = msg, let message = String(validatingUTF8: msg) else {
@@ -285,7 +285,7 @@ public extension Data {
         var stream = z_stream()
         
         self.withUnsafeBytes { (bytes: UnsafePointer<Bytef>) in
-            stream.next_in = UnsafeMutablePointer<Bytef>(bytes)
+            stream.next_in = UnsafeMutablePointer<Bytef>(mutating: bytes)
         }
         stream.avail_in = uint(self.count)
         
@@ -296,4 +296,4 @@ public extension Data {
 
 
 private let CHUNK_SIZE: Int = 2 ^ 14
-private let STREAM_SIZE: Int32 = Int32(sizeof(z_stream.self))
+private let STREAM_SIZE: Int32 = Int32(MemoryLayout<z_stream>.size)
