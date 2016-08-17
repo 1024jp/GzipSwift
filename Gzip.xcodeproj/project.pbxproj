@@ -14,6 +14,9 @@
 		2A321F121D4A63D9002B0245 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
 		2A58A75D1B00F414005FBBC2 /* GzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* GzipTests.swift */; };
 		2A58A7891B00FE5E005FBBC2 /* GzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* GzipTests.swift */; };
+		2A6B20D51D64C66600AADBD7 /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE050991D4A2DC30040E4C9 /* Gzip.framework */; };
+		2A6B20D81D64C6B300AADBD7 /* Gzip.framework in Resources */ = {isa = PBXBuildFile; fileRef = 2AE050881D4A2C070040E4C9 /* Gzip.framework */; };
+		2A6B20DA1D64C6DD00AADBD7 /* Gzip.framework in Resources */ = {isa = PBXBuildFile; fileRef = 2AE050991D4A2DC30040E4C9 /* Gzip.framework */; };
 		2AE050901D4A2D370040E4C9 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
 		2AE050911D4A2D430040E4C9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD497381B8E2A2D00AFBA1B /* libz.tbd */; };
 		2AE050A11D4A2DDD0040E4C9 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
@@ -87,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A6B20D51D64C66600AADBD7 /* Gzip.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +271,7 @@
 			buildPhases = (
 				2A58A7531B00F414005FBBC2 /* Sources */,
 				2A58A7541B00F414005FBBC2 /* Frameworks */,
+				2A6B20D61D64C68500AADBD7 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -284,6 +289,7 @@
 			buildPhases = (
 				2A58A7791B00FBEF005FBBC2 /* Sources */,
 				2A58A77A1B00FBEF005FBBC2 /* Frameworks */,
+				2A6B20D91D64C6D000AADBD7 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -391,6 +397,25 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2A6B20D61D64C68500AADBD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A6B20D81D64C6B300AADBD7 /* Gzip.framework in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A6B20D91D64C6D000AADBD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A6B20DA1D64C6DD00AADBD7 /* Gzip.framework in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2A321EE21D4A6138002B0245 /* Sources */ = {
@@ -789,6 +814,7 @@
 				2A321EEE1D4A6138002B0245 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A321F0C1D4A635F002B0245 /* Build configuration list for PBXNativeTarget "Gzip tvOS" */ = {
 			isa = XCConfigurationList;
@@ -797,6 +823,7 @@
 				2A321F0E1D4A635F002B0245 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A58A7501B00F3A2005FBBC2 /* Build configuration list for PBXProject "Gzip" */ = {
 			isa = XCConfigurationList;
