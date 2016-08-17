@@ -7,7 +7,8 @@ GzipSwift
 [![watchOS](https://img.shields.io/badge/watchOS-2.0%2B-blue.svg)]()
 [![tvOS](https://img.shields.io/badge/tvOS-9.0%2B-blue.svg)]()
 [![Swift](https://img.shields.io/badge/Swift-3.0-blue.svg)]()
-[![Carthage compatible](https://img.shields.io/badge/Carthage-✓-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![codecov.io](https://codecov.io/gh/1024jp/GzipSwift/branch/Swift3/graphs/badge.svg)](https://codecov.io/gh/1024jp/GzipSwift)
 [![Build Status](https://img.shields.io/travis/1024jp/GzipSwift/master.svg?style=flat)](https://travis-ci.org/1024jp/GzipSwift)
 [![License](https://img.shields.io/github/license/1024jp/GzipSwift.svg)](https://github.com/1024jp/GzipSwift/blob/develop/LICENSE)
 

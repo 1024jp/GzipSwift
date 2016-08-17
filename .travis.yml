@@ -12,3 +12,6 @@ matrix:
       env: DESTINATION="OS=10.0,name=iPhone SE"
 
 script: xcodebuild -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -sdk "$TRAVIS_XCODE_SDK" -destination "$DESTINATION" clean build test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
