@@ -47,6 +47,12 @@ print(compressedData.isGzipped)
 5. `import Gzip` in your Swift file.
 6. Use in your code.
 
+### Build via Carthage
+GzipSwift is Carthage compatible. You can easily build GzipSwift adding the following line to your Cartfile.
+
+```ruby
+github "1024jp/GzipSwift" "swift3" ~> 3.0.0
+```
 
 ## Lisence
 
