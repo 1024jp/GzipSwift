@@ -9,4 +9,4 @@ matrix:
         - xcode_scheme: Gzip iOS
           xcode_sdk: iphonesimulator
 
-sudo: false
+script: xcodebuild -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -sdk "$TRAVIS_XCODE_SDK" clean build test
