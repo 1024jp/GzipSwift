@@ -11,7 +11,15 @@ matrix:
       xcode_sdk: iphonesimulator
       env: DESTINATION="OS=10.0,name=iPhone SE"
 
-script: xcodebuild -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -sdk "$TRAVIS_XCODE_SDK" -destination "$DESTINATION" clean test
-
+before_install:
+  - sudo gem install xcpretty
+script:
+  xcodebuild
+  -project "$TRAVIS_XCODE_PROJECT"
+  -scheme "$TRAVIS_XCODE_SCHEME"
+  -sdk "$TRAVIS_XCODE_SDK"
+  -destination "$DESTINATION"
+  clean test
+  | xcpretty -c && exit ${PIPESTATUS[0]}
 after_success:
   - bash <(curl -s https://codecov.io/bash)
