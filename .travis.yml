@@ -11,7 +11,7 @@ matrix:
       xcode_sdk: iphonesimulator
       env: DESTINATION="OS=10.0,name=iPhone SE"
 
-script: xcodebuild -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -sdk "$TRAVIS_XCODE_SDK" -destination "$DESTINATION" clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+script: xcodebuild -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -sdk "$TRAVIS_XCODE_SDK" -destination "$DESTINATION" clean test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
