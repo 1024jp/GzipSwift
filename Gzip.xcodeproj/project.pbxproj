@@ -17,6 +17,8 @@
 		2A6B20D51D64C66600AADBD7 /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE050991D4A2DC30040E4C9 /* Gzip.framework */; };
 		2A6B20D81D64C6B300AADBD7 /* Gzip.framework in Resources */ = {isa = PBXBuildFile; fileRef = 2AE050881D4A2C070040E4C9 /* Gzip.framework */; };
 		2A6B20DA1D64C6DD00AADBD7 /* Gzip.framework in Resources */ = {isa = PBXBuildFile; fileRef = 2AE050991D4A2DC30040E4C9 /* Gzip.framework */; };
+		2A8219C71D65AFB300D65063 /* test.txt.gz in Resources */ = {isa = PBXBuildFile; fileRef = 2A8219C61D65AFB300D65063 /* test.txt.gz */; };
+		2A8219C81D65AFB300D65063 /* test.txt.gz in Resources */ = {isa = PBXBuildFile; fileRef = 2A8219C61D65AFB300D65063 /* test.txt.gz */; };
 		2AE050901D4A2D370040E4C9 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
 		2AE050911D4A2D430040E4C9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD497381B8E2A2D00AFBA1B /* libz.tbd */; };
 		2AE050A11D4A2DDD0040E4C9 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
@@ -50,6 +52,7 @@
 		2A58A75C1B00F414005FBBC2 /* GzipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GzipTests.swift; sourceTree = "<group>"; };
 		2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Gzip.swift"; sourceTree = "<group>"; };
 		2A58A77D1B00FBEF005FBBC2 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A8219C61D65AFB300D65063 /* test.txt.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = test.txt.gz; sourceTree = "<group>"; };
 		2AD497381B8E2A2D00AFBA1B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		2AD4973A1B8E2A3800AFBA1B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		2AE050881D4A2C070040E4C9 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +199,7 @@
 			children = (
 				2A58A75C1B00F414005FBBC2 /* GzipTests.swift */,
 				2AE050A81D4A33A30040E4C9 /* Info.plist */,
+				2A8219C61D65AFB300D65063 /* test.txt.gz */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -391,6 +395,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A8219C71D65AFB300D65063 /* test.txt.gz in Resources */,
 				2A6B20D81D64C6B300AADBD7 /* Gzip.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +404,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A8219C81D65AFB300D65063 /* test.txt.gz in Resources */,
 				2A6B20DA1D64C6DD00AADBD7 /* Gzip.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

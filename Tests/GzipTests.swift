@@ -93,6 +93,17 @@ class NSData_GZIPTests: XCTestCase {
                              try! data.gzipped(level: .bestCompression).count)
     }
     
+    
+    func testFileDecompression() {
+        
+        let bundle = Bundle(for: type(of: self))
+        let url = bundle.url(forResource: "test.txt", withExtension: "gz")!
+        let data = try! Data(contentsOf: url)
+        let uncompressed = try! data.gunzipped()
+        
+        XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
+    }
+    
 }
 
 
