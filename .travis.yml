@@ -12,7 +12,8 @@ matrix:
       env: DESTINATION="OS=10.0,name=iPhone SE"
 
 before_install:
-  - sudo gem install xcpretty
+  - gem install xcpretty
+  - gem install xcpretty-travis-formatter
 script:
   xcodebuild
   -project "$TRAVIS_XCODE_PROJECT"
@@ -20,6 +21,6 @@ script:
   -sdk "$TRAVIS_XCODE_SDK"
   -destination "$DESTINATION"
   clean test
-  | xcpretty -c && exit ${PIPESTATUS[0]}
+  | xcpretty -f `xcpretty-travis-formatter`
 after_success:
   - bash <(curl -s https://codecov.io/bash)
