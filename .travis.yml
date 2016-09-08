@@ -1,13 +1,26 @@
 language: objective-c
+osx_image: xcode8
 
-xcode_project: Project/NSData+GZIP.xcodeproj
+xcode_project: Gzip.xcodeproj
 matrix:
-    include:
-        - xcode_scheme: Tests OS X
-          xcode_sdk: macosx
-        - xcode_scheme: Tests iOS
-          xcode_sdk: iphonesimulator
-osx_image: xcode7
+  include:
+    - xcode_scheme: Gzip macOS
+      xcode_sdk: macosx
+      env: DESTINATION="arch=x86_64"
+    - xcode_scheme: Gzip iOS
+      xcode_sdk: iphonesimulator
+      env: DESTINATION="OS=10.0,name=iPhone SE"
 
-sudo: false
-cache: bundler
+before_install:
+  - gem install xcpretty
+  - gem install xcpretty-travis-formatter
+script:
+  xcodebuild
+  -project "$TRAVIS_XCODE_PROJECT"
+  -scheme "$TRAVIS_XCODE_SCHEME"
+  -sdk "$TRAVIS_XCODE_SDK"
+  -destination "$DESTINATION"
+  clean test
+  | xcpretty -f `xcpretty-travis-formatter`
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

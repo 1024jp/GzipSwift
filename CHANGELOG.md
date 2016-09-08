@@ -2,6 +2,20 @@
 Change Log
 ==========================
 
+3.0.0
+--------------------------
+
+### Changes
+
+- Migrate code to Swift 3.0
+- Become framework.
+- Support watchOS and tvOS
+- Rename from "NSData+GZIP" to "Data+Gzip"
+- Add `level` option to `gzipped()` method.
+- Add `isGzipped` property (readonly).
+
+
+
 2.0.0
 --------------------------
 
@@ -18,7 +32,7 @@ Change Log
 
 ### Changes
 
-- Change to return just empty NSData instead nil if given data is empty
+- Change to return just an empty NSData instead of nil if given data is empty
 - Log error message if compression/decompression is failed.
     - [Note] This is a temporaly improvement.
-      I'll migrate functions to throw NSError when Swift 2.0 becomes stable.
+      I'll migrate functions to throw NSError when Swift 2.0 becomes stable. -> Done.
