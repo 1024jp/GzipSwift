@@ -8,7 +8,7 @@ Change Log
 ### Changes
 
 - Migrate code to Swift 3.0
-- Become framework (for macOS and iOS).
+- Become framework.
 - Support watchOS and tvOS
 - Rename from "NSData+GZIP" to "Data+Gzip"
 - Add `level` option to `gzipped()` method.
