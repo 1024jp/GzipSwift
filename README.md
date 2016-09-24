@@ -53,14 +53,13 @@ github "1024jp/GzipSwift" "swift3" ~> 3.0.0
 ```
 ### For Linux platform with swift package manager
 
-1. First you need to install zlib if you haven't installed yet:
-
+1 - First you need to install zlib if you haven't installed yet:
 ```bash
 $ apt-get install zlib-dev
 ```
+2 - add this packge to your package.swift
 
-2. add this packge to your package.swift
-3. if swift build failed with a linker error:
+3 - if swift build failed with a linker error:
  * check if libz.so is in your /usr/local/lib
  * if no, reinstall zlib as step (1)
  * if yes, link the library manually by passing '-Xlinker -L/usr/local/lib' with `swift build`
