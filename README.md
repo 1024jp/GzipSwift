@@ -48,6 +48,9 @@ print(compressedData.isGzipped)
 ### Build via Carthage
 GzipSwift is Carthage compatible. You can easily build GzipSwift adding the following line to your Cartfile.
 
+```ruby
+github "1024jp/GzipSwift" "swift3" ~> 3.0.0
+```
 ### For Linux platform with swift package manager
 
 1. First you need to install zlib if you haven't installed yet:
@@ -60,9 +63,6 @@ $ apt-get install zlib-dev
  * if no, reinstall zlib as step (1)
  * if yes, link the library manually by passing '-Xlinker -L/usr/local/lib' with `swift build`
 
-```ruby
-github "1024jp/GzipSwift" "swift3" ~> 3.0.0
-```
 
 ## Lisence
 
