@@ -337,15 +337,13 @@
 				TargetAttributes = {
 					2A321EE61D4A6138002B0245 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = HT3Z3A72WZ;
 						DevelopmentTeamName = "Mineko IMANISHI";
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					2A321F061D4A635F002B0245 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = HT3Z3A72WZ;
 						DevelopmentTeamName = "Mineko IMANISHI";
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					2A58A7561B00F414005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -356,15 +354,13 @@
 					};
 					2AE050871D4A2C070040E4C9 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = HT3Z3A72WZ;
 						DevelopmentTeamName = "Mineko IMANISHI";
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					2AE050981D4A2DC30040E4C9 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = HT3Z3A72WZ;
 						DevelopmentTeamName = "Mineko IMANISHI";
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -483,6 +479,7 @@
 				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -506,6 +503,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -530,6 +528,7 @@
 				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -553,6 +552,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -713,6 +713,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -734,6 +735,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -755,6 +757,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -776,6 +779,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
