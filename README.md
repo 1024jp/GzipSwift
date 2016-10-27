@@ -2,7 +2,7 @@
 GzipSwift
 ========================
 
-[![Swift](https://img.shields.io/badge/Swift-3.0-blue.svg)]()
+[![Swift](https://img.shields.io/badge/Swift-3.0.1-blue.svg)]()
 [![platform](https://img.shields.io/badge/platform-macOS | iOS | watchOS | tvOS-blue.svg)]()
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://img.shields.io/travis/1024jp/GzipSwift/master.svg?style=flat)](https://travis-ci.org/1024jp/GzipSwift)
@@ -12,7 +12,7 @@ GzipSwift
 __GzipSwift__ is a framework with an extension of Data written in Swift. It enables compress/decompress gzip using zlib.
 
 - __Requirements__: OS X 10.9 / iOS 8 / watchOS 2 / tvOS 9 or later
-- __Swift version__: Swift 3.0
+- __Swift version__: Swift 3.0.1
 
 
 ## Usage
