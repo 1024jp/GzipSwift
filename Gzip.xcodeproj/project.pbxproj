@@ -49,7 +49,7 @@
 		2A321F071D4A635F002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A321F101D4A6398002B0245 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		2A58A7571B00F414005FBBC2 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A58A75C1B00F414005FBBC2 /* GzipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GzipTests.swift; sourceTree = "<group>"; };
+		2A58A75C1B00F414005FBBC2 /* GzipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GzipTests.swift; path = GzipTests/GzipTests.swift; sourceTree = "<group>"; };
 		2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Gzip.swift"; sourceTree = "<group>"; };
 		2A58A77D1B00FBEF005FBBC2 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8219C61D65AFB300D65063 /* test.txt.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = test.txt.gz; sourceTree = "<group>"; };
