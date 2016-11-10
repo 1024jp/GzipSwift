@@ -28,11 +28,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-import Foundation
 import XCTest
 import Gzip
 
-class NSData_GZIPTests: XCTestCase {
+class GzipTests: XCTestCase {
     
     func testGZip() {
         
@@ -97,7 +96,7 @@ class NSData_GZIPTests: XCTestCase {
     func testFileDecompression() {
         
         let bundle = Bundle(for: type(of: self))
-        let url = bundle.url(forResource: "test.txt", withExtension: "gz")!
+        guard let url = bundle.url(forResource: "test.txt", withExtension: "gz") else { return }
         let data = try! Data(contentsOf: url)
         let uncompressed = try! data.gunzipped()
         
