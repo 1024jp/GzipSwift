@@ -1,7 +1,7 @@
 //
 //  Data+Gzip.swift
 //
-//  Version 3.0.1
+//  Version 3.1.0
 
 /*
  The MIT License (MIT)
@@ -150,12 +150,8 @@ public enum GzipError: Error {
                 return message
             }
         }()
-
-        #if os(Linux) || os(FreeBSD) 
-        return "Error: \(description)"
-        #else       
-        return NSLocalizedString(description, comment: "error message")
-        #endif
+        
+        return description
     }
     
 }
