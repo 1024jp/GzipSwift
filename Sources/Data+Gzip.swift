@@ -150,8 +150,12 @@ public enum GzipError: Error {
                 return message
             }
         }()
-        
+
+        #if os(Linux) || os(FreeBSD) 
+        return "Error: \(description)"
+        #else       
         return NSLocalizedString(description, comment: "error message")
+        #endif
     }
     
 }
