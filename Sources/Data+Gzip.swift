@@ -160,7 +160,7 @@ public enum GzipError: Error {
 public extension Data {
     
     /**
-     Check if the reciever is already gzipped.
+     Check if the receiver is already gzipped.
      
      - returns: Whether the data is compressed.
      */
