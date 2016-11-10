@@ -1,6 +1,6 @@
 import PackageDescription
 
 let package = Package(
-    name: "GzipSwift",
+    name: "Gzip",
     dependencies: [.Package(url: "https://github.com/1024jp/zlib.git", versions: Version(0,0,0)..<Version(1,0,0))]
 )
