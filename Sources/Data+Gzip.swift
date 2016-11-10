@@ -1,7 +1,7 @@
 //
 //  Data+Gzip.swift
 //
-//  Version 3.0.1
+//  Version 3.1.0
 
 /*
  The MIT License (MIT)
