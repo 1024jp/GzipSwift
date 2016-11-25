@@ -51,6 +51,15 @@ GzipSwift is Carthage compatible. You can easily build GzipSwift adding the foll
 ```ruby
 github "1024jp/GzipSwift"
 ```
+
+### Build via CocoaPods
+GzipSwift is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "GzipSwift"
+```
+
 ### For Linux platform with swift package manager
 
 1. First you need to install zlib if you haven't installed yet:
