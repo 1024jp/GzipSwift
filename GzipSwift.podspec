@@ -7,6 +7,7 @@ Pod::Spec.new do |s|
   s.license       = { :type => "MIT",
                       :file => "LICENSE" }
   s.author        = { "1024jp" => "1024jp@wolfrosch.com" }
+  s.social_media_url = "https://twitter.com/1024jp"
 
   s.source        = { :git => "https://github.com/1024jp/GzipSwift.git",
                       :tag => s.version }
