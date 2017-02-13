@@ -45,9 +45,9 @@
 /* Begin PBXFileReference section */
 		2A321EDF1D4A58C7002B0245 /* zlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zlib; sourceTree = "<group>"; };
 		2A321EE71D4A6138002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A321EFF1D4A61A4002B0245 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS3.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		2A321EFF1D4A61A4002B0245 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		2A321F071D4A635F002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A321F101D4A6398002B0245 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS10.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		2A321F101D4A6398002B0245 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		2A58A7571B00F414005FBBC2 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A58A75C1B00F414005FBBC2 /* GzipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GzipTests.swift; path = GzipTests/GzipTests.swift; sourceTree = "<group>"; };
 		2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Gzip.swift"; sourceTree = "<group>"; };
