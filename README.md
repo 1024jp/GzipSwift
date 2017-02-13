@@ -75,6 +75,6 @@ pod 'GzipSwift'
 
 ## Lisence
 
-© 2014-2016 1024jp
+© 2014-2017 1024jp
 
 GzipSwift is distributed under the terms of the __MIT License__. See [LISENCE](LISENCE) for details.
