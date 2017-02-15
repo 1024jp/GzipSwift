@@ -1,12 +1,12 @@
 //
 //  Data+Gzip.swift
 //
-//  Version 3.1.2
+//  Version 3.1.4
 
 /*
  The MIT License (MIT)
  
- © 2014-2016 1024jp <wolfrosch.com>
+ © 2014-2017 1024jp <wolfrosch.com>
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -160,9 +160,7 @@ public enum GzipError: Error {
 public extension Data {
     
     /**
-     Check if the receiver is already gzipped.
-     
-     - returns: Whether the data is compressed.
+     Whether the data is compressed in gzip format.
      */
     public var isGzipped: Bool {
         
@@ -182,14 +180,14 @@ public extension Data {
     */
     public func gzipped(level: CompressionLevel = .defaultCompression) throws -> Data {
         
-        guard self.count > 0 else {
+        guard !self.isEmpty else {
             return Data()
         }
         
         var stream = self.createZStream()
         var status: Int32
         
-        status = deflateInit2_(&stream, level, Z_DEFLATED, MAX_WBITS + 16, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, STREAM_SIZE)
+        status = deflateInit2_(&stream, level, Z_DEFLATED, MAX_WBITS + 16, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, Int32(DataSize.stream))
 
         guard status == Z_OK else {
             // deflateInit2 returns:
@@ -200,10 +198,10 @@ public extension Data {
             throw GzipError(code: status, msg: stream.msg)
         }
         
-        var data = Data(capacity: CHUNK_SIZE)
+        var data = Data(capacity: DataSize.chunk)
         while stream.avail_out == 0 {
             if Int(stream.total_out) >= data.count {
-                data.count += CHUNK_SIZE
+                data.count += DataSize.chunk
             }
             
             data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
@@ -230,14 +228,14 @@ public extension Data {
     */
     public func gunzipped() throws -> Data {
         
-        guard self.count > 0 else {
+        guard !self.isEmpty else {
             return Data()
         }
         
         var stream = self.createZStream()
         var status: Int32
         
-        status = inflateInit2_(&stream, MAX_WBITS + 32, ZLIB_VERSION, STREAM_SIZE)
+        status = inflateInit2_(&stream, MAX_WBITS + 32, ZLIB_VERSION, Int32(DataSize.stream))
         
         guard status == Z_OK else {
             // inflateInit2 returns:
@@ -252,7 +250,7 @@ public extension Data {
         
         repeat {
             if Int(stream.total_out) >= data.count {
-                data.count += self.count / 2;
+                data.count += self.count / 2
             }
             
             data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
@@ -295,5 +293,10 @@ public extension Data {
 }
 
 
-private let CHUNK_SIZE: Int = 2 ^ 14
-private let STREAM_SIZE: Int32 = Int32(MemoryLayout<z_stream>.size)
+private struct DataSize {
+    
+    static let chunk = 2 ^ 14
+    static let stream = MemoryLayout<z_stream>.size
+    
+    private init() { }
+}

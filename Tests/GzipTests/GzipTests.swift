@@ -109,7 +109,7 @@ class GzipTests: XCTestCase {
 private extension String {
     
     /// Generate random letters string for test.
-    static func lorem(length : Int) -> String {
+    static func lorem(length: Int) -> String {
         
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         
