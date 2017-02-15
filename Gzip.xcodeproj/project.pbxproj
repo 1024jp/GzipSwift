@@ -6,6 +6,20 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		2ACC21BF1E54BB920078241F /* Lint Swift Code */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2ACC21C01E54BB920078241F /* Build configuration list for PBXAggregateTarget "Lint Swift Code" */;
+			buildPhases = (
+				2ACC21C31E54BB9D0078241F /* Run Script */,
+			);
+			dependencies = (
+			);
+			name = "Lint Swift Code";
+			productName = "Lint Swift Code";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		2A321EE11D4A5CFB002B0245 /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE050881D4A2C070040E4C9 /* Gzip.framework */; };
 		2A321EFD1D4A617C002B0245 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
@@ -352,6 +366,10 @@
 					2A58A77C1B00FBEF005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
+					2ACC21BF1E54BB920078241F = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					2AE050871D4A2C070040E4C9 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeamName = "Mineko IMANISHI";
@@ -382,6 +400,7 @@
 				2A321F061D4A635F002B0245 /* Gzip tvOS */,
 				2A58A7561B00F414005FBBC2 /* Tests macOS */,
 				2A58A77C1B00FBEF005FBBC2 /* Tests iOS */,
+				2ACC21BF1E54BB920078241F /* Lint Swift Code */,
 			);
 		};
 /* End PBXProject section */
@@ -406,6 +425,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2ACC21C31E54BB9D0078241F /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2A321EE21D4A6138002B0245 /* Sources */ = {
@@ -711,6 +747,20 @@
 			};
 			name = Release;
 		};
+		2ACC21C11E54BB920078241F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2ACC21C21E54BB920078241F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		2AE0508D1D4A2C070040E4C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -847,6 +897,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		2ACC21C01E54BB920078241F /* Build configuration list for PBXAggregateTarget "Lint Swift Code" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2ACC21C11E54BB920078241F /* Debug */,
+				2ACC21C21E54BB920078241F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		2AE0508F1D4A2C070040E4C9 /* Build configuration list for PBXNativeTarget "Gzip macOS" */ = {
 			isa = XCConfigurationList;

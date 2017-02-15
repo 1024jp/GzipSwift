@@ -16,6 +16,7 @@ before_install:
   - gem install xcpretty-travis-formatter
   - gem install cocoapods
 script:
+  - swiftlint
   - xcodebuild
       -project "$TRAVIS_XCODE_PROJECT"
       -scheme "$TRAVIS_XCODE_SCHEME"

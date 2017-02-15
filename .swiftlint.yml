@@ -1,0 +1,28 @@
+
+excluded:
+  - Tests/GzipTests
+
+opt_in_rules:
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - empty_count
+  - explicit_init
+  - first_where
+  - nimble_operator
+  - number_separator
+  - operator_usage_whitespace
+  - private_outlet
+  - redundant_nil_coalescing
+  - switch_case_on_newline
+
+trailing_comma:
+  mandatory_comma: true
+
+trailing_whitespace:
+  ignores_empty_lines: true
+
+vertical_whitespace:
+  max_empty_lines: 2
+
+line_length: 200
