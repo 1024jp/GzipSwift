@@ -22,5 +22,6 @@ Pod::Spec.new do |s|
   s.requires_arc  = true
   s.library       = 'z'
   s.preserve_path = 'zlib/*'
-  s.pod_target_xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(PODS_ROOT)/GzipSwift/zlib' }
+  s.pod_target_xcconfig = { 'SWIFT_INCLUDE_PATHS' => '$(PODS_ROOT)/GzipSwift/zlib',
+                            'APPLICATION_EXTENSION_API_ONLY' => 'YES' }
 end
