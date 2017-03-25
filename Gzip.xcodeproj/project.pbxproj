@@ -57,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A1A709E1E86C2E800C678B1 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		2A321EDF1D4A58C7002B0245 /* zlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zlib; sourceTree = "<group>"; };
 		2A321EE71D4A6138002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A321EFF1D4A61A4002B0245 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
@@ -150,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				2AF7F0BE1B6E1CD100EBA69A /* CHANGELOG.md */,
+				2A1A709E1E86C2E800C678B1 /* Package.swift */,
 				2A58A7631B00F437005FBBC2 /* Sources */,
 				2AE050891D4A2C070040E4C9 /* Supporting Files */,
 				2AFCA7941B661CBA006DF1F4 /* Modules */,
@@ -905,6 +907,7 @@
 				2ACC21C21E54BB920078241F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2AE0508F1D4A2C070040E4C9 /* Build configuration list for PBXNativeTarget "Gzip macOS" */ = {
 			isa = XCConfigurationList;
