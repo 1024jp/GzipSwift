@@ -58,7 +58,6 @@
 
 /* Begin PBXFileReference section */
 		2A1A709E1E86C2E800C678B1 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		2A321EDF1D4A58C7002B0245 /* zlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zlib; sourceTree = "<group>"; };
 		2A321EE71D4A6138002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A321EFF1D4A61A4002B0245 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		2A321F071D4A635F002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +134,6 @@
 				2A321EFF1D4A61A4002B0245 /* libz.tbd */,
 			);
 			name = watchOS;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		2A321F0F1D4A6398002B0245 /* tvOS */ = {
@@ -144,7 +142,6 @@
 				2A321F101D4A6398002B0245 /* libz.tbd */,
 			);
 			name = tvOS;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		2A58A74C1B00F3A2005FBBC2 = {
@@ -154,7 +151,7 @@
 				2A1A709E1E86C2E800C678B1 /* Package.swift */,
 				2A58A7631B00F437005FBBC2 /* Sources */,
 				2AE050891D4A2C070040E4C9 /* Supporting Files */,
-				2AFCA7941B661CBA006DF1F4 /* Modules */,
+				2A58A7661B00F5CF005FBBC2 /* Libraries */,
 				2A58A7881B00FD11005FBBC2 /* Tests */,
 				2A58A7581B00F414005FBBC2 /* Products */,
 			);
@@ -179,7 +176,6 @@
 				2AD497381B8E2A2D00AFBA1B /* libz.tbd */,
 			);
 			name = macOS;
-			path = ../macOS;
 			sourceTree = "<group>";
 		};
 		2A58A7631B00F437005FBBC2 /* Sources */ = {
@@ -199,7 +195,6 @@
 				2A321F0F1D4A6398002B0245 /* tvOS */,
 			);
 			name = Libraries;
-			path = Tests/iOS;
 			sourceTree = "<group>";
 		};
 		2A58A77E1B00FBEF005FBBC2 /* iOS */ = {
@@ -227,15 +222,6 @@
 			);
 			name = "Supporting Files";
 			path = Project;
-			sourceTree = "<group>";
-		};
-		2AFCA7941B661CBA006DF1F4 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				2A321EDF1D4A58C7002B0245 /* zlib */,
-				2A58A7661B00F5CF005FBBC2 /* Libraries */,
-			);
-			name = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -530,7 +516,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -553,7 +538,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -579,7 +563,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -602,7 +585,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
@@ -795,7 +777,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 			};
 			name = Debug;
 		};
@@ -816,7 +797,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 			};
 			name = Release;
 		};
@@ -838,7 +818,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -859,7 +838,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

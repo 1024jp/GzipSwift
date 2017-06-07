@@ -1,4 +1,0 @@
-module zlib [system] {
-    header "include.h"
-    export *
-}
