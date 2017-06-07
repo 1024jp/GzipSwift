@@ -363,7 +363,7 @@
 					};
 					2A58A7561B00F414005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 					};
 					2A58A77C1B00FBEF005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -375,6 +375,7 @@
 					2AE050871D4A2C070040E4C9 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeamName = "Mineko IMANISHI";
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 					};
 					2AE050981D4A2DC30040E4C9 = {
@@ -656,7 +657,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -702,7 +703,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
