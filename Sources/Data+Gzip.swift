@@ -30,16 +30,31 @@ import Foundation
 import zlib
 
 /**
- Compression level with constants based on the zlib's constants.
+ Compression level whose rawValue is based on the zlib's constants.
  */
-public typealias CompressionLevel = Int32
-public extension CompressionLevel {
+public struct CompressionLevel: RawRepresentable, Equatable {
     
-    public static let noCompression = Z_NO_COMPRESSION
-    public static let bestSpeed = Z_BEST_SPEED
-    public static let bestCompression = Z_BEST_COMPRESSION
+    /// Compression level in the range of `0` (no compression) to `9` (maximum compression).
+    public let rawValue: Int32
     
-    public static let defaultCompression = Z_DEFAULT_COMPRESSION
+    public static let noCompression = CompressionLevel(Z_NO_COMPRESSION)
+    public static let bestSpeed = CompressionLevel(Z_BEST_SPEED)
+    public static let bestCompression =  CompressionLevel(Z_BEST_COMPRESSION)
+    
+    public static let defaultCompression =  CompressionLevel(Z_DEFAULT_COMPRESSION)
+    
+    
+    public init(rawValue: Int32) {
+        
+        self.rawValue = rawValue
+    }
+    
+    
+    public init(_ rawValue: Int32) {
+        
+        self.rawValue = rawValue
+    }
+    
 }
 
 
@@ -172,7 +187,7 @@ public extension Data {
     Throws an error if compression failed.
      
     - parameters:
-        - level: Compression level in the range of `0` (no compression) to `9` (maximum compression).
+        - level: Compression level.
     
     - throws: `GzipError`
     - returns: Gzip-compressed `Data` object.
@@ -186,7 +201,7 @@ public extension Data {
         var stream = self.createZStream()
         var status: Int32
         
-        status = deflateInit2_(&stream, level, Z_DEFLATED, MAX_WBITS + 16, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, Int32(DataSize.stream))
+        status = deflateInit2_(&stream, level.rawValue, Z_DEFLATED, MAX_WBITS + 16, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, Int32(DataSize.stream))
 
         guard status == Z_OK else {
             // deflateInit2 returns:
