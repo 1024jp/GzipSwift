@@ -32,7 +32,7 @@ import zlib
 /**
  Compression level whose rawValue is based on the zlib's constants.
  */
-public struct CompressionLevel: RawRepresentable, Equatable {
+public struct CompressionLevel: RawRepresentable {
     
     /// Compression level in the range of `0` (no compression) to `9` (maximum compression).
     public let rawValue: Int32
