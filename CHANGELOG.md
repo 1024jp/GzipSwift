@@ -8,6 +8,7 @@ Change Log
 ### Changes
 
 - Make `CompressionLevel` struct.
+- Make `GzipError` struct.
 
 
 
