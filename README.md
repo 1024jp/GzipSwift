@@ -27,7 +27,7 @@ let optimizedData: Data = try! data.gzipped(level: .bestCompression)
 
 // gunzip
 let decompressedData: Data
-if decompressedData.isGzipped {
+if data.isGzipped {
     decompressedData = try! data.gunzipped()
 } else {
     decompressedData = data
