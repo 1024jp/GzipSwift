@@ -39,9 +39,9 @@ public struct CompressionLevel: RawRepresentable {
     
     public static let noCompression = CompressionLevel(Z_NO_COMPRESSION)
     public static let bestSpeed = CompressionLevel(Z_BEST_SPEED)
-    public static let bestCompression =  CompressionLevel(Z_BEST_COMPRESSION)
+    public static let bestCompression = CompressionLevel(Z_BEST_COMPRESSION)
     
-    public static let defaultCompression =  CompressionLevel(Z_DEFAULT_COMPRESSION)
+    public static let defaultCompression = CompressionLevel(Z_DEFAULT_COMPRESSION)
     
     
     public init(rawValue: Int32) {
@@ -151,7 +151,7 @@ public struct GzipError: Swift.Error {
 }
 
 
-public extension Data {
+extension Data {
     
     /**
      Whether the data is compressed in gzip format.
