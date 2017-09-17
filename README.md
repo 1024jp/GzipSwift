@@ -49,7 +49,7 @@ if data.isGzipped {
 GzipSwift is [Carthage](https://github.com/Carthage/Carthage) compatible. You can easily build GzipSwift adding the following line to your `Cartfile`:
 
 ```ruby
-github "1024jp/GzipSwift" "swift4"
+github "1024jp/GzipSwift"
 ```
 
 ### CocoaPods
@@ -57,7 +57,7 @@ GzipSwift is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your `Podfile`:
 
 ```ruby
-pod 'GzipSwift', :git => 'https://github.com/1024jp/GzipSwift.git', :branch => 'swift4'
+pod 'GzipSwift'
 ```
 
 ### Swift Package Manager
