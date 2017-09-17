@@ -2,6 +2,25 @@
 Change Log
 ==========================
 
+4.0.0-beta.2
+--------------------------
+
+### Changes
+
+- Make `CompressionLevel` struct.
+- Make `GzipError` struct.
+
+
+
+4.0.0-beta
+--------------------------
+
+### Changes
+
+- Update project for Xcode 9.
+
+
+
 3.1.4
 --------------------------
 

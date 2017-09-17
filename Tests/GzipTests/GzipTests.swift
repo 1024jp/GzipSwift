@@ -7,7 +7,7 @@
 /*
 The MIT License (MIT)
 
-© 2015-2016 1024jp
+© 2015-2017 1024jp
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -70,10 +70,10 @@ class GzipTests: XCTestCase {
         do {
             uncompressed = try data.gunzipped()
         } catch let error as GzipError {
-            switch error {
-            case .data(let message):
-                XCTAssertEqual(message, "incorrect header check")
-                XCTAssertEqual(message, error.localizedDescription)
+            switch error.kind {
+            case .data:
+                XCTAssertEqual(error.message, "incorrect header check")
+                XCTAssertEqual(error.message, error.localizedDescription)
             default:
                 XCTFail("Caught incorrect error.")
             }
