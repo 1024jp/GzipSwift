@@ -2,19 +2,18 @@
 GzipSwift
 ========================
 
-[![Swift](https://img.shields.io/badge/Swift-3.0.1-blue.svg)]()
-[![platform](https://img.shields.io/badge/platform-macOS|iOS|watchOS|tvOS|Linux-blue.svg)]()
+[![Swift](https://img.shields.io/badge/Swift-4.0.0-blue.svg)]()
+[![platform](https://img.shields.io/badge/platform-macOS%20|%20iOS%20|%20watchOS%20|%20tvOS%20|%20Linux-blue.svg)]()
 [![Carthage compatible](https://img.shields.io/badge/Carthage-✔-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![SPM compatible](https://img.shields.io/badge/SPM-✔-4BC51D.svg?style=flat)](https://swift.org/package-manager/)
-[![CocoaPods compatible](http://img.shields.io/cocoapods/v/GzipSwift.svg?style=flat)](http://cocoadocs.org/docsets/GzipSwift)
+[![CocoaPods compatible](http://img.shields.io/cocoapods/v/GzipSwift.svg?style=flat)](https://cocoapods.org/pods/GzipSwift)
 [![Build Status](https://img.shields.io/travis/1024jp/GzipSwift/master.svg?style=flat)](https://travis-ci.org/1024jp/GzipSwift)
 [![codecov.io](https://codecov.io/gh/1024jp/GzipSwift/branch/master/graphs/badge.svg)](https://codecov.io/gh/1024jp/GzipSwift)
-[![License](https://img.shields.io/github/license/1024jp/GzipSwift.svg)](https://github.com/1024jp/GzipSwift/blob/develop/LICENSE)
 
 __GzipSwift__ is a framework with an extension of Data written in Swift. It enables compress/decompress gzip using zlib.
 
 - __Requirements__: OS X 10.9 / iOS 8 / watchOS 2 / tvOS 9 or later
-- __Swift version__: Swift 3.0.1
+- __Swift version__: Swift 4.0.0
 
 
 ## Usage
@@ -37,6 +36,8 @@ if data.isGzipped {
 
 
 ## Installation
+
+### Manual Build
 
 1. Open Gzip.xcodeproj on Xcode and build Gzip framework for your target platform.
 2. Append the built `Gzip.framework` to your project.
@@ -61,7 +62,7 @@ pod 'GzipSwift'
 
 ### Swift Package Manager
 
-1. First you need to install zlib if you haven't installed yet:
+1. Install zlib if you haven't installed yet:
    
     ```bash
     $ apt-get install zlib-dev
@@ -69,12 +70,12 @@ pod 'GzipSwift'
 2. Add this package to your package.swift.
 3. If Swift build failed with a linker error:
     * check if libz.so is in your /usr/local/lib
-    * if no, reinstall zlib as step (1)
-    * if yes, link the library manually by passing '-Xlinker -L/usr/local/lib' with `swift build`
+        * if no, reinstall zlib as step (1)
+        * if yes, link the library manually by passing '-Xlinker -L/usr/local/lib' with `swift build`
 
 
-## Lisence
+## License
 
 © 2014-2017 1024jp
 
-GzipSwift is distributed under the terms of the __MIT License__. See [LISENCE](LISENCE) for details.
+GzipSwift is distributed under the terms of the __MIT License__. See [LICENSE](LICENSE) for details.

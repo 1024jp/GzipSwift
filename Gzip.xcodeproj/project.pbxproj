@@ -6,6 +6,20 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		2ACC21BF1E54BB920078241F /* Lint Swift Code */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2ACC21C01E54BB920078241F /* Build configuration list for PBXAggregateTarget "Lint Swift Code" */;
+			buildPhases = (
+				2ACC21C31E54BB9D0078241F /* Run Script */,
+			);
+			dependencies = (
+			);
+			name = "Lint Swift Code";
+			productName = "Lint Swift Code";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		2A321EE11D4A5CFB002B0245 /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE050881D4A2C070040E4C9 /* Gzip.framework */; };
 		2A321EFD1D4A617C002B0245 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
@@ -43,7 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2A321EDF1D4A58C7002B0245 /* zlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zlib; sourceTree = "<group>"; };
+		2A1A709E1E86C2E800C678B1 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		2A321EE71D4A6138002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A321EFF1D4A61A4002B0245 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		2A321F071D4A635F002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +134,6 @@
 				2A321EFF1D4A61A4002B0245 /* libz.tbd */,
 			);
 			name = watchOS;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		2A321F0F1D4A6398002B0245 /* tvOS */ = {
@@ -129,16 +142,16 @@
 				2A321F101D4A6398002B0245 /* libz.tbd */,
 			);
 			name = tvOS;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		2A58A74C1B00F3A2005FBBC2 = {
 			isa = PBXGroup;
 			children = (
 				2AF7F0BE1B6E1CD100EBA69A /* CHANGELOG.md */,
+				2A1A709E1E86C2E800C678B1 /* Package.swift */,
 				2A58A7631B00F437005FBBC2 /* Sources */,
 				2AE050891D4A2C070040E4C9 /* Supporting Files */,
-				2AFCA7941B661CBA006DF1F4 /* Modules */,
+				2A58A7661B00F5CF005FBBC2 /* Libraries */,
 				2A58A7881B00FD11005FBBC2 /* Tests */,
 				2A58A7581B00F414005FBBC2 /* Products */,
 			);
@@ -163,7 +176,6 @@
 				2AD497381B8E2A2D00AFBA1B /* libz.tbd */,
 			);
 			name = macOS;
-			path = ../macOS;
 			sourceTree = "<group>";
 		};
 		2A58A7631B00F437005FBBC2 /* Sources */ = {
@@ -183,7 +195,6 @@
 				2A321F0F1D4A6398002B0245 /* tvOS */,
 			);
 			name = Libraries;
-			path = Tests/iOS;
 			sourceTree = "<group>";
 		};
 		2A58A77E1B00FBEF005FBBC2 /* iOS */ = {
@@ -211,15 +222,6 @@
 			);
 			name = "Supporting Files";
 			path = Project;
-			sourceTree = "<group>";
-		};
-		2AFCA7941B661CBA006DF1F4 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				2A321EDF1D4A58C7002B0245 /* zlib */,
-				2A58A7661B00F5CF005FBBC2 /* Libraries */,
-			);
-			name = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,7 +335,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				TargetAttributes = {
 					2A321EE61D4A6138002B0245 = {
 						CreatedOnToolsVersion = 8.0;
@@ -347,14 +349,19 @@
 					};
 					2A58A7561B00F414005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 					};
 					2A58A77C1B00FBEF005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
+					2ACC21BF1E54BB920078241F = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					2AE050871D4A2C070040E4C9 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeamName = "Mineko IMANISHI";
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 					};
 					2AE050981D4A2DC30040E4C9 = {
@@ -382,6 +389,7 @@
 				2A321F061D4A635F002B0245 /* Gzip tvOS */,
 				2A58A7561B00F414005FBBC2 /* Tests macOS */,
 				2A58A77C1B00FBEF005FBBC2 /* Tests iOS */,
+				2ACC21BF1E54BB920078241F /* Lint Swift Code */,
 			);
 		};
 /* End PBXProject section */
@@ -406,6 +414,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2ACC21C31E54BB9D0078241F /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2A321EE21D4A6138002B0245 /* Sources */ = {
@@ -491,7 +516,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -514,7 +538,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
@@ -540,7 +563,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -563,7 +585,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
@@ -576,7 +597,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -584,7 +607,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -612,7 +639,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -623,7 +650,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -631,7 +660,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -652,7 +685,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -711,6 +744,20 @@
 			};
 			name = Release;
 		};
+		2ACC21C11E54BB920078241F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2ACC21C21E54BB920078241F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		2AE0508D1D4A2C070040E4C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -730,7 +777,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 			};
 			name = Debug;
 		};
@@ -751,7 +797,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 			};
 			name = Release;
 		};
@@ -773,7 +818,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -794,7 +838,6 @@
 				PRODUCT_NAME = Gzip;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = zlib;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -844,6 +887,15 @@
 			buildConfigurations = (
 				2A58A7831B00FBF0005FBBC2 /* Debug */,
 				2A58A7841B00FBF0005FBBC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2ACC21C01E54BB920078241F /* Build configuration list for PBXAggregateTarget "Lint Swift Code" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2ACC21C11E54BB920078241F /* Debug */,
+				2ACC21C21E54BB920078241F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
