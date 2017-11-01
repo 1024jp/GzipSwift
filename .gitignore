@@ -24,6 +24,7 @@ DerivedData
 # SPM
 #
 .build
+Package.resolved
 Packages/
 
 

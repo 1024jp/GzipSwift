@@ -115,9 +115,9 @@ private extension String {
         
         var string = ""
         for _ in 0..<length {
-            let rand = Int(arc4random_uniform(UInt32(letters.characters.count)))
+            let rand = Int(arc4random_uniform(UInt32(letters.count)))
             let index = letters.index(letters.startIndex, offsetBy: rand)
-            let character = letters.characters[index]
+            let character = letters[index]
             string.append(character)
         }
         
