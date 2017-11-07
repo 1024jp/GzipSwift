@@ -119,9 +119,8 @@ private extension String {
     static func lorem(length: Int) -> String {
       func random(_ upperBound: Int) -> Int {
         #if os(Linux)
-          // srandom(UInt32(time(nil)))
-          // return Int(random(upperBound))
-          return 2
+          srandom(UInt32(time(nil)))
+          return Int(random(upperBound))
         #else
           return Int(arc4random_uniform(UInt32(upperBound)))
         #endif
