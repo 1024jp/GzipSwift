@@ -7,10 +7,9 @@ let package = Package(
     products: [
       .library(name: "Gzip", targets: ["Gzip"])
     ],
-    dependencies: [],
     targets: [
-      .target(name: "Gzip", dependencies: ["zlib"]),
-      .target(name: "zlib"),
+      .target(name: "Gzip", dependencies: ["system-zlib"]),
+      .target(name: "system-zlib"),
       .testTarget(name: "GzipTests", dependencies: ["Gzip"])
     ]
 )

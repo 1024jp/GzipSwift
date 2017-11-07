@@ -30,6 +30,8 @@ import Foundation
 
 #if os(OSX)
 import zlib
+#elseif os(Linux)
+import zlibLinux
 #endif
 
 /**
