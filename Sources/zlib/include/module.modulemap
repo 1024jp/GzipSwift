@@ -1,0 +1,10 @@
+module zlibLinux [system] {
+    header "/usr/include/zlib.h"
+    link "sqlite3"
+    export *
+}
+
+module zlibDarwin [system] {
+    link "zlib"
+    export *
+}
