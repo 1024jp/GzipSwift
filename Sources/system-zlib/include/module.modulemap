@@ -4,8 +4,3 @@ module zlibLinux [system] {
     link "z"
     export *
 }
-
-module zlibDarwin [system] {
-    link "zlib"
-    export *
-}
