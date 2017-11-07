@@ -32,40 +32,47 @@ import XCTest
 import Gzip
 
 class GzipTests: XCTestCase {
-    
+  static let allTests = [
+    ("testGzip", GzipTests.testGZip),
+    ("testZeroLength", GzipTests.testZeroLength),
+    ("testWrongUngzip", GzipTests.testWrongUngzip),
+    ("testCompressionLevel", GzipTests.testCompressionLevel),
+    ("testFileDecompression", GzipTests.testFileDecompression)
+  ]
+
     func testGZip() {
-        
+
         let testSentence = "foo"
-        
+
         let data = testSentence.data(using: .utf8)!
         let gzipped = try! data.gzipped()
         let uncompressed = try! gzipped.gunzipped()
         let uncompressedSentence = String(data: uncompressed, encoding: .utf8)
-        
+
         XCTAssertNotEqual(gzipped, data)
         XCTAssertEqual(uncompressedSentence, testSentence)
-        
+
         XCTAssertTrue(gzipped.isGzipped)
         XCTAssertFalse(data.isGzipped)
         XCTAssertFalse(uncompressed.isGzipped)
     }
-    
-    
+
+
     func testZeroLength() {
-        
+
         let zeroLengthData = Data()
-        
+
         XCTAssertEqual(try! zeroLengthData.gzipped(), zeroLengthData)
         XCTAssertEqual(try! zeroLengthData.gunzipped(), zeroLengthData)
         XCTAssertFalse(zeroLengthData.isGzipped)
     }
-    
-    
+
+
     func testWrongUngzip() {
-        
+
         // data not compressed
         let data = "testString".data(using: .utf8)!
-        
+
         var uncompressed: Data?
         do {
             uncompressed = try data.gunzipped()
@@ -82,46 +89,53 @@ class GzipTests: XCTestCase {
         }
         XCTAssertNil(uncompressed)
     }
-    
-    
+
+
     func testCompressionLevel() {
-        
+
         let data = String.lorem(length: 100_000).data(using: .utf8)!
-        
+
         XCTAssertGreaterThan(try! data.gzipped(level: .bestSpeed).count,
                              try! data.gzipped(level: .bestCompression).count)
     }
-    
-    
+
+
     func testFileDecompression() {
-        
-        let bundle = Bundle(for: type(of: self))
-        guard let url = bundle.url(forResource: "test.txt", withExtension: "gz") else { return }
+
+
+        let url = URL(fileURLWithPath: "./Tests/test.txt.gz")
         let data = try! Data(contentsOf: url)
         let uncompressed = try! data.gunzipped()
-        
+
         XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
     }
-    
+
 }
 
 
 private extension String {
-    
+
     /// Generate random letters string for test.
     static func lorem(length: Int) -> String {
-        
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        
-        var string = ""
-        for _ in 0..<length {
-            let rand = Int(arc4random_uniform(UInt32(letters.count)))
-            let index = letters.index(letters.startIndex, offsetBy: rand)
-            let character = letters[index]
-            string.append(character)
-        }
-        
-        return string
+      func random(_ upperBound: Int) -> Int {
+        #if os(Linux)
+          srandom(UInt32(time(nil)))
+          return Int(random(upperBound))
+        #else
+          return Int(arc4random_uniform(UInt32(upperBound)))
+        #endif
+      }
+
+
+      let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+      var string = ""
+      for _ in 0..<length {
+      let rand = random(letters.count)
+        let index = letters.index(letters.startIndex, offsetBy: rand)
+        let character = letters[index]
+        string.append(character)
+      }
+      return string
     }
-    
 }
