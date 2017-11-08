@@ -177,8 +177,9 @@ extension Data {
         guard !self.isEmpty else {
             return Data()
         }
-        
-        var stream = self.createZStream()
+
+        let contiguousData = self.withUnsafeBytes {Data(bytes: $0, count: self.count)}
+        var stream = contiguousData.createZStream()
         var status: Int32
         
         status = deflateInit2_(&stream, level.rawValue, Z_DEFLATED, MAX_WBITS + 16, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, Int32(DataSize.stream))
@@ -225,8 +226,9 @@ extension Data {
         guard !self.isEmpty else {
             return Data()
         }
-        
-        var stream = self.createZStream()
+
+        let contiguousData = self.withUnsafeBytes {Data(bytes: $0, count: self.count)}
+        var stream = contiguousData.createZStream()
         var status: Int32
         
         status = inflateInit2_(&stream, MAX_WBITS + 32, ZLIB_VERSION, Int32(DataSize.stream))
@@ -240,11 +242,11 @@ extension Data {
             throw GzipError(code: status, msg: stream.msg)
         }
         
-        var data = Data(capacity: self.count * 2)
+        var data = Data(capacity: contiguousData.count * 2)
         
         repeat {
             if Int(stream.total_out) >= data.count {
-                data.count += self.count / 2
+                data.count += contiguousData.count / 2
             }
             
             data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
