@@ -38,8 +38,8 @@ class GzipTests: XCTestCase {
         ("testZeroLength", GzipTests.testZeroLength),
         ("testWrongUngzip", GzipTests.testWrongUngzip),
         ("testCompressionLevel", GzipTests.testCompressionLevel),
-        ("testFileDecompression", GzipTests.testFileDecompression)
-    ]
+        ("testFileDecompression", GzipTests.testFileDecompression),
+        ]
     
     
     func testGZip() {
@@ -104,20 +104,32 @@ class GzipTests: XCTestCase {
     
     func testFileDecompression() {
         
-        let url = URL(fileURLWithPath: "./Tests/test.txt.gz")
+        let url = self.bundleFile(name: "test.txt.gz")
         let data = try! Data(contentsOf: url)
         let uncompressed = try! data.gunzipped()
         
         XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
     }
     
+    
+    /// create URL for bundled test file considering platform
+    private func bundleFile(name: String) -> URL {
+        
+        #if SWIFT_PACKAGE
+            return URL(fileURLWithPath: "./Tests/" + name)
+        #else
+            return Bundle(for: type(of: self)).url(forResource: name, withExtension: nil)!
+        #endif
+    }
 }
+
 
 
 private extension String {
     
     /// Generate random letters string for test.
     static func lorem(length: Int) -> String {
+        
         func random(_ upperBound: Int) -> Int {
             #if os(Linux)
                 srandom(UInt32(time(nil)))
@@ -126,7 +138,6 @@ private extension String {
                 return Int(arc4random_uniform(UInt32(upperBound)))
             #endif
         }
-        
         
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         
