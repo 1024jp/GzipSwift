@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 
   s.source        = { :git => "https://github.com/1024jp/GzipSwift.git",
                       :tag => s.version }
-  s.source_files  = 'Sources/*.swift'
+  s.source_files  = 'Sources/Gzip/*.swift'
 
   s.module_name = 'Gzip'
   s.osx.deployment_target     = '10.9'
