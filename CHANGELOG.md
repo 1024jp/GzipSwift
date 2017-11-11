@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix running on Linux.
+- Fix a runtime crash with Xcode 9.1.
 
 
 4.0.2
