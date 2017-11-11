@@ -183,7 +183,7 @@ extension Data {
             return Data()
         }
 
-        let contiguousData = self.withUnsafeBytes {Data(bytes: $0, count: self.count)}
+        let contiguousData = self.withUnsafeBytes { Data(bytes: $0, count: self.count) }
         var stream = contiguousData.createZStream()
         var status: Int32
         
@@ -232,7 +232,7 @@ extension Data {
             return Data()
         }
 
-        let contiguousData = self.withUnsafeBytes {Data(bytes: $0, count: self.count)}
+        let contiguousData = self.withUnsafeBytes { Data(bytes: $0, count: self.count) }
         var stream = contiguousData.createZStream()
         var status: Int32
         
