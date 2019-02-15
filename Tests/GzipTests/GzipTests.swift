@@ -7,7 +7,7 @@
 /*
  The MIT License (MIT)
  
- © 2015-2017 1024jp
+ © 2015-2019 1024jp
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@
 import XCTest
 import Gzip
 
-class GzipTests: XCTestCase {
+final class GzipTests: XCTestCase {
     
     static let allTests = [
         ("testGzip", GzipTests.testGZip),
@@ -42,13 +42,13 @@ class GzipTests: XCTestCase {
         ]
     
     
-    func testGZip() {
+    func testGZip() throws {
         
         let testSentence = "foo"
         
         let data = testSentence.data(using: .utf8)!
-        let gzipped = try! data.gzipped()
-        let uncompressed = try! gzipped.gunzipped()
+        let gzipped = try data.gzipped()
+        let uncompressed = try gzipped.gunzipped()
         let uncompressedSentence = String(data: uncompressed, encoding: .utf8)
         
         XCTAssertNotEqual(gzipped, data)
@@ -60,12 +60,12 @@ class GzipTests: XCTestCase {
     }
     
     
-    func testZeroLength() {
+    func testZeroLength() throws {
         
         let zeroLengthData = Data()
         
-        XCTAssertEqual(try! zeroLengthData.gzipped(), zeroLengthData)
-        XCTAssertEqual(try! zeroLengthData.gunzipped(), zeroLengthData)
+        XCTAssertEqual(try zeroLengthData.gzipped(), zeroLengthData)
+        XCTAssertEqual(try zeroLengthData.gunzipped(), zeroLengthData)
         XCTAssertFalse(zeroLengthData.isGzipped)
     }
     
@@ -78,41 +78,39 @@ class GzipTests: XCTestCase {
         var uncompressed: Data?
         do {
             uncompressed = try data.gunzipped()
-        } catch let error as GzipError {
-            switch error.kind {
-            case .data:
-                XCTAssertEqual(error.message, "incorrect header check")
-                XCTAssertEqual(error.message, error.localizedDescription)
-            default:
-                XCTFail("Caught incorrect error.")
-            }
+            
+        } catch let error as GzipError where error.kind == .data {
+            XCTAssertEqual(error.message, "incorrect header check")
+            XCTAssertEqual(error.message, error.localizedDescription)
+            
         } catch _ {
             XCTFail("Caught incorrect error.")
         }
+        
         XCTAssertNil(uncompressed)
     }
     
     
-    func testCompressionLevel() {
+    func testCompressionLevel() throws {
         
         let data = String.lorem(length: 100_000).data(using: .utf8)!
         
-        XCTAssertGreaterThan(try! data.gzipped(level: .bestSpeed).count,
-                             try! data.gzipped(level: .bestCompression).count)
+        XCTAssertGreaterThan(try data.gzipped(level: .bestSpeed).count,
+                             try data.gzipped(level: .bestCompression).count)
     }
     
     
-    func testFileDecompression() {
+    func testFileDecompression() throws {
         
         let url = self.bundleFile(name: "test.txt.gz")
-        let data = try! Data(contentsOf: url)
-        let uncompressed = try! data.gunzipped()
+        let data = try Data(contentsOf: url)
+        let uncompressed = try data.gunzipped()
         
         XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
     }
     
     
-    /// create URL for bundled test file considering platform
+    /// Create URL for bundled test file considering platform.
     private func bundleFile(name: String) -> URL {
         
         #if SWIFT_PACKAGE
@@ -130,25 +128,11 @@ private extension String {
     /// Generate random letters string for test.
     static func lorem(length: Int) -> String {
         
-        func random(_ upperBound: Int) -> Int {
-            #if os(Linux)
-                srandom(UInt32(time(nil)))
-                return Int(random(upperBound))
-            #else
-                return Int(arc4random_uniform(UInt32(upperBound)))
-            #endif
-        }
-        
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         
-        var string = ""
-        for _ in 0..<length {
-            let rand = random(letters.count)
-            let index = letters.index(letters.startIndex, offsetBy: rand)
-            let character = letters[index]
-            string.append(character)
+        return (0..<length).reduce(into: "") { (string, _) in
+            string.append(letters.randomElement()!)
         }
-        return string
     }
     
 }

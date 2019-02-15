@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+4.1.0
+--------------------------
+
+### Changes
+
+- Support Bitcode.
+- Update for Swift 4.2.
+- Conform GzipError to Equatable.
+
+
 4.0.4
 --------------------------
 
