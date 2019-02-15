@@ -128,25 +128,11 @@ private extension String {
     /// Generate random letters string for test.
     static func lorem(length: Int) -> String {
         
-        func random(_ upperBound: Int) -> Int {
-            #if os(Linux)
-                srandom(UInt32(time(nil)))
-                return Int(random(upperBound))
-            #else
-                return Int(arc4random_uniform(UInt32(upperBound)))
-            #endif
-        }
-        
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         
-        var string = ""
-        for _ in 0..<length {
-            let rand = random(letters.count)
-            let index = letters.index(letters.startIndex, offsetBy: rand)
-            let character = letters[index]
-            string.append(character)
+        return (0..<length).reduce(into: "") { (string, _) in
+            string.append(letters.randomElement()!)
         }
-        return string
     }
     
 }
