@@ -31,7 +31,7 @@
 import XCTest
 import Gzip
 
-class GzipTests: XCTestCase {
+final class GzipTests: XCTestCase {
     
     static let allTests = [
         ("testGzip", GzipTests.testGZip),
@@ -42,13 +42,13 @@ class GzipTests: XCTestCase {
         ]
     
     
-    func testGZip() {
+    func testGZip() throws {
         
         let testSentence = "foo"
         
         let data = testSentence.data(using: .utf8)!
-        let gzipped = try! data.gzipped()
-        let uncompressed = try! gzipped.gunzipped()
+        let gzipped = try data.gzipped()
+        let uncompressed = try gzipped.gunzipped()
         let uncompressedSentence = String(data: uncompressed, encoding: .utf8)
         
         XCTAssertNotEqual(gzipped, data)
@@ -60,12 +60,12 @@ class GzipTests: XCTestCase {
     }
     
     
-    func testZeroLength() {
+    func testZeroLength() throws {
         
         let zeroLengthData = Data()
         
-        XCTAssertEqual(try! zeroLengthData.gzipped(), zeroLengthData)
-        XCTAssertEqual(try! zeroLengthData.gunzipped(), zeroLengthData)
+        XCTAssertEqual(try zeroLengthData.gzipped(), zeroLengthData)
+        XCTAssertEqual(try zeroLengthData.gunzipped(), zeroLengthData)
         XCTAssertFalse(zeroLengthData.isGzipped)
     }
     
@@ -91,20 +91,20 @@ class GzipTests: XCTestCase {
     }
     
     
-    func testCompressionLevel() {
+    func testCompressionLevel() throws {
         
         let data = String.lorem(length: 100_000).data(using: .utf8)!
         
-        XCTAssertGreaterThan(try! data.gzipped(level: .bestSpeed).count,
-                             try! data.gzipped(level: .bestCompression).count)
+        XCTAssertGreaterThan(try data.gzipped(level: .bestSpeed).count,
+                             try data.gzipped(level: .bestCompression).count)
     }
     
     
-    func testFileDecompression() {
+    func testFileDecompression() throws {
         
         let url = self.bundleFile(name: "test.txt.gz")
-        let data = try! Data(contentsOf: url)
-        let uncompressed = try! data.gunzipped()
+        let data = try Data(contentsOf: url)
+        let uncompressed = try data.gunzipped()
         
         XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
     }
