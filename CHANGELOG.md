@@ -8,6 +8,7 @@ Change Log
 ### Changes
 
 - Update for Swift 4.2.
+- Conform GzipError to Equatable.
 
 
 4.0.4

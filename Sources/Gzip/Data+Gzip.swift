@@ -65,7 +65,7 @@ public struct CompressionLevel: RawRepresentable {
 public struct GzipError: Swift.Error {
     // cf. http://www.zlib.net/manual.html
     
-    public enum Kind {
+    public enum Kind: Equatable {
         /// The stream structure was inconsistent.
         ///
         /// - underlying zlib error: `Z_STREAM_ERROR` (-2)

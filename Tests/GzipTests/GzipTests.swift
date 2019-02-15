@@ -78,17 +78,15 @@ class GzipTests: XCTestCase {
         var uncompressed: Data?
         do {
             uncompressed = try data.gunzipped()
-        } catch let error as GzipError {
-            switch error.kind {
-            case .data:
-                XCTAssertEqual(error.message, "incorrect header check")
-                XCTAssertEqual(error.message, error.localizedDescription)
-            default:
-                XCTFail("Caught incorrect error.")
-            }
+            
+        } catch let error as GzipError where error.kind == .data {
+            XCTAssertEqual(error.message, "incorrect header check")
+            XCTAssertEqual(error.message, error.localizedDescription)
+            
         } catch _ {
             XCTFail("Caught incorrect error.")
         }
+        
         XCTAssertNil(uncompressed)
     }
     
