@@ -7,7 +7,7 @@
 /*
  The MIT License (MIT)
  
- © 2015-2017 1024jp
+ © 2015-2019 1024jp
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -112,7 +112,7 @@ class GzipTests: XCTestCase {
     }
     
     
-    /// create URL for bundled test file considering platform
+    /// Create URL for bundled test file considering platform.
     private func bundleFile(name: String) -> URL {
         
         #if SWIFT_PACKAGE

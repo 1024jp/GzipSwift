@@ -19,7 +19,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2014-2018 1024jp</string>
+	<string>© 2014-2019 1024jp</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
 </dict>
