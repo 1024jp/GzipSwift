@@ -161,7 +161,7 @@ extension Data {
         guard !self.isEmpty else {
             return Data()
         }
-
+        
         let contiguousData = self.withUnsafeBytes { Data(bytes: $0, count: self.count) }
         var stream = contiguousData.createZStream()
         var status: Int32
@@ -188,10 +188,13 @@ extension Data {
             }
             stream.avail_out = uInt(data.count) - uInt(stream.total_out)
             
-            deflate(&stream, Z_FINISH)
+            status = deflate(&stream, Z_FINISH)
         }
         
-        deflateEnd(&stream)
+        guard deflateEnd(&stream) == Z_OK, status == Z_STREAM_END else {
+            throw GzipError(code: status, msg: stream.msg)
+        }
+        
         data.count = Int(stream.total_out)
         
         return data
@@ -224,11 +227,10 @@ extension Data {
             throw GzipError(code: status, msg: stream.msg)
         }
         
-        var data = Data(capacity: contiguousData.count * 2)
-        
+        var data = Data(capacity: self.count * 2)
         repeat {
             if Int(stream.total_out) >= data.count {
-                data.count += contiguousData.count / 2
+                data.count += self.count / 2
             }
             
             data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
@@ -240,7 +242,7 @@ extension Data {
             
         } while status == Z_OK
         
-        guard inflateEnd(&stream) == Z_OK && status == Z_STREAM_END else {
+        guard inflateEnd(&stream) == Z_OK, status == Z_STREAM_END else {
             // inflate returns:
             // Z_DATA_ERROR   The input data was corrupted (input stream not conforming to the zlib format or incorrect check value).
             // Z_STREAM_ERROR The stream structure was inconsistent (for example if next_in or next_out was NULL).
