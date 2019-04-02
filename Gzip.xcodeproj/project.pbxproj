@@ -360,7 +360,7 @@
 					};
 					2A58A7561B00F414005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 					};
 					2A58A77C1B00FBEF005FBBC2 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -372,7 +372,7 @@
 					2AE050871D4A2C070040E4C9 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeamName = "Mineko IMANISHI";
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Manual;
 					};
 					2AE050981D4A2DC30040E4C9 = {
@@ -384,10 +384,11 @@
 			};
 			buildConfigurationList = 2A58A7501B00F3A2005FBBC2 /* Build configuration list for PBXProject "Gzip" */;
 			compatibilityVersion = "Xcode 10.0";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 2A58A74C1B00F3A2005FBBC2;
 			productRefGroup = 2A58A7581B00F414005FBBC2 /* Products */;
@@ -676,7 +677,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -726,7 +727,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
