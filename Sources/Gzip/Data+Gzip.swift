@@ -162,8 +162,7 @@ extension Data {
             return Data()
         }
         
-        let contiguousData = self.withUnsafeBytes { Data(bytes: $0, count: self.count) }
-        var stream = contiguousData.createZStream()
+        var stream = z_stream()
         var status: Int32
         
         status = deflateInit2_(&stream, level.rawValue, Z_DEFLATED, MAX_WBITS + 16, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, Int32(DataSize.stream))
@@ -178,18 +177,30 @@ extension Data {
         }
         
         var data = Data(capacity: DataSize.chunk)
-        while stream.avail_out == 0 {
+        repeat {
             if Int(stream.total_out) >= data.count {
                 data.count += DataSize.chunk
             }
             
-            data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
-                stream.next_out = bytes.advanced(by: Int(stream.total_out))
-            }
-            stream.avail_out = uInt(data.count) - uInt(stream.total_out)
+            let inputCount = self.count
+            let outputCount = data.count
             
-            status = deflate(&stream, Z_FINISH)
-        }
+            self.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
+                stream.next_in = UnsafeMutablePointer<Bytef>(mutating: bytes.bindMemory(to: Bytef.self).baseAddress!).advanced(by: Int(stream.total_in))
+                stream.avail_in = uint(inputCount) - uInt(stream.total_in)
+                
+                data.withUnsafeMutableBytes { (pointer: UnsafeMutableRawBufferPointer) in
+                    stream.next_out = pointer.bindMemory(to: Bytef.self).baseAddress!.advanced(by: Int(stream.total_out))
+                    stream.avail_out = uInt(outputCount) - uInt(stream.total_out)
+                    
+                    status = deflate(&stream, Z_FINISH)
+                    
+                    stream.next_out = nil
+                }
+                stream.next_in = nil
+            }
+            
+        } while stream.avail_out == 0
         
         guard deflateEnd(&stream) == Z_OK, status == Z_STREAM_END else {
             throw GzipError(code: status, msg: stream.msg)
@@ -212,8 +223,7 @@ extension Data {
             return Data()
         }
 
-        let contiguousData = self.withUnsafeBytes { Data(bytes: $0, count: self.count) }
-        var stream = contiguousData.createZStream()
+        var stream = z_stream()
         var status: Int32
         
         status = inflateInit2_(&stream, MAX_WBITS + 32, ZLIB_VERSION, Int32(DataSize.stream))
@@ -233,12 +243,23 @@ extension Data {
                 data.count += self.count / 2
             }
             
-            data.withUnsafeMutableBytes { (bytes: UnsafeMutablePointer<Bytef>) in
-                stream.next_out = bytes.advanced(by: Int(stream.total_out))
-            }
-            stream.avail_out = uInt(data.count) - uInt(stream.total_out)
+            let inputCount = self.count
+            let outputCount = data.count
             
-            status = inflate(&stream, Z_SYNC_FLUSH)
+            self.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
+                stream.next_in = UnsafeMutablePointer<Bytef>(mutating: bytes.bindMemory(to: Bytef.self).baseAddress!).advanced(by: Int(stream.total_in))
+                stream.avail_in = uint(inputCount) - uInt(stream.total_in)
+                
+                data.withUnsafeMutableBytes { (pointer: UnsafeMutableRawBufferPointer) in
+                    stream.next_out = pointer.bindMemory(to: Bytef.self).baseAddress!.advanced(by: Int(stream.total_out))
+                    stream.avail_out = uInt(outputCount) - uInt(stream.total_out)
+                    
+                    status = inflate(&stream, Z_SYNC_FLUSH)
+                    
+                    stream.next_out = nil
+                }
+                stream.next_in = nil
+            }
             
         } while status == Z_OK
         
@@ -255,19 +276,6 @@ extension Data {
         data.count = Int(stream.total_out)
         
         return data
-    }
-    
-    
-    private func createZStream() -> z_stream {
-        
-        var stream = z_stream()
-        
-        self.withUnsafeBytes { (bytes: UnsafePointer<Bytef>) in
-            stream.next_in = UnsafeMutablePointer<Bytef>(mutating: bytes)
-        }
-        stream.avail_in = uint(self.count)
-        
-        return stream
     }
     
 }

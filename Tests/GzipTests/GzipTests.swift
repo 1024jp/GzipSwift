@@ -44,7 +44,7 @@ final class GzipTests: XCTestCase {
     
     func testGZip() throws {
         
-        let testSentence = "foo"
+        let testSentence = String.lorem(length: 100)
         
         let data = testSentence.data(using: .utf8)!
         let gzipped = try data.gzipped()
@@ -53,7 +53,6 @@ final class GzipTests: XCTestCase {
         
         XCTAssertNotEqual(gzipped, data)
         XCTAssertEqual(uncompressedSentence, testSentence)
-        
         XCTAssertTrue(gzipped.isGzipped)
         XCTAssertFalse(data.isGzipped)
         XCTAssertFalse(uncompressed.isGzipped)
@@ -106,6 +105,7 @@ final class GzipTests: XCTestCase {
         let data = try Data(contentsOf: url)
         let uncompressed = try data.gunzipped()
         
+        XCTAssertTrue(data.isGzipped)
         XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
     }
     
