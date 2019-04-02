@@ -185,18 +185,19 @@ extension Data {
             let inputCount = self.count
             let outputCount = data.count
             
-            self.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
-                stream.next_in = UnsafeMutablePointer<Bytef>(mutating: bytes.bindMemory(to: Bytef.self).baseAddress!).advanced(by: Int(stream.total_in))
+            self.withUnsafeBytes { (inputPointer: UnsafeRawBufferPointer) in
+                stream.next_in = UnsafeMutablePointer<Bytef>(mutating: inputPointer.bindMemory(to: Bytef.self).baseAddress!).advanced(by: Int(stream.total_in))
                 stream.avail_in = uint(inputCount) - uInt(stream.total_in)
                 
-                data.withUnsafeMutableBytes { (pointer: UnsafeMutableRawBufferPointer) in
-                    stream.next_out = pointer.bindMemory(to: Bytef.self).baseAddress!.advanced(by: Int(stream.total_out))
+                data.withUnsafeMutableBytes { (outputPointer: UnsafeMutableRawBufferPointer) in
+                    stream.next_out = outputPointer.bindMemory(to: Bytef.self).baseAddress!.advanced(by: Int(stream.total_out))
                     stream.avail_out = uInt(outputCount) - uInt(stream.total_out)
                     
                     status = deflate(&stream, Z_FINISH)
                     
                     stream.next_out = nil
                 }
+                
                 stream.next_in = nil
             }
             
@@ -246,18 +247,19 @@ extension Data {
             let inputCount = self.count
             let outputCount = data.count
             
-            self.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
-                stream.next_in = UnsafeMutablePointer<Bytef>(mutating: bytes.bindMemory(to: Bytef.self).baseAddress!).advanced(by: Int(stream.total_in))
+            self.withUnsafeBytes { (inputPointer: UnsafeRawBufferPointer) in
+                stream.next_in = UnsafeMutablePointer<Bytef>(mutating: inputPointer.bindMemory(to: Bytef.self).baseAddress!).advanced(by: Int(stream.total_in))
                 stream.avail_in = uint(inputCount) - uInt(stream.total_in)
                 
-                data.withUnsafeMutableBytes { (pointer: UnsafeMutableRawBufferPointer) in
-                    stream.next_out = pointer.bindMemory(to: Bytef.self).baseAddress!.advanced(by: Int(stream.total_out))
+                data.withUnsafeMutableBytes { (outputPointer: UnsafeMutableRawBufferPointer) in
+                    stream.next_out = outputPointer.bindMemory(to: Bytef.self).baseAddress!.advanced(by: Int(stream.total_out))
                     stream.avail_out = uInt(outputCount) - uInt(stream.total_out)
                     
                     status = inflate(&stream, Z_SYNC_FLUSH)
                     
                     stream.next_out = nil
                 }
+                
                 stream.next_in = nil
             }
             
