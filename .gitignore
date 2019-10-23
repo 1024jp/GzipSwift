@@ -23,6 +23,7 @@ DerivedData
 
 # SPM
 #
+.swiftpm
 .build
 Package.resolved
 Packages/
