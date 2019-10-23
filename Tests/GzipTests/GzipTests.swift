@@ -112,16 +112,27 @@ final class GzipTests: XCTestCase {
         XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
     }
     
+}
+
+
+ 
+private extension XCTestCase {
     
     /// Create URL for bundled test file considering platform.
-    private func bundleFile(name: String) -> URL {
+    ///
+    /// - Parameter name: The file name to load in "/Tests" directory.
+    func bundleFile(name: String) -> URL {
         
         #if SWIFT_PACKAGE
-            return URL(fileURLWithPath: "./Tests/" + name)
+            return URL(fileURLWithPath: #file)
+                .deletingLastPathComponent()
+                .deletingLastPathComponent()
+                .appendingPathComponent(name)
         #else
             return Bundle(for: type(of: self)).url(forResource: name, withExtension: nil)!
         #endif
     }
+    
 }
 
 
