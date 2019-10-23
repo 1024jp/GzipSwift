@@ -285,7 +285,7 @@ extension Data {
 
 private struct DataSize {
     
-    static let chunk = 2 ^ 14
+    static let chunk = 1 << 14
     static let stream = MemoryLayout<z_stream>.size
     
     private init() { }

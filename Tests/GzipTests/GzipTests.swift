@@ -44,18 +44,21 @@ final class GzipTests: XCTestCase {
     
     func testGZip() throws {
         
-        let testSentence = String.lorem(length: 100)
-        
-        let data = testSentence.data(using: .utf8)!
-        let gzipped = try data.gzipped()
-        let uncompressed = try gzipped.gunzipped()
-        let uncompressedSentence = String(data: uncompressed, encoding: .utf8)
-        
-        XCTAssertNotEqual(gzipped, data)
-        XCTAssertEqual(uncompressedSentence, testSentence)
-        XCTAssertTrue(gzipped.isGzipped)
-        XCTAssertFalse(data.isGzipped)
-        XCTAssertFalse(uncompressed.isGzipped)
+        for _ in 0..<10 {
+            let testSentence = String.lorem(length: Int.random(in: 1..<100_000))
+            
+            let data = testSentence.data(using: .utf8)!
+            let gzipped = try data.gzipped()
+            let uncompressed = try gzipped.gunzipped()
+            let uncompressedSentence = String(data: uncompressed, encoding: .utf8)
+            
+            XCTAssertNotEqual(gzipped, data)
+            XCTAssertEqual(uncompressedSentence, testSentence)
+            
+            XCTAssertTrue(gzipped.isGzipped)
+            XCTAssertFalse(data.isGzipped)
+            XCTAssertFalse(uncompressed.isGzipped)
+        }
     }
     
     
@@ -109,16 +112,27 @@ final class GzipTests: XCTestCase {
         XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
     }
     
+}
+
+
+ 
+private extension XCTestCase {
     
     /// Create URL for bundled test file considering platform.
-    private func bundleFile(name: String) -> URL {
+    ///
+    /// - Parameter name: The file name to load in "/Tests" directory.
+    func bundleFile(name: String) -> URL {
         
         #if SWIFT_PACKAGE
-            return URL(fileURLWithPath: "./Tests/" + name)
+            return URL(fileURLWithPath: #file)
+                .deletingLastPathComponent()
+                .deletingLastPathComponent()
+                .appendingPathComponent(name)
         #else
             return Bundle(for: type(of: self)).url(forResource: name, withExtension: nil)!
         #endif
     }
+    
 }
 
 
@@ -128,7 +142,7 @@ private extension String {
     /// Generate random letters string for test.
     static func lorem(length: Int) -> String {
         
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "
         
         return (0..<length).reduce(into: "") { (string, _) in
             string.append(letters.randomElement()!)
