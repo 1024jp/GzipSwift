@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode10.2
+osx_image: xcode11
 
 matrix:
   include:
@@ -8,7 +8,7 @@ matrix:
       xcode_destination: platform=macOS
     - xcode_scheme: Gzip iOS
       xcode_sdk: iphonesimulator
-      xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
+      xcode_destination: platform=iOS Simulator,OS=13,name=iPhone XS
 
 script:
   - swiftlint
