@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+5.2.0
+--------------------------
+
+### Changes
+
+- Enable “build library for distribution” flag.
+
+
+
 5.1.1
 --------------------------
 
