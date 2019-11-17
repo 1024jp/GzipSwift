@@ -1,0 +1,50 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  macOS:
+    name: Test on macOS
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Swift lint
+      run: |
+        brew install swiftlint
+        swiftlint
+    - name: SwiftPM build & test
+      run: |
+        swift build
+        swift test
+    - name: Cocoapod lint
+      run: pod lib lint --quick
+
+  xcode:
+    name: Test on Xcode
+    runs-on: macOS-latest
+    strategy:
+        matrix:
+          include:
+            - name: macOS
+              scheme: Gzip macOS
+              sdk: macosx
+              destination: 'platform=macOS'
+            - name: iOS
+              scheme: Gzip iOS
+              sdk: iphonesimulator
+              destination: 'platform=iOS Simulator,name=iPhone 11'
+            - name: watchOS
+              scheme: Gzip watchOS
+              sdk: watchsimulator
+              destination: 'platform=watchOS Simulator,name=Apple Watch Series 4 - 40mm'
+            - name: tvOS
+              scheme: Gzip tvOS
+              sdk: appletvsimulator
+              destination: 'platform=tvOS Simulator,name=Apple TV 4K'
+    steps:
+    - uses: actions/checkout@v1
+    - name: Xcode test
+      run: |
+          xcodebuild clean test -scheme "${scheme}" -sdk "${sdk}" -destination "${destination}" | xcpretty -c
+
+      
