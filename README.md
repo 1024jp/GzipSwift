@@ -35,30 +35,11 @@ if data.isGzipped {
 
 ## Installation
 
-### Manual Build
-
-1. Open Gzip.xcodeproj on Xcode and build Gzip framework for your target platform.
-2. Append the built `Gzip.framework` to your project.
-3. Go to __General__ pane of the application target in your project. Add `Gzip.framework` to the __Embedded Binaries__ section.
-    <br /><img src="Documentation/EmbeddedBinaries@2x.png" height="135"/>
-4. `import Gzip` in your Swift file and use in your code.
-
-### Carthage
-GzipSwift is [Carthage](https://github.com/Carthage/Carthage) compatible. You can easily build GzipSwift adding the following line to your `Cartfile`:
-
-```ruby
-github "1024jp/GzipSwift"
-```
-
-### CocoaPods
-GzipSwift is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your `Podfile`:
-
-```ruby
-pod 'GzipSwift'
-```
-
 ### Swift Package Manager
+
+GzipSwift is SwiftPM compatible. To install, add this package to your `Package.swift` or your Xcode project.
+
+#### For Linux
 
 1. Install zlib if you haven't installed yet:
 
@@ -70,6 +51,28 @@ pod 'GzipSwift'
     * check if libz.so is in your /usr/local/lib
         * if no, reinstall zlib as step (1)
         * if yes, link the library manually by passing '-Xlinker -L/usr/local/lib' with `swift build`
+
+### Carthage
+GzipSwift is [Carthage](https://github.com/Carthage/Carthage) compatible. To install, add the following line to your `Cartfile`:
+
+```ruby
+github "1024jp/GzipSwift"
+```
+
+### CocoaPods
+GzipSwift is available through [CocoaPods](http://cocoapods.org). To install, add the following line to your `Podfile`:
+
+```ruby
+pod 'GzipSwift'
+```
+
+### Manual Installation
+
+1. Open Gzip.xcodeproj on Xcode and build Gzip framework for your target platform.
+2. Append the built `Gzip.framework` to your project.
+3. Go to __General__ pane of the application target in your project. Add `Gzip.framework` to the __Embedded Binaries__ section.
+    <br /><img src="Documentation/EmbeddedBinaries@2x.png" height="135"/>
+4. `import Gzip` in your Swift file and use in your code.
 
 
 ## License
