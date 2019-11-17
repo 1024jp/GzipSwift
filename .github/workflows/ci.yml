@@ -8,22 +8,27 @@ jobs:
     runs-on: macOS-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Swift lint
+    - name: Show environments
+      run: |
+        swift --version
+        xcodebuild -version
+    - name: Lint Swift
       run: |
         brew install swiftlint
         swiftlint
-    - name: SwiftPM build & test
+    - name: Build & test SwiftPM
       run: |
         swift build
         swift test
-    - name: Cocoapod lint
+    - name: Lint Cocoapod
       run: pod lib lint --quick
 
   xcode:
-    name: Test on Xcode
+    name: Test with Xcode
     runs-on: macOS-latest
     strategy:
         matrix:
+          name: [macOS, iOS, tvOS]
           include:
             - name: macOS
               scheme: Gzip macOS
@@ -33,18 +38,12 @@ jobs:
               scheme: Gzip iOS
               sdk: iphonesimulator
               destination: 'platform=iOS Simulator,name=iPhone 11'
-            - name: watchOS
-              scheme: Gzip watchOS
-              sdk: watchsimulator
-              destination: 'platform=watchOS Simulator,name=Apple Watch Series 4 - 40mm'
             - name: tvOS
               scheme: Gzip tvOS
               sdk: appletvsimulator
               destination: 'platform=tvOS Simulator,name=Apple TV 4K'
     steps:
     - uses: actions/checkout@v1
-    - name: Xcode test
+    - name: Test
       run: |
-          xcodebuild clean test -scheme "${scheme}" -sdk "${sdk}" -destination "${destination}" | xcpretty -c
-
-      
+          xcodebuild clean test -scheme "${{matrix.scheme}}" -sdk "${{matrix.sdk}}" -destination "${{matrix.destination}}" | xcpretty -c

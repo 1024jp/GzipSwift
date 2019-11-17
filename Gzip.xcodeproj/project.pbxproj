@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2A2CCF7F238127CB00FAC851 /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A321F071D4A635F002B0245 /* Gzip.framework */; };
+		2A2CCF85238127E200FAC851 /* test.txt.gz in Resources */ = {isa = PBXBuildFile; fileRef = 2A8219C61D65AFB300D65063 /* test.txt.gz */; };
+		2A2CCF862381287A00FAC851 /* GzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* GzipTests.swift */; };
 		2A321EE11D4A5CFB002B0245 /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE050881D4A2C070040E4C9 /* Gzip.framework */; };
 		2A321EFD1D4A617C002B0245 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
 		2A321F011D4A61B1002B0245 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A321EFF1D4A61A4002B0245 /* libz.tbd */; };
@@ -29,8 +32,6 @@
 		2A58A75D1B00F414005FBBC2 /* GzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* GzipTests.swift */; };
 		2A58A7891B00FE5E005FBBC2 /* GzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A75C1B00F414005FBBC2 /* GzipTests.swift */; };
 		2A6B20D51D64C66600AADBD7 /* Gzip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE050991D4A2DC30040E4C9 /* Gzip.framework */; };
-		2A6B20D81D64C6B300AADBD7 /* Gzip.framework in Resources */ = {isa = PBXBuildFile; fileRef = 2AE050881D4A2C070040E4C9 /* Gzip.framework */; };
-		2A6B20DA1D64C6DD00AADBD7 /* Gzip.framework in Resources */ = {isa = PBXBuildFile; fileRef = 2AE050991D4A2DC30040E4C9 /* Gzip.framework */; };
 		2A8219C71D65AFB300D65063 /* test.txt.gz in Resources */ = {isa = PBXBuildFile; fileRef = 2A8219C61D65AFB300D65063 /* test.txt.gz */; };
 		2A8219C81D65AFB300D65063 /* test.txt.gz in Resources */ = {isa = PBXBuildFile; fileRef = 2A8219C61D65AFB300D65063 /* test.txt.gz */; };
 		2AE050901D4A2D370040E4C9 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A58A7611B00F42C005FBBC2 /* Data+Gzip.swift */; };
@@ -40,6 +41,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2A2CCF80238127CB00FAC851 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A58A74D1B00F3A2005FBBC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A321F061D4A635F002B0245;
+			remoteInfo = "Gzip tvOS";
+		};
 		2AE050921D4A2D660040E4C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A58A74D1B00F3A2005FBBC2 /* Project object */;
@@ -58,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		2A1A709E1E86C2E800C678B1 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		2A2CCF7A238127CB00FAC851 /* Test tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A321EE71D4A6138002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A321EFF1D4A61A4002B0245 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		2A321F071D4A635F002B0245 /* Gzip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Gzip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +87,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2A2CCF77238127CB00FAC851 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A2CCF7F238127CB00FAC851 /* Gzip.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A321EE31D4A6138002B0245 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,6 +184,7 @@
 				2AE050991D4A2DC30040E4C9 /* Gzip.framework */,
 				2A321EE71D4A6138002B0245 /* Gzip.framework */,
 				2A321F071D4A635F002B0245 /* Gzip.framework */,
+				2A2CCF7A238127CB00FAC851 /* Test tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,6 +256,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2A2CCF79238127CB00FAC851 /* Test tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A2CCF84238127CB00FAC851 /* Build configuration list for PBXNativeTarget "Test tvOS" */;
+			buildPhases = (
+				2A2CCF76238127CB00FAC851 /* Sources */,
+				2A2CCF77238127CB00FAC851 /* Frameworks */,
+				2A2CCF78238127CB00FAC851 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A2CCF81238127CB00FAC851 /* PBXTargetDependency */,
+			);
+			name = "Test tvOS";
+			productName = "Test tvOS";
+			productReference = 2A2CCF7A238127CB00FAC851 /* Test tvOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		2A321EE61D4A6138002B0245 /* Gzip watchOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A321EEC1D4A6138002B0245 /* Build configuration list for PBXNativeTarget "Gzip watchOS" */;
@@ -345,9 +381,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 0930;
 				TargetAttributes = {
+					2A2CCF79238127CB00FAC851 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
 					2A321EE61D4A6138002B0245 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeamName = "Mineko IMANISHI";
@@ -401,18 +440,26 @@
 				2A321F061D4A635F002B0245 /* Gzip tvOS */,
 				2A58A7561B00F414005FBBC2 /* Tests macOS */,
 				2A58A77C1B00FBEF005FBBC2 /* Tests iOS */,
+				2A2CCF79238127CB00FAC851 /* Test tvOS */,
 				2ACC21BF1E54BB920078241F /* Lint Swift Code */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2A2CCF78238127CB00FAC851 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A2CCF85238127E200FAC851 /* test.txt.gz in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A6B20D61D64C68500AADBD7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2A8219C71D65AFB300D65063 /* test.txt.gz in Resources */,
-				2A6B20D81D64C6B300AADBD7 /* Gzip.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +468,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A8219C81D65AFB300D65063 /* test.txt.gz in Resources */,
-				2A6B20DA1D64C6DD00AADBD7 /* Gzip.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +491,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2A2CCF76238127CB00FAC851 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A2CCF862381287A00FAC851 /* GzipTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A321EE21D4A6138002B0245 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -496,6 +550,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2A2CCF81238127CB00FAC851 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A321F061D4A635F002B0245 /* Gzip tvOS */;
+			targetProxy = 2A2CCF80238127CB00FAC851 /* PBXContainerItemProxy */;
+		};
 		2AE050931D4A2D660040E4C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2AE050871D4A2C070040E4C9 /* Gzip macOS */;
@@ -509,6 +568,40 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		2A2CCF82238127CB00FAC851 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wolfrosch.Test-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		2A2CCF83238127CB00FAC851 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wolfrosch.Test-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		2A321EED1D4A6138002B0245 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -926,6 +1019,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2A2CCF84238127CB00FAC851 /* Build configuration list for PBXNativeTarget "Test tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A2CCF82238127CB00FAC851 /* Debug */,
+				2A2CCF83238127CB00FAC851 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2A321EEC1D4A6138002B0245 /* Build configuration list for PBXNativeTarget "Gzip watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
