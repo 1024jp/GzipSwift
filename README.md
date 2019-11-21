@@ -2,12 +2,11 @@
 GzipSwift
 ========================
 
-[![Swift](https://img.shields.io/badge/Swift-5.0.0-blue.svg)]()
 [![platform](https://img.shields.io/badge/platform-macOS%20|%20iOS%20|%20watchOS%20|%20tvOS%20|%20Linux-blue.svg)]()
 [![CI Status](https://github.com/1024jp/GzipSwift/workflows/CI/badge.svg)](https://github.com/1024jp/GzipSwift/actions)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-✔-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-✔-4BC51D.svg?style=flat)](https://swift.org/package-manager/)
-[![CocoaPods compatible](http://img.shields.io/cocoapods/v/GzipSwift.svg?style=flat)](https://cocoapods.org/pods/GzipSwift)
+[![Carthage-compatible](https://img.shields.io/badge/Carthage-✔-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![SwiftPM-compatible](https://img.shields.io/badge/SwiftPM-✔-4BC51D.svg?style=flat)](https://swift.org/package-manager/)
+[![CocoaPods-compatible](http://img.shields.io/cocoapods/v/GzipSwift.svg?style=flat)](https://cocoapods.org/pods/GzipSwift)
 
 __GzipSwift__ is a framework with an extension of Data written in Swift. It enables compress/decompress gzip using zlib.
 
@@ -38,7 +37,7 @@ if data.isGzipped {
 
 ### Swift Package Manager
 
-GzipSwift is SwiftPM compatible. To install, add this package to your `Package.swift` or your Xcode project.
+GzipSwift is SwiftPM-compatible. To install, add this package to your `Package.swift` or your Xcode project.
 
 #### For Linux
 
@@ -54,7 +53,7 @@ GzipSwift is SwiftPM compatible. To install, add this package to your `Package.s
         * if yes, link the library manually by passing '-Xlinker -L/usr/local/lib' with `swift build`
 
 ### Carthage
-GzipSwift is [Carthage](https://github.com/Carthage/Carthage) compatible. To install, add the following line to your `Cartfile`:
+GzipSwift is [Carthage](https://github.com/Carthage/Carthage)-compatible. To install, add the following line to your `Cartfile`:
 
 ```ruby
 github "1024jp/GzipSwift"
