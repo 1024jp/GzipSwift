@@ -11,5 +11,8 @@ let package = Package(
         .target(name: "Gzip", dependencies: ["system-zlib"]),
         .target(name: "system-zlib"),
         .testTarget(name: "GzipTests", dependencies: ["Gzip"]),
+    ],
+    swiftLanguageVersions: [
+        .v5,
     ]
 )
