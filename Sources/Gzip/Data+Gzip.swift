@@ -26,7 +26,7 @@
  THE SOFTWARE.
  */
 
-import Foundation
+import struct Foundation.Data
 
 #if os(Linux)
     import zlibLinux
