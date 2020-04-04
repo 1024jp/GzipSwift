@@ -19,7 +19,7 @@ jobs:
     - name: Build & test SwiftPM
       run: |
         swift build
-        swift test
+        swift test 2>&1 | xcpretty -c
     - name: Lint Cocoapod
       run: pod lib lint --quick
 
