@@ -71,7 +71,6 @@ pod 'GzipSwift'
 1. Open Gzip.xcodeproj on Xcode and build Gzip framework for your target platform.
 2. Append the built `Gzip.framework` to your project.
 3. Go to __General__ pane of the application target in your project. Add `Gzip.framework` to the __Embedded Binaries__ section.
-    <br /><img src="Documentation/EmbeddedBinaries@2x.png" height="135"/>
 
 
 ## License
