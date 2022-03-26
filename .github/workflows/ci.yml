@@ -22,6 +22,13 @@ jobs:
         swift test 2>&1 | xcpretty -c
     - name: Lint Cocoapod
       run: pod lib lint --quick
+  linux:
+    runs-on: ubuntu-latest
+    container: swift:5.4-focal
+    steps:
+    - uses: actions/checkout@v2
+    - name: Unit Test
+      run: swift test --enable-test-discovery
 
   xcode:
     name: Test with Xcode
