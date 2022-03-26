@@ -33,15 +33,6 @@ import Gzip
 
 final class GzipTests: XCTestCase {
     
-    static let allTests = [
-        ("testGzip", GzipTests.testGZip),
-        ("testZeroLength", GzipTests.testZeroLength),
-        ("testWrongUngzip", GzipTests.testWrongUngzip),
-        ("testCompressionLevel", GzipTests.testCompressionLevel),
-        ("testFileDecompression", GzipTests.testFileDecompression),
-        ]
-    
-    
     func testGZip() throws {
         
         for _ in 0..<10 {
