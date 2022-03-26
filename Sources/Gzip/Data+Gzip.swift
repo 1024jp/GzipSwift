@@ -5,7 +5,7 @@
 /*
  The MIT License (MIT)
  
- © 2014-2019 1024jp <wolfrosch.com>
+ © 2014-2022 1024jp <wolfrosch.com>
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
  THE SOFTWARE.
  */
 
-import Foundation
+import struct Foundation.Data
 
 #if os(Linux)
     import zlibLinux
@@ -40,11 +40,11 @@ public struct CompressionLevel: RawRepresentable {
     /// Compression level in the range of `0` (no compression) to `9` (maximum compression).
     public let rawValue: Int32
     
-    public static let noCompression = CompressionLevel(Z_NO_COMPRESSION)
-    public static let bestSpeed = CompressionLevel(Z_BEST_SPEED)
-    public static let bestCompression = CompressionLevel(Z_BEST_COMPRESSION)
+    public static let noCompression = Self(Z_NO_COMPRESSION)
+    public static let bestSpeed = Self(Z_BEST_SPEED)
+    public static let bestCompression = Self(Z_BEST_COMPRESSION)
     
-    public static let defaultCompression = CompressionLevel(Z_DEFAULT_COMPRESSION)
+    public static let defaultCompression = Self(Z_DEFAULT_COMPRESSION)
     
     
     public init(rawValue: Int32) {
@@ -107,12 +107,7 @@ public struct GzipError: Swift.Error {
     
     internal init(code: Int32, msg: UnsafePointer<CChar>?) {
         
-        self.message = {
-            guard let msg = msg, let message = String(validatingUTF8: msg) else {
-                return "Unknown gzip error"
-            }
-            return message
-        }()
+        self.message = msg.flatMap { String(validatingUTF8: $0) } ?? "Unknown gzip error"
         
         self.kind = {
             switch code {
@@ -150,11 +145,11 @@ extension Data {
     }
     
     
-    /// Create a new `Data` object by compressing the receiver using zlib.
+    /// Create a new `Data` instance by compressing the receiver using zlib.
     /// Throws an error if compression failed.
     ///
     /// - Parameter level: Compression level.
-    /// - Returns: Gzip-compressed `Data` object.
+    /// - Returns: Gzip-compressed `Data` instance.
     /// - Throws: `GzipError`
     public func gzipped(level: CompressionLevel = .defaultCompression) throws -> Data {
         
@@ -213,10 +208,10 @@ extension Data {
     }
     
     
-    /// Create a new `Data` object by decompressing the receiver using zlib.
+    /// Create a new `Data` instance by decompressing the receiver using zlib.
     /// Throws an error if decompression failed.
     ///
-    /// - Returns: Gzip-decompressed `Data` object.
+    /// - Returns: Gzip-decompressed `Data` instance.
     /// - Throws: `GzipError`
     public func gunzipped() throws -> Data {
         
@@ -283,10 +278,8 @@ extension Data {
 }
 
 
-private struct DataSize {
+private enum DataSize {
     
     static let chunk = 1 << 14
     static let stream = MemoryLayout<z_stream>.size
-    
-    private init() { }
 }

@@ -7,7 +7,7 @@
 /*
  The MIT License (MIT)
  
- © 2015-2019 1024jp
+ © 2015-2022 1024jp
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -32,15 +32,6 @@ import XCTest
 import Gzip
 
 final class GzipTests: XCTestCase {
-    
-    static let allTests = [
-        ("testGzip", GzipTests.testGZip),
-        ("testZeroLength", GzipTests.testZeroLength),
-        ("testWrongUngzip", GzipTests.testWrongUngzip),
-        ("testCompressionLevel", GzipTests.testCompressionLevel),
-        ("testFileDecompression", GzipTests.testFileDecompression),
-        ]
-    
     
     func testGZip() throws {
         
@@ -77,19 +68,13 @@ final class GzipTests: XCTestCase {
         // data not compressed
         let data = "testString".data(using: .utf8)!
         
-        var uncompressed: Data?
-        do {
-            uncompressed = try data.gunzipped()
+        XCTAssertThrowsError(try data.gunzipped()) { error in
+            guard let gzipError = error as? GzipError else { return XCTFail("Caught incorrect error.") }
             
-        } catch let error as GzipError where error.kind == .data {
-            XCTAssertEqual(error.message, "incorrect header check")
-            XCTAssertEqual(error.message, error.localizedDescription)
-            
-        } catch _ {
-            XCTFail("Caught incorrect error.")
+            XCTAssertEqual(gzipError.kind, .data)
+            XCTAssertEqual(gzipError.message, "incorrect header check")
+            XCTAssertEqual(gzipError.message, gzipError.localizedDescription)
         }
-        
-        XCTAssertNil(uncompressed)
     }
     
     
