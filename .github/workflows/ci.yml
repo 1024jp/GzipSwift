@@ -14,7 +14,6 @@ jobs:
         xcodebuild -version
     - name: Lint Swift
       run: |
-        brew install swiftlint
         swiftlint
     - name: Build & test SwiftPM
       run: |
