@@ -30,11 +30,6 @@
 
 import XCTest
 import Gzip
-#if os(Linux)
-    import zlibLinux
-#else
-    import zlib
-#endif
 
 final class GzipTests: XCTestCase {
     
