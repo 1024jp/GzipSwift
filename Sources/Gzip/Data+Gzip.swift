@@ -156,11 +156,10 @@ extension Data {
     ///
     /// The `wBits` parameter allows for managing the size of the history buffer. The possible values are:
     ///
-    ///     Value                        Window size logarithm    Input
-    ///     +8 to +15                    Base 2                   Includes zlib header and trailer
-    ///     -8 to -15                    Absolute value of wbits  Raw stream with no header and trailer
-    ///     +24 to +31 = 16 + (8 to 15)  Low 4 bits of the value  Includes gzip header and trailer
-    ///     +40 to +47 = 32 + (8 to 15)  Low 4 bits of the value  zlib or gzip format
+    ///     Value       Window size logarithm    Input
+    ///     +9 to +15   Base 2                   Includes zlib header and trailer
+    ///     -9 to -15   Absolute value of wbits  No header and trailer
+    ///     +25 to +31  Low 4 bits of the value  Includes gzip header and trailing checksum
     ///
     /// - Parameter level: Compression level.
     /// - Parameter wBits: Manage the size of the history buffer.
