@@ -211,9 +211,18 @@ extension Data {
     /// Create a new `Data` instance by decompressing the receiver using zlib.
     /// Throws an error if decompression failed.
     ///
+    /// The `wBits` parameter allows for managing the size of the history buffer. The possible values are:
+    ///
+    ///     Value                        Window size logarithm    Input
+    ///     +8 to +15                    Base 2                   Includes zlib header and trailer
+    ///     -8 to -15                    Absolute value of wbits  Raw stream with no header and trailer
+    ///     +24 to +31 = 16 + (8 to 15)  Low 4 bits of the value  Includes gzip header and trailer
+    ///     +40 to +47 = 32 + (8 to 15)  Low 4 bits of the value  zlib or gzip format
+    ///
+    /// - Parameter wBits: Manage the size of the history buffer.
     /// - Returns: Gzip-decompressed `Data` instance.
     /// - Throws: `GzipError`
-    public func gunzipped() throws -> Data {
+    public func gunzipped(wBits: Int32 = MAX_WBITS + 32) throws -> Data {
         
         guard !self.isEmpty else {
             return Data()
@@ -222,7 +231,7 @@ extension Data {
         var stream = z_stream()
         var status: Int32
         
-        status = inflateInit2_(&stream, MAX_WBITS + 32, ZLIB_VERSION, Int32(DataSize.stream))
+        status = inflateInit2_(&stream, wBits, ZLIB_VERSION, Int32(DataSize.stream))
         
         guard status == Z_OK else {
             // inflateInit2 returns:

@@ -30,6 +30,11 @@
 
 import XCTest
 import Gzip
+#if os(Linux)
+    import zlibLinux
+#else
+    import zlib
+#endif
 
 final class GzipTests: XCTestCase {
     
@@ -96,7 +101,21 @@ final class GzipTests: XCTestCase {
         XCTAssertTrue(data.isGzipped)
         XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
     }
-    
+
+    func testDecompressionWithNoHeaderAndTrailer() throws {
+        let encoded = """
+        7ZOxCsIwEIbf5ea0JNerqdmdFeygFYciHYK0lTZOIe9u9AXMTTpkOQ\
+        h8hLv/7vNwmFfr7DyBuXho7Tisrh8fYAAlYiF1oWSr0EgyhCWRrpsa\
+        OxCwm9xihxWMB/UuR9e7Z3zCfmqX/naPyAmMFHD+1C7WIKBKRykdrd\
+        PRTTqqJINlZKAYkylOv006i4zZEBksY8HIyKFi5EuMf0kzroxzZowc\
+        dHIPIYjvjjbRUSTKjmZHs6N/6WhVStS01VnRrGhW9BeKXsML
+        """
+        let data = try XCTUnwrap(Data(base64Encoded: encoded))
+        let uncompressed = try data.gunzipped(wBits: -MAX_WBITS)
+        let json = String(data: uncompressed, encoding: .utf8)
+        XCTAssertEqual(json?.first, "{")
+        XCTAssertEqual(json?.last, "}")
+    }
 }
 
 
