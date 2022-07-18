@@ -34,11 +34,8 @@ import struct Foundation.Data
     import zlib
 #endif
 
-#if os(Linux)
-    public let MAX_WBITS = zliblinux.MAX_WBITS
-#else
-    public let MAX_WBITS = zlib.MAX_WBITS
-#endif
+/// Maximum value for windowBits (`MAX_WBITS`)
+public let maxWindowBits = MAX_WBITS
 
 /// Compression level whose rawValue is based on the zlib's constants.
 public struct CompressionLevel: RawRepresentable {

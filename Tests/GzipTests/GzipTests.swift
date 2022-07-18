@@ -106,7 +106,7 @@ final class GzipTests: XCTestCase {
         dHIPIYjvjjbRUSTKjmZHs6N/6WhVStS01VnRrGhW9BeKXsML
         """
         let data = try XCTUnwrap(Data(base64Encoded: encoded))
-        let uncompressed = try data.gunzipped(wBits: -MAX_WBITS)
+        let uncompressed = try data.gunzipped(wBits: -maxWindowBits)
         let json = String(data: uncompressed, encoding: .utf8)
         XCTAssertEqual(json?.first, "{")
         XCTAssertEqual(json?.last, "}")
