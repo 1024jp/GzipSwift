@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Unit Test
-      run: swift test --enable-test-discovery
+      run: swift test
 
   xcode:
     name: Test with Xcode
