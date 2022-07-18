@@ -1,6 +1,9 @@
 
 excluded:
   - Tests/GzipTests
+  
+disabled_rules:
+  - identifier_name
 
 opt_in_rules:
   - attributes
@@ -11,7 +14,6 @@ opt_in_rules:
   - explicit_init
   - fatal_error_message
   - first_where
-  - implicit_return
   - implicitly_unwrapped_optional
   - let_var_whitespace
   - multiline_parameters

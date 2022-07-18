@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   macOS:
     name: Test on macOS
-    runs-on: macOS-latest
+    runs-on: macOS-12
     steps:
     - uses: actions/checkout@v1
     - name: Show environments
@@ -23,15 +23,15 @@ jobs:
       run: pod lib lint --quick
   linux:
     runs-on: ubuntu-latest
-    container: swift:5.4-focal
+    container: swift:latest
     steps:
     - uses: actions/checkout@v2
     - name: Unit Test
-      run: swift test --enable-test-discovery
+      run: swift test
 
   xcode:
     name: Test with Xcode
-    runs-on: macOS-latest
+    runs-on: macos-12
     strategy:
         matrix:
           name: [macOS, iOS, tvOS]
@@ -47,7 +47,7 @@ jobs:
             - name: tvOS
               scheme: Gzip tvOS
               sdk: appletvsimulator
-              destination: 'platform=tvOS Simulator,name=Apple TV 4K'
+              destination: 'platform=tvOS Simulator,name=Apple TV'
     steps:
     - uses: actions/checkout@v1
     - name: Test
