@@ -69,7 +69,9 @@ final class GzipTests: XCTestCase {
         let data = "testString".data(using: .utf8)!
         
         XCTAssertThrowsError(try data.gunzipped()) { error in
-            guard let gzipError = error as? GzipError else { return XCTFail("Caught incorrect error.") }
+            guard let gzipError = error as? GzipError else {
+                return XCTFail("Caught incorrect error.")
+            }
             
             XCTAssertEqual(gzipError.kind, .data)
             XCTAssertEqual(gzipError.message, "incorrect header check")
@@ -98,6 +100,7 @@ final class GzipTests: XCTestCase {
     }
 
     func testDecompressionWithNoHeaderAndTrailer() throws {
+        
         let encoded = """
         7ZOxCsIwEIbf5ea0JNerqdmdFeygFYciHYK0lTZOIe9u9AXMTTpkOQ\
         h8hLv/7vNwmFfr7DyBuXho7Tisrh8fYAAlYiF1oWSr0EgyhCWRrpsa\
@@ -108,6 +111,7 @@ final class GzipTests: XCTestCase {
         let data = try XCTUnwrap(Data(base64Encoded: encoded))
         let uncompressed = try data.gunzipped(wBits: -maxWindowBits)
         let json = String(data: uncompressed, encoding: .utf8)
+        
         XCTAssertEqual(json?.first, "{")
         XCTAssertEqual(json?.last, "}")
     }
