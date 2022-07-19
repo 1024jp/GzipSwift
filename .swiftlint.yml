@@ -1,9 +1,6 @@
 
 excluded:
   - Tests/GzipTests
-  
-disabled_rules:
-  - identifier_name
 
 opt_in_rules:
   - attributes
