@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+5.3.0
+--------------------------
+
+### Changes
+
+- add `wBits` optional parameter to `gzipped(level:)` and `.gunzipped()` to support managing the size of the history buffer.
+
+
+
 5.2.0
 --------------------------
 

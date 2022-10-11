@@ -1,7 +1,4 @@
 
-excluded:
-  - Tests/GzipTests
-
 opt_in_rules:
   - attributes
   - closure_end_indentation
@@ -11,12 +8,10 @@ opt_in_rules:
   - explicit_init
   - fatal_error_message
   - first_where
-  - implicit_return
   - implicitly_unwrapped_optional
   - let_var_whitespace
   - multiline_parameters
   - nimble_operator
-  - no_extension_access_modifier
   - number_separator
   - object_literal
   - operator_usage_whitespace
@@ -24,7 +19,6 @@ opt_in_rules:
   - redundant_nil_coalescing
   - strict_fileprivate
   - switch_case_on_newline
-  - unneeded_parentheses_in_closure_argument
   - vertical_parameter_alignment_on_call
 
 trailing_comma:
@@ -34,6 +28,6 @@ trailing_whitespace:
   ignores_empty_lines: true
 
 vertical_whitespace:
-  max_empty_lines: 2
+  max_empty_lines: 3
 
 line_length: 200
