@@ -225,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				2A7DC79E1FB6AFC900539D90 /* GzipTests */,
-				2A8219C61D65AFB300D65063 /* test.txt.gz */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -234,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				2A58A75C1B00F414005FBBC2 /* GzipTests.swift */,
+				2A8219C61D65AFB300D65063 /* test.txt.gz */,
 			);
 			path = GzipTests;
 			sourceTree = "<group>";
