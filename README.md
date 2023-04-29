@@ -30,9 +30,13 @@ if data.isGzipped {
 
 ## Installation
 
-### Swift Package Manager
-
 GzipSwift is SwiftPM-compatible. To install, add this package to your `Package.swift` or your Xcode project.
+
+```swift
+dependencies: [
+    .package(name: "Gzip", url: "https://github.com/1024jp/GzipSwift", from: Version(6, 0, 0)),
+],
+```
 
 #### For Linux
 
