@@ -115,6 +115,19 @@ final class GzipTests: XCTestCase {
         XCTAssertEqual(json?.first, "{")
         XCTAssertEqual(json?.last, "}")
     }
+
+    func testDecompressionCompositedCompression() throws {
+        let firstData = try XCTUnwrap("test".data(using: .utf8)).gzipped()
+        let secondData = try XCTUnwrap("string".data(using: .utf8)).gzipped()
+
+        let data = firstData + secondData
+
+        let uncompressed = try data.gunzipped()
+
+        XCTAssertTrue(data.isGzipped)
+        XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "teststring")
+    }
+    
 }
 
 
