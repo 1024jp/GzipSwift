@@ -7,6 +7,7 @@ Change Log
 
 ### Changes
 
+- Remove support for CocoaPods and Carthage.
 - Update minimum Swift version to 5.4.
 - Add `wBits` optional parameter to `gzipped(level:)` and `.gunzipped()` to support managing the size of the history buffer.
 

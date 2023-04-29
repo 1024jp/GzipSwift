@@ -4,9 +4,7 @@ GzipSwift
 
 [![platform](https://img.shields.io/badge/platform-macOS%20|%20iOS%20|%20watchOS%20|%20tvOS%20|%20Linux-blue.svg)]()
 [![CI Status](https://github.com/1024jp/GzipSwift/workflows/CI/badge.svg)](https://github.com/1024jp/GzipSwift/actions)
-[![Carthage-compatible](https://img.shields.io/badge/Carthage-✔-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![SwiftPM-compatible](https://img.shields.io/badge/SwiftPM-✔-4BC51D.svg?style=flat)](https://swift.org/package-manager/)
-[![CocoaPods-compatible](http://img.shields.io/cocoapods/v/GzipSwift.svg?style=flat)](https://cocoapods.org/pods/GzipSwift)
 
 __GzipSwift__ is a framework with an extension of Data written in Swift. It enables compress/decompress gzip using zlib.
 
@@ -52,29 +50,9 @@ GzipSwift is SwiftPM-compatible. To install, add this package to your `Package.s
         * if no, reinstall zlib as step (1)
         * if yes, link the library manually by passing '-Xlinker -L/usr/local/lib' with `swift build`
 
-### Carthage
-GzipSwift is [Carthage](https://github.com/Carthage/Carthage)-compatible. To install, add the following line to your `Cartfile`:
-
-```ruby
-github "1024jp/GzipSwift"
-```
-
-### CocoaPods
-GzipSwift is available through [CocoaPods](http://cocoapods.org). To install, add the following line to your `Podfile`:
-
-```ruby
-pod 'GzipSwift'
-```
-
-### Manual Installation
-
-1. Open Gzip.xcodeproj on Xcode and build Gzip framework for your target platform.
-2. Append the built `Gzip.framework` to your project.
-3. Go to __General__ pane of the application target in your project. Add `Gzip.framework` to the __Embedded Binaries__ section.
-
 
 ## License
 
-© 2014-2022 1024jp
+© 2014-2023 1024jp
 
 GzipSwift is distributed under the terms of the __MIT License__. See [LICENSE](LICENSE) for details.

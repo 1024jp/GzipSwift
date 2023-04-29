@@ -19,8 +19,6 @@ jobs:
       run: |
         swift build
         swift test 2>&1 | xcpretty -c
-    - name: Lint Cocoapod
-      run: pod lib lint --quick
   linux:
     runs-on: ubuntu-latest
     container: swift:latest
@@ -28,29 +26,3 @@ jobs:
     - uses: actions/checkout@v2
     - name: Unit Test
       run: swift test
-
-  xcode:
-    name: Test with Xcode
-    runs-on: macos-12
-    strategy:
-        matrix:
-          name: [macOS, iOS, tvOS]
-          include:
-            - name: macOS
-              scheme: Gzip macOS
-              sdk: macosx
-              destination: 'platform=macOS'
-            - name: iOS
-              scheme: Gzip iOS
-              sdk: iphonesimulator
-              destination: 'platform=iOS Simulator,name=iPhone 11'
-            - name: tvOS
-              scheme: Gzip tvOS
-              sdk: appletvsimulator
-              destination: 'platform=tvOS Simulator,name=Apple TV'
-    steps:
-    - uses: actions/checkout@v1
-    - name: Test
-      run: |
-          set -o pipefail
-          xcodebuild clean test -scheme "${{matrix.scheme}}" -sdk "${{matrix.sdk}}" -destination "${{matrix.destination}}" | xcpretty -c
