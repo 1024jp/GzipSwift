@@ -7,7 +7,7 @@
 /*
  The MIT License (MIT)
  
- © 2015-2022 1024jp
+ © 2015-2023 1024jp
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -127,7 +127,6 @@ final class GzipTests: XCTestCase {
         XCTAssertTrue(data.isGzipped)
         XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "teststring")
     }
-    
 }
 
 
@@ -145,7 +144,6 @@ private extension XCTestCase {
             return Bundle(for: type(of: self)).url(forResource: name, withExtension: nil)!
         #endif
     }
-    
 }
 
 
@@ -161,5 +159,4 @@ private extension String {
             string.append(letters.randomElement()!)
         }
     }
-    
 }
