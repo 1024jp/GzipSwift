@@ -114,29 +114,35 @@ public struct GzipError: Swift.Error {
     internal init(code: Int32, msg: UnsafePointer<CChar>?) {
         
         self.message = msg.flatMap { String(validatingUTF8: $0) } ?? "Unknown gzip error"
-        
-        self.kind = {
-            switch code {
-            case Z_STREAM_ERROR:
-                return .stream
-            case Z_DATA_ERROR:
-                return .data
-            case Z_MEM_ERROR:
-                return .memory
-            case Z_BUF_ERROR:
-                return .buffer
-            case Z_VERSION_ERROR:
-                return .version
-            default:
-                return .unknown(code: Int(code))
-            }
-        }()
+        self.kind = Kind(code: code)
     }
     
     
     public var localizedDescription: String {
         
         return self.message
+    }
+}
+
+
+private extension GzipError.Kind {
+    
+    init(code: Int32) {
+        
+        switch code {
+            case Z_STREAM_ERROR:
+                self = .stream
+            case Z_DATA_ERROR:
+                self = .data
+            case Z_MEM_ERROR:
+                self = .memory
+            case Z_BUF_ERROR:
+                self = .buffer
+            case Z_VERSION_ERROR:
+                self = .version
+            default:
+                self = .unknown(code: Int(code))
+        }
     }
 }
 
@@ -285,7 +291,6 @@ extension Data {
                     
                     stream.next_in = nil
                 }
-                
             } while (status == Z_OK)
             
             totalIn += stream.total_in
