@@ -8,9 +8,6 @@ GzipSwift
 
 __GzipSwift__ is a framework with an extension of Data written in Swift. It enables compress/decompress gzip using zlib.
 
-- __Requirements__: OS X 10.9 / iOS 12 / watchOS 2 / tvOS 12 or later
-- __Swift version__: Swift 5.6
-
 
 ## Usage
 

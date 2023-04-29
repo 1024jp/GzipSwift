@@ -2,14 +2,20 @@
 Change Log
 ==========================
 
-5.3.0
+6.0.0
 --------------------------
+
+### New
+
+- Support decompression for combined compression.
+- Add `wBits` optional parameter to `gzipped(level:)` and `.gunzipped()` to support managing the size of the history buffer.
+
 
 ### Changes
 
 - Remove support for CocoaPods and Carthage.
 - Update minimum Swift version to 5.4.
-- Add `wBits` optional parameter to `gzipped(level:)` and `.gunzipped()` to support managing the size of the history buffer.
+- Break immediately when inflate exactly reaches the end of the buffer.
 
 
 
