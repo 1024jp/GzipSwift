@@ -38,7 +38,7 @@ final class GzipTests: XCTestCase {
         for _ in 0..<10 {
             let testSentence = String.lorem(length: Int.random(in: 1..<100_000))
             
-            let data = testSentence.data(using: .utf8)!
+            let data = Data(testSentence.utf8)
             let gzipped = try data.gzipped()
             let uncompressed = try gzipped.gunzipped()
             let uncompressedSentence = String(data: uncompressed, encoding: .utf8)
@@ -66,7 +66,7 @@ final class GzipTests: XCTestCase {
     func testWrongUngzip() {
         
         // data not compressed
-        let data = "testString".data(using: .utf8)!
+        let data = Data("testString".utf8)
         
         XCTAssertThrowsError(try data.gunzipped()) { error in
             guard let gzipError = error as? GzipError else {
@@ -82,7 +82,7 @@ final class GzipTests: XCTestCase {
     
     func testCompressionLevel() throws {
         
-        let data = String.lorem(length: 100_000).data(using: .utf8)!
+        let data = Data(String.lorem(length: 100_000).utf8)
         
         XCTAssertGreaterThan(try data.gzipped(level: .bestSpeed).count,
                              try data.gzipped(level: .bestCompression).count)
@@ -91,14 +91,15 @@ final class GzipTests: XCTestCase {
     
     func testFileDecompression() throws {
         
-        let url = self.bundleFile(name: "test.txt.gz")
+        let url = try XCTUnwrap(Bundle.module.url(forResource: "test.txt.gz", withExtension: nil))
         let data = try Data(contentsOf: url)
         let uncompressed = try data.gunzipped()
         
         XCTAssertTrue(data.isGzipped)
         XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
     }
-
+    
+    
     func testDecompressionWithNoHeaderAndTrailer() throws {
         
         let encoded = """
@@ -110,42 +111,26 @@ final class GzipTests: XCTestCase {
         """
         let data = try XCTUnwrap(Data(base64Encoded: encoded))
         let uncompressed = try data.gunzipped(wBits: -Gzip.maxWindowBits)
-        let json = String(data: uncompressed, encoding: .utf8)
+        let json = try XCTUnwrap(String(data: uncompressed, encoding: .utf8))
         
-        XCTAssertEqual(json?.first, "{")
-        XCTAssertEqual(json?.last, "}")
+        XCTAssertEqual(json.first, "{")
+        XCTAssertEqual(json.last, "}")
     }
-
+    
+    
     func testDecompressionCompositedCompression() throws {
-        let firstData = try XCTUnwrap("test".data(using: .utf8)).gzipped()
-        let secondData = try XCTUnwrap("string".data(using: .utf8)).gzipped()
-
+        
+        let firstData = try Data("test".utf8).gzipped()
+        let secondData = try Data("string".utf8).gzipped()
+        
         let data = firstData + secondData
-
+        
         let uncompressed = try data.gunzipped()
-
+        
         XCTAssertTrue(data.isGzipped)
         XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "teststring")
     }
 }
-
-
- 
-private extension XCTestCase {
-    
-    /// Create URL for bundled test file considering platform.
-    ///
-    /// - Parameter name: The file name to load in "/Tests" directory.
-    func bundleFile(name: String) -> URL {
-        
-        #if SWIFT_PACKAGE
-            return Bundle.module.url(forResource: name, withExtension: nil)!
-        #else
-            return Bundle(for: type(of: self)).url(forResource: name, withExtension: nil)!
-        #endif
-    }
-}
-
 
 
 private extension String {
@@ -154,9 +139,8 @@ private extension String {
     static func lorem(length: Int) -> String {
         
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "
+        let characters = (0..<length).map { _ in letters.randomElement()! }
         
-        return (0..<length).reduce(into: "") { (string, _) in
-            string.append(letters.randomElement()!)
-        }
+        return String(characters)
     }
 }
