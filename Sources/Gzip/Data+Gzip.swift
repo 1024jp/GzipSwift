@@ -211,7 +211,7 @@ extension Data {
                 stream.next_in = nil
             }
             
-        } while stream.avail_out == 0
+        } while stream.avail_out == 0 && status != Z_STREAM_END
         
         guard deflateEnd(&stream) == Z_OK, status == Z_STREAM_END else {
             throw GzipError(code: status, msg: stream.msg)
