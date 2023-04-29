@@ -127,10 +127,7 @@ private extension XCTestCase {
     func bundleFile(name: String) -> URL {
         
         #if SWIFT_PACKAGE
-            return URL(fileURLWithPath: #file)
-                .deletingLastPathComponent()
-                .deletingLastPathComponent()
-                .appendingPathComponent(name)
+            return Bundle.module.url(forResource: name, withExtension: nil)!
         #else
             return Bundle(for: type(of: self)).url(forResource: name, withExtension: nil)!
         #endif
