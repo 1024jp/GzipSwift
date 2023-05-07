@@ -201,7 +201,7 @@ extension Data {
             
             self.withUnsafeBytes { (inputPointer: UnsafeRawBufferPointer) in
                 stream.next_in = UnsafeMutablePointer<Bytef>(mutating: inputPointer.bindMemory(to: Bytef.self).baseAddress!).advanced(by: Int(stream.total_in))
-                stream.avail_in = uint(inputCount) - uInt(stream.total_in)
+                stream.avail_in = uInt(inputCount) - uInt(stream.total_in)
                 
                 data.withUnsafeMutableBytes { (outputPointer: UnsafeMutableRawBufferPointer) in
                     stream.next_out = outputPointer.bindMemory(to: Bytef.self).baseAddress!.advanced(by: Int(stream.total_out))
@@ -277,7 +277,7 @@ extension Data {
                 self.withUnsafeBytes { (inputPointer: UnsafeRawBufferPointer) in
                     let inputStartPosition = totalIn + stream.total_in
                     stream.next_in = UnsafeMutablePointer<Bytef>(mutating: inputPointer.bindMemory(to: Bytef.self).baseAddress!).advanced(by: Int(inputStartPosition))
-                    stream.avail_in = uint(inputCount) - uInt(inputStartPosition)
+                    stream.avail_in = uInt(inputCount) - uInt(inputStartPosition)
                     
                     data.withUnsafeMutableBytes { (outputPointer: UnsafeMutableRawBufferPointer) in
                         let outputStartPosition = totalOut + stream.total_out
