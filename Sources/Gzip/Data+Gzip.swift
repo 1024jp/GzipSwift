@@ -68,10 +68,10 @@ public struct CompressionLevel: RawRepresentable {
 
 
 /// Errors on gzipping/gunzipping based on the zlib error codes.
-public struct GzipError: Swift.Error {
+public struct GzipError: Swift.Error, Sendable {
     // cf. http://www.zlib.net/manual.html
     
-    public enum Kind: Equatable {
+    public enum Kind: Equatable, Sendable {
         /// The stream structure was inconsistent.
         ///
         /// - underlying zlib error: `Z_STREAM_ERROR` (-2)
