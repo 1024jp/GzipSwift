@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+6.0.1
+--------------------------
+
+### Changes
+
+- Add `Sendable` to `GzipError` and `CompressionLevel`.
+
+
+
 6.0.0
 --------------------------
 
