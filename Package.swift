@@ -1,4 +1,4 @@
-// swift-tools-version: 5.4
+// swift-tools-version: 5.8
 
 import PackageDescription
 
@@ -8,12 +8,15 @@ let package = Package(
         .library(name: "Gzip", targets: ["Gzip"]),
     ],
     targets: [
-        .target(name: "Gzip", dependencies: ["system-zlib"]),
+        .target(name: "Gzip",
+                dependencies: ["system-zlib"],
+                swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]),
         .target(name: "system-zlib"),
         .testTarget(
             name: "GzipTests",
             dependencies: ["Gzip"],
-            resources: [.copy("./test.txt.gz")]
+            resources: [.copy("./test.txt.gz")],
+            swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
         ),
     ]
 )
