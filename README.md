@@ -8,6 +8,8 @@ GzipSwift
 
 __GzipSwift__ is a framework with an extension of Data written in Swift. It enables compress/decompress gzip using zlib.
 
+GzipSwift requires no privacy manifests since it does not access to any privacy information.
+
 
 ## Usage
 
