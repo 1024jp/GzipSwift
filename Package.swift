@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Gzip",
+    name: "GzipSwift",
     products: [
         .library(name: "Gzip", targets: ["Gzip"]),
     ],
