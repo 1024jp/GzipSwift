@@ -7,7 +7,7 @@
 /*
  The MIT License (MIT)
  
- © 2015-2023 1024jp
+ © 2015-2024 1024jp
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -28,11 +28,13 @@
  THE SOFTWARE.
  */
 
-import XCTest
+import Foundation
+import Testing
 import Gzip
 
-final class GzipTests: XCTestCase {
+struct GzipTests {
     
+    @Test
     func testGZip() throws {
         
         for _ in 0..<10 {
@@ -43,63 +45,69 @@ final class GzipTests: XCTestCase {
             let uncompressed = try gzipped.gunzipped()
             let uncompressedSentence = String(data: uncompressed, encoding: .utf8)
             
-            XCTAssertNotEqual(gzipped, data)
-            XCTAssertEqual(uncompressedSentence, testSentence)
+            #expect(gzipped != data)
+            #expect(uncompressedSentence == testSentence)
             
-            XCTAssertTrue(gzipped.isGzipped)
-            XCTAssertFalse(data.isGzipped)
-            XCTAssertFalse(uncompressed.isGzipped)
+            #expect(gzipped.isGzipped)
+            #expect(!data.isGzipped)
+            #expect(!uncompressed.isGzipped)
         }
     }
     
     
+    @Test
     func testZeroLength() throws {
         
         let zeroLengthData = Data()
         
-        XCTAssertEqual(try zeroLengthData.gzipped(), zeroLengthData)
-        XCTAssertEqual(try zeroLengthData.gunzipped(), zeroLengthData)
-        XCTAssertFalse(zeroLengthData.isGzipped)
+        #expect(try zeroLengthData.gzipped() == zeroLengthData)
+        #expect(try zeroLengthData.gunzipped() == zeroLengthData)
+        #expect(!zeroLengthData.isGzipped)
     }
     
     
+    @Test
     func testWrongUngzip() {
         
         // data not compressed
         let data = Data("testString".utf8)
         
-        XCTAssertThrowsError(try data.gunzipped()) { error in
-            guard let gzipError = error as? GzipError else {
-                return XCTFail("Caught incorrect error.")
-            }
+        #expect {
+            try data.gunzipped()
+        } throws: { error in
+            let gzipError = try #require(error as? GzipError)
             
-            XCTAssertEqual(gzipError.kind, .data)
-            XCTAssertEqual(gzipError.message, "incorrect header check")
-            XCTAssertEqual(gzipError.message, gzipError.localizedDescription)
+            return (gzipError.kind == .data) &&
+            (gzipError.message == "incorrect header check") &&
+            (gzipError.message == gzipError.localizedDescription)
         }
     }
     
     
+    @Test
     func testCompressionLevel() throws {
         
         let data = Data(String.lorem(length: 100_000).utf8)
+        let bestSpeedData = try data.gzipped(level: .bestSpeed)
+        let bestCompressionData = try data.gzipped(level: .bestCompression)
         
-        XCTAssertGreaterThan(try data.gzipped(level: .bestSpeed).count,
-                             try data.gzipped(level: .bestCompression).count)
+        #expect(bestSpeedData.count > bestCompressionData.count)
     }
     
     
+    @Test
     func testFileDecompression() throws {
         
-        let url = try XCTUnwrap(Bundle.module.url(forResource: "test.txt.gz", withExtension: nil))
+        let url = try #require(Bundle.module.url(forResource: "test.txt.gz", withExtension: nil))
         let data = try Data(contentsOf: url)
         let uncompressed = try data.gunzipped()
         
-        XCTAssertTrue(data.isGzipped)
-        XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
+        #expect(data.isGzipped)
+        #expect(String(data: uncompressed, encoding: .utf8) == "test")
     }
     
     
+    @Test
     func testDecompressionWithNoHeaderAndTrailer() throws {
         
         let encoded = """
@@ -109,15 +117,16 @@ final class GzipTests: XCTestCase {
         PRTTqqJINlZKAYkylOv006i4zZEBksY8HIyKFi5EuMf0kzroxzZowc\
         dHIPIYjvjjbRUSTKjmZHs6N/6WhVStS01VnRrGhW9BeKXsML
         """
-        let data = try XCTUnwrap(Data(base64Encoded: encoded))
+        let data = try #require(Data(base64Encoded: encoded))
         let uncompressed = try data.gunzipped(wBits: -Gzip.maxWindowBits)
-        let json = try XCTUnwrap(String(data: uncompressed, encoding: .utf8))
+        let json = try #require(String(data: uncompressed, encoding: .utf8))
         
-        XCTAssertEqual(json.first, "{")
-        XCTAssertEqual(json.last, "}")
+        #expect(json.first == "{")
+        #expect(json.last == "}")
     }
     
     
+    @Test
     func testDecompressionCompositedCompression() throws {
         
         let firstData = try Data("test".utf8).gzipped()
@@ -127,8 +136,8 @@ final class GzipTests: XCTestCase {
         
         let uncompressed = try data.gunzipped()
         
-        XCTAssertTrue(data.isGzipped)
-        XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "teststring")
+        #expect(data.isGzipped)
+        #expect(String(data: uncompressed, encoding: .utf8) == "teststring")
     }
 }
 
