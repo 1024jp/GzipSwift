@@ -170,7 +170,7 @@ extension Data {
     /// - Parameter wBits: Manage the size of the history buffer.
     /// - Returns: Gzip-compressed `Data` instance.
     /// - Throws: `GzipError`
-    public func gzipped(level: CompressionLevel = .defaultCompression, wBits: Int32 = Gzip.maxWindowBits + 16) throws -> Data {
+    public func gzipped(level: CompressionLevel = .defaultCompression, wBits: Int32 = Gzip.maxWindowBits + 16) throws(GzipError) -> Data {
         
         guard !self.isEmpty else {
             return Data()
@@ -241,7 +241,7 @@ extension Data {
     /// - Parameter wBits: Manage the size of the history buffer.
     /// - Returns: Gzip-decompressed `Data` instance.
     /// - Throws: `GzipError`
-    public func gunzipped(wBits: Int32 = Gzip.maxWindowBits + 32) throws -> Data {
+    public func gunzipped(wBits: Int32 = Gzip.maxWindowBits + 32) throws(GzipError) -> Data {
         
         guard !self.isEmpty else {
             return Data()
