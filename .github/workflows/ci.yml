@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   macOS:
     name: Test on macOS
-    runs-on: macOS-13
+    runs-on: macOS-14
     steps:
     - uses: actions/checkout@v1
     - name: Show environments
