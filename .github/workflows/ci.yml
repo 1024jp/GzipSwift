@@ -14,6 +14,9 @@ jobs:
         xcodebuild -version
     - name: Lint Swift
       run: |
+        if [[ ! -f "/usr/local/bin/swiftlint" ]]; then
+            brew install swiftlint
+        fi
         swiftlint
     - name: Build & test SwiftPM
       run: |
