@@ -6,8 +6,10 @@ jobs:
   macOS:
     name: Test on macOS
     runs-on: macOS-14
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.0.app
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - name: Show environments
       run: |
         swift --version
@@ -21,11 +23,11 @@ jobs:
     - name: Build & test SwiftPM
       run: |
         swift build
-        swift test 2>&1 | xcpretty -c
+        swift test --enable-swift-testing
   linux:
     runs-on: ubuntu-latest
     container: swift:latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Unit Test
-      run: swift test
+      run: swift test --enable-swift-testing
