@@ -3,31 +3,22 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  macOS:
-    name: Test on macOS
-    runs-on: macOS-14
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_16.0.app
+  build:
+    name: Swift ${{ matrix.swift }} on ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        swift: ["5.10", "6.0"]
+    runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v4
-    - name: Show environments
-      run: |
-        swift --version
-        xcodebuild -version
-    - name: Lint Swift
-      run: |
-        if [[ ! -f "/usr/local/bin/swiftlint" ]]; then
-            brew install swiftlint
-        fi
-        swiftlint
-    - name: Build & test SwiftPM
-      run: |
-        swift build
-        swift test --enable-swift-testing
-  linux:
-    runs-on: ubuntu-latest
-    container: swift:latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Unit Test
-      run: swift test --enable-swift-testing
+      - uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: ${{ matrix.swift }}
+      - uses: actions/checkout@v4
+      - name: Show environments
+        run: |
+          swift --version
+      - name: Build
+        run: swift build
+      - name: Run tests
+        run: swift test --enable-swift-testing
