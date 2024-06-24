@@ -10,6 +10,7 @@ on:
 
 env:
   CODEQL_ENABLE_EXPERIMENTAL_FEATURES_SWIFT: true
+  DEVELOPER_DIR: /Applications/Xcode_16.0.app
   
 jobs:
   analyze:
@@ -27,7 +28,7 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
