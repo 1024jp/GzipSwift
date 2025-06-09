@@ -21,5 +21,5 @@ let package = Package(
             resources: [.copy("test.txt.gz")]
         ),
     ],
-    swiftLanguageVersions: [.v6]
+    swiftLanguageModes: [.v6]
 )
