@@ -5,7 +5,7 @@
 /*
  The MIT License (MIT)
  
- © 2014-2023 1024jp <wolfrosch.com>
+ © 2014-2025 1024jp <wolfrosch.com>
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -113,7 +113,7 @@ public struct GzipError: Swift.Error, Sendable {
     
     internal init(code: Int32, msg: UnsafePointer<CChar>?) {
         
-        self.message = msg.flatMap(String.init(validatingUTF8:)) ?? "Unknown gzip error"
+        self.message = msg.flatMap(String.init(validatingCString:)) ?? "Unknown gzip error"
         self.kind = Kind(code: code)
     }
     

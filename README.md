@@ -56,6 +56,6 @@ dependencies: [
 
 ## License
 
-© 2014-2024 1024jp
+© 2014-2025 1024jp
 
 GzipSwift is distributed under the terms of the __MIT License__. See [LICENSE](LICENSE) for details.
