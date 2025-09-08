@@ -45,7 +45,7 @@ public enum Gzip {
 public struct CompressionLevel: RawRepresentable, Sendable {
     
     /// Compression level in the range of `0` (no compression) to `9` (maximum compression).
-    public let rawValue: Int32
+    public var rawValue: Int32
     
     public static let noCompression = Self(Z_NO_COMPRESSION)
     public static let bestSpeed = Self(Z_BEST_SPEED)
@@ -105,10 +105,10 @@ public struct GzipError: Swift.Error, Sendable {
     }
     
     /// The error kind.
-    public let kind: Kind
+    public var kind: Kind
     
     /// The returned message by zlib.
-    public let message: String
+    public var message: String
     
     
     internal init(code: Int32, msg: UnsafePointer<CChar>?) {
