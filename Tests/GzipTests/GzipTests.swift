@@ -7,7 +7,7 @@
 /*
  The MIT License (MIT)
  
- © 2015-2024 1024jp
+ © 2015-2025 1024jp
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -144,7 +144,10 @@ struct GzipTests {
 
 private extension String {
     
-    /// Generate random letters string for test.
+    /// Generates random letters string for test.
+    ///
+    /// - Parameter length: The number of characters to generate.
+    /// - Returns: A rondom string.
     static func lorem(length: Int) -> String {
         
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "

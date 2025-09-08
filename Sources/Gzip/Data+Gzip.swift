@@ -36,7 +36,7 @@ public import struct Foundation.Data
 
 public enum Gzip {
     
-    /// Maximum value for windowBits (`MAX_WBITS`)
+    /// The maximum value for windowBits (`MAX_WBITS`)
     public static let maxWindowBits = MAX_WBITS
 }
 
@@ -104,10 +104,10 @@ public struct GzipError: Swift.Error, Sendable {
         case unknown(code: Int)
     }
     
-    /// Error kind.
+    /// The error kind.
     public let kind: Kind
     
-    /// Returned message by zlib.
+    /// The returned message by zlib.
     public let message: String
     
     
@@ -120,7 +120,7 @@ public struct GzipError: Swift.Error, Sendable {
     
     public var localizedDescription: String {
         
-        return self.message
+        self.message
     }
 }
 
@@ -129,19 +129,13 @@ private extension GzipError.Kind {
     
     init(code: Int32) {
         
-        switch code {
-        case Z_STREAM_ERROR:
-            self = .stream
-        case Z_DATA_ERROR:
-            self = .data
-        case Z_MEM_ERROR:
-            self = .memory
-        case Z_BUF_ERROR:
-            self = .buffer
-        case Z_VERSION_ERROR:
-            self = .version
-        default:
-            self = .unknown(code: Int(code))
+        self = switch code {
+        case Z_STREAM_ERROR: .stream
+        case Z_DATA_ERROR: .data
+        case Z_MEM_ERROR: .memory
+        case Z_BUF_ERROR: .buffer
+        case Z_VERSION_ERROR: .version
+        default: .unknown(code: Int(code))
         }
     }
 }
@@ -149,14 +143,14 @@ private extension GzipError.Kind {
 
 extension Data {
     
-    /// Whether the receiver is compressed in gzip format.
+    /// Whether the receiver is compressed in the gzip format.
     public var isGzipped: Bool {
         
-        return self.starts(with: [0x1f, 0x8b])  // check magic number
+        self.starts(with: [0x1f, 0x8b])  // check magic number
     }
     
     
-    /// Create a new `Data` instance by compressing the receiver using zlib.
+    /// Creates a new `Data` instance by compressing the receiver using zlib.
     /// Throws an error if compression failed.
     ///
     /// The `wBits` parameter allows for managing the size of the history buffer. The possible values are:
@@ -166,9 +160,9 @@ extension Data {
     ///     -9 to -15   Absolute value of wbits  No header and trailer
     ///     +25 to +31  Low 4 bits of the value  Includes gzip header and trailing checksum
     ///
-    /// - Parameter level: Compression level.
-    /// - Parameter wBits: Manage the size of the history buffer.
-    /// - Returns: Gzip-compressed `Data` instance.
+    /// - Parameter level: The compression level.
+    /// - Parameter wBits: The size of the history buffer.
+    /// - Returns: A Gzip-compressed `Data` instance.
     /// - Throws: `GzipError`
     public func gzipped(level: CompressionLevel = .defaultCompression, wBits: Int32 = Gzip.maxWindowBits + 16) throws(GzipError) -> Data {
         
@@ -186,7 +180,6 @@ extension Data {
             // Z_VERSION_ERROR  The zlib library version is incompatible with the version assumed by the caller.
             // Z_MEM_ERROR      There was not enough memory.
             // Z_STREAM_ERROR   A parameter is invalid.
-            
             throw GzipError(code: status, msg: stream.msg)
         }
         
@@ -227,7 +220,7 @@ extension Data {
     }
     
     
-    /// Create a new `Data` instance by decompressing the receiver using zlib.
+    /// Creates a new `Data` instance by decompressing the receiver using zlib.
     /// Throws an error if decompression failed.
     ///
     /// The `wBits` parameter allows for managing the size of the history buffer. The possible values are:
@@ -238,8 +231,8 @@ extension Data {
     ///     +24 to +31 = 16 + (8 to 15)  Low 4 bits of the value  Includes gzip header and trailer
     ///     +40 to +47 = 32 + (8 to 15)  Low 4 bits of the value  zlib or gzip format
     ///
-    /// - Parameter wBits: Manage the size of the history buffer.
-    /// - Returns: Gzip-decompressed `Data` instance.
+    /// - Parameter wBits: The size of the history buffer.
+    /// - Returns: A Gzip-decompressed `Data` instance.
     /// - Throws: `GzipError`
     public func gunzipped(wBits: Int32 = Gzip.maxWindowBits + 32) throws(GzipError) -> Data {
         
@@ -262,7 +255,6 @@ extension Data {
                 // Z_VERSION_ERROR   The zlib library version is incompatible with the version assumed by the caller.
                 // Z_MEM_ERROR       There was not enough memory.
                 // Z_STREAM_ERROR    A parameters are invalid.
-                
                 throw GzipError(code: status, msg: stream.msg)
             }
             

@@ -17,13 +17,13 @@ GzipSwift requires no privacy manifests since it does not access to any privacy 
 import Gzip
 
 // gzip
-let compressedData: Data = try! data.gzipped()
-let optimizedData: Data = try! data.gzipped(level: .bestCompression)
+let compressedData: Data = try data.gzipped()
+let optimizedData: Data = try data.gzipped(level: .bestCompression)
 
 // gunzip
 let decompressedData: Data
 if data.isGzipped {
-    decompressedData = try! data.gunzipped()
+    decompressedData = try data.gunzipped()
 } else {
     decompressedData = data
 }
