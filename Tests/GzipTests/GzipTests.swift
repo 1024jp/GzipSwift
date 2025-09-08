@@ -35,7 +35,7 @@ import Gzip
 struct GzipTests {
     
     @Test
-    func testGZip() throws {
+    func gzip() throws {
         
         for _ in 0..<10 {
             let testSentence = String.lorem(length: Int.random(in: 1..<100_000))
@@ -56,7 +56,7 @@ struct GzipTests {
     
     
     @Test
-    func testZeroLength() throws {
+    func zeroLength() throws {
         
         let zeroLengthData = Data()
         
@@ -67,7 +67,7 @@ struct GzipTests {
     
     
     @Test
-    func testWrongUngzip() {
+    func wrongUngzip() {
         
         // data not compressed
         let data = Data("testString".utf8)
@@ -85,7 +85,7 @@ struct GzipTests {
     
     
     @Test
-    func testCompressionLevel() throws {
+    func compressionLevel() throws {
         
         let data = Data(String.lorem(length: 100_000).utf8)
         let bestSpeedData = try data.gzipped(level: .bestSpeed)
@@ -96,7 +96,7 @@ struct GzipTests {
     
     
     @Test
-    func testFileDecompression() throws {
+    func fileDecompression() throws {
         
         let url = try #require(Bundle.module.url(forResource: "test.txt.gz", withExtension: nil))
         let data = try Data(contentsOf: url)
@@ -108,7 +108,7 @@ struct GzipTests {
     
     
     @Test
-    func testDecompressionWithNoHeaderAndTrailer() throws {
+    func decompressionWithNoHeaderAndTrailer() throws {
         
         let encoded = """
         7ZOxCsIwEIbf5ea0JNerqdmdFeygFYciHYK0lTZOIe9u9AXMTTpkOQ\
@@ -127,7 +127,7 @@ struct GzipTests {
     
     
     @Test
-    func testDecompressionCompositedCompression() throws {
+    func decompressionCompositedCompression() throws {
         
         let firstData = try Data("test".utf8).gzipped()
         let secondData = try Data("string".utf8).gzipped()
