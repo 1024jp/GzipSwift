@@ -114,33 +114,10 @@ public struct GzipError: Swift.Error, Sendable {
     public var message: String
     
     
-    internal init(code: Int32, msg: UnsafePointer<CChar>?) {
-        
-        self.message = msg.flatMap(String.init(validatingCString:)) ?? "Unknown gzip error"
-        self.kind = Kind(code: code)
-    }
-    
-    
     /// The returned message by zlib.
     public var localizedDescription: String {
         
         self.message
-    }
-}
-
-
-private extension GzipError.Kind {
-    
-    init(code: Int32) {
-        
-        self = switch code {
-        case Z_STREAM_ERROR: .stream
-        case Z_DATA_ERROR: .data
-        case Z_MEM_ERROR: .memory
-        case Z_BUF_ERROR: .buffer
-        case Z_VERSION_ERROR: .version
-        default: .unknown(code: Int(code))
-        }
     }
 }
 
@@ -315,4 +292,30 @@ private enum DataSize {
     
     static let chunk = 1 << 14
     static let stream = MemoryLayout<z_stream>.size
+}
+
+
+private extension GzipError {
+    
+    init(code: Int32, msg: UnsafePointer<CChar>?) {
+        
+        self.message = msg.flatMap(String.init(validatingCString:)) ?? "Unknown gzip error"
+        self.kind = Kind(code: code)
+    }
+}
+
+
+private extension GzipError.Kind {
+    
+    init(code: Int32) {
+        
+        self = switch code {
+            case Z_STREAM_ERROR: .stream
+            case Z_DATA_ERROR: .data
+            case Z_MEM_ERROR: .memory
+            case Z_BUF_ERROR: .buffer
+            case Z_VERSION_ERROR: .version
+            default: .unknown(code: Int(code))
+        }
+    }
 }
