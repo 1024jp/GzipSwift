@@ -1,15 +1,16 @@
-name: CI
+name: Test
 
 on: [push, pull_request]
 
 jobs:
   macOS:
     name: Test on macOS
-    runs-on: macOS-14
+    runs-on: macos-26
     env:
-      DEVELOPER_DIR: /Applications/Xcode_16.0.app
+      DEVELOPER_DIR: /Applications/Xcode_26.4.app
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v5
     - name: Show environments
       run: |
         swift --version
@@ -20,14 +21,13 @@ jobs:
             brew install swiftlint
         fi
         swiftlint
-    - name: Build & test SwiftPM
+    - name: Unit Test
       run: |
-        swift build
-        swift test --enable-swift-testing
+        swift test
   linux:
     runs-on: ubuntu-latest
     container: swift:latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Unit Test
       run: swift test --enable-swift-testing
