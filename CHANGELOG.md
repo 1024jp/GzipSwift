@@ -1,11 +1,9 @@
-
-Change Log
-==========================
+# Change Log
 
 6.2.0
 --------------------------
 
-### Changes
+### New
 
 - Support typed throw.
 

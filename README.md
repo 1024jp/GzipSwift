@@ -1,6 +1,4 @@
-
-GzipSwift
-========================
+# GzipSwift
 
 __GzipSwift__ is a framework with an extension of Data written in Swift. It enables compress/decompress gzip using zlib.
 
@@ -52,6 +50,6 @@ dependencies: [
 
 ## License
 
-© 2014-2025 1024jp
+© 2014-2026 1024jp
 
 GzipSwift is distributed under the terms of the __MIT License__. See [LICENSE](LICENSE) for details.
