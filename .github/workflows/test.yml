@@ -24,6 +24,23 @@ jobs:
     - name: Unit Test
       run: |
         swift test
+  iOS:
+    name: Test on iOS
+    runs-on: macos-26
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.4.app
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v5
+    - name: Show environments
+      run: |
+        swift --version
+        xcodebuild -version
+    - name: Unit Test
+      run: |
+        xcodebuild test \
+          -scheme GzipSwift \
+          -destination 'platform=iOS Simulator,name=iPhone 17,OS=latest'
   linux:
     runs-on: ubuntu-latest
     container: swift:latest
