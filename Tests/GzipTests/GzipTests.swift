@@ -111,6 +111,15 @@ struct GzipTests {
     
     
     @Test
+    func comparableCompressionLevel() {
+        
+        let levels: [CompressionLevel] = [.bestCompression, .bestSpeed, .defaultCompression, .noCompression]
+        
+        #expect(levels.sorted() == [.defaultCompression, .noCompression, .bestSpeed, .bestCompression])
+    }
+    
+    
+    @Test
     func moduleQualifiedCompressionLevel() throws {
         
         let data = Data("test".utf8)
