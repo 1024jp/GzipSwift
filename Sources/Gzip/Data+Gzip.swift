@@ -51,6 +51,10 @@ public struct CompressionLevel: RawRepresentable, Hashable, Sendable {
     public static let bestSpeed = Self(Z_BEST_SPEED)
     public static let bestCompression = Self(Z_BEST_COMPRESSION)
     
+    /// The compression level chosen automatically by zlib.
+    ///
+    /// - Note: Although its raw value (`-1`) compares smaller than the other levels,
+    ///   this case represents an automatic selection rather than minimum compression.
     public static let defaultCompression = Self(Z_DEFAULT_COMPRESSION)
     
     
@@ -63,6 +67,15 @@ public struct CompressionLevel: RawRepresentable, Hashable, Sendable {
     public init(_ rawValue: Int32) {
         
         self.rawValue = rawValue
+    }
+}
+
+
+extension CompressionLevel: Comparable {
+    
+    public static func < (lhs: Self, rhs: Self) -> Bool {
+        
+        lhs.rawValue < rhs.rawValue
     }
 }
 
