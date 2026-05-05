@@ -297,12 +297,12 @@ private enum DataSize {
 }
 
 
-private extension GzipError {
+extension GzipError {
     
     init(code: Int32, msg: UnsafePointer<CChar>?) {
         
-        self.message = msg.flatMap(String.init(validatingCString:)) ?? "Unknown gzip error"
         self.kind = Kind(code: code)
+        self.message = msg.flatMap(String.init(validatingCString:)) ?? self.kind.fallbackMessage
     }
 }
 
@@ -318,6 +318,18 @@ private extension GzipError.Kind {
             case Z_BUF_ERROR: .buffer
             case Z_VERSION_ERROR: .version
             default: .unknown(code: Int(code))
+        }
+    }
+    
+    
+    /// The fallback error message for the receiver.
+    var fallbackMessage: String {
+        
+        switch self {
+            case .buffer:
+                "No progress is possible; the input data may be incomplete or the output buffer may be full."
+            default:
+                "Unknown gzip error"
         }
     }
 }

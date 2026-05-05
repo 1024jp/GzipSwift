@@ -34,7 +34,7 @@
 
 import Foundation
 import Testing
-import Gzip
+@testable import Gzip
 
 struct GzipTests {
     
@@ -81,6 +81,17 @@ struct GzipTests {
         #expect(gzipError.kind == .data)
         #expect(gzipError.message == "incorrect header check")
         #expect(gzipError.message == gzipError.localizedDescription)
+    }
+    
+    
+    @Test
+    func bufferErrorFallbackMessage() {
+        
+        // Z_BUF_ERROR == -5; verify the fallback message kicks in when zlib provides no message.
+        let error = GzipError(code: -5, msg: nil)
+        
+        #expect(error.kind == .buffer)
+        #expect(error.message == "No progress is possible; the input data may be incomplete or the output buffer may be full.")
     }
     
     
