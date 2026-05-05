@@ -155,7 +155,7 @@ extension Data {
         var stream = z_stream()
         var status: Int32
         
-        status = deflateInit2_(&stream, level.rawValue, Z_DEFLATED, wBits, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, Int32(DataSize.stream))
+        status = deflateInit2_(&stream, level.rawValue, Z_DEFLATED, wBits, MAX_MEM_LEVEL, Z_DEFAULT_STRATEGY, ZLIB_VERSION, Int32(Constants.zStreamSize))
         
         guard status == Z_OK else {
             // deflateInit2 returns:
@@ -165,10 +165,10 @@ extension Data {
             throw GzipError(code: status, msg: stream.msg)
         }
         
-        var data = Data(capacity: DataSize.chunk)
+        var data = Data(capacity: Constants.outputChunkSize)
         repeat {
             if Int(stream.total_out) >= data.count {
-                data.count += DataSize.chunk
+                data.count += Constants.outputChunkSize
             }
             
             let inputCount = self.count
@@ -233,7 +233,7 @@ extension Data {
             var stream = z_stream()
             var status: Int32
             
-            status = inflateInit2_(&stream, wBits, ZLIB_VERSION, Int32(DataSize.stream))
+            status = inflateInit2_(&stream, wBits, ZLIB_VERSION, Int32(Constants.zStreamSize))
             
             guard status == Z_OK else {
                 // inflateInit2 returns:
@@ -294,10 +294,10 @@ extension Data {
 }
 
 
-private enum DataSize {
+private enum Constants {
     
-    static let chunk = 1 << 14
-    static let stream = MemoryLayout<z_stream>.size
+    static let zStreamSize = MemoryLayout<z_stream>.size
+    static let outputChunkSize = 1 << 14
 }
 
 
