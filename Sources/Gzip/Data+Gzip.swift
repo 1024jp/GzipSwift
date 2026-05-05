@@ -175,12 +175,14 @@ extension Data {
             let outputCount = data.count
             
             self.withUnsafeBytes { (inputPointer: UnsafeRawBufferPointer) in
-                stream.next_in = UnsafeMutablePointer<Bytef>(mutating: inputPointer.bindMemory(to: Bytef.self).baseAddress!).advanced(by: Int(stream.total_in))
+                let inputBase = inputPointer.bindMemory(to: Bytef.self).baseAddress!
+                stream.next_in = UnsafeMutablePointer(mutating: inputBase).advanced(by: Int(stream.total_in))
                 stream.avail_in = uInt(inputCount) - uInt(stream.total_in)
                 
                 data.withUnsafeMutableBytes { (outputPointer: UnsafeMutableRawBufferPointer) in
+                    let outputBase = outputPointer.bindMemory(to: Bytef.self).baseAddress!
                     let outputStartPosition = Int(stream.total_out)
-                    stream.next_out = outputPointer.bindMemory(to: Bytef.self).baseAddress!.advanced(by: outputStartPosition)
+                    stream.next_out = outputBase.advanced(by: outputStartPosition)
                     stream.avail_out = uInt(clamping: outputCount - outputStartPosition)
                     
                     status = deflate(&stream, Z_FINISH)
@@ -250,13 +252,15 @@ extension Data {
                 let outputCount = data.count
                 
                 self.withUnsafeBytes { (inputPointer: UnsafeRawBufferPointer) in
+                    let inputBase = inputPointer.bindMemory(to: Bytef.self).baseAddress!
                     let inputStartPosition = totalIn + stream.total_in
-                    stream.next_in = UnsafeMutablePointer<Bytef>(mutating: inputPointer.bindMemory(to: Bytef.self).baseAddress!).advanced(by: Int(inputStartPosition))
+                    stream.next_in = UnsafeMutablePointer(mutating: inputBase).advanced(by: Int(inputStartPosition))
                     stream.avail_in = uInt(clamping: inputCount - Int(inputStartPosition))
                     
                     data.withUnsafeMutableBytes { (outputPointer: UnsafeMutableRawBufferPointer) in
+                        let outputBase = outputPointer.bindMemory(to: Bytef.self).baseAddress!
                         let outputStartPosition = totalOut + stream.total_out
-                        stream.next_out = outputPointer.bindMemory(to: Bytef.self).baseAddress!.advanced(by: Int(outputStartPosition))
+                        stream.next_out = outputBase.advanced(by: Int(outputStartPosition))
                         stream.avail_out = uInt(clamping: outputCount - Int(outputStartPosition))
                         
                         status = inflate(&stream, Z_SYNC_FLUSH)
