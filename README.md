@@ -4,6 +4,8 @@ __GzipSwift__ is a framework with an extension of Data written in Swift. It enab
 
 GzipSwift requires no privacy manifests since it does not access to any privacy information.
 
+[![platform](https://img.shields.io/badge/platform-macOS%20|%20iOS%20|%20watchOS%20|%20visionOS%20|%20tvOS%20|%20Linux-blue.svg)]()
+
 
 ## Usage
 
