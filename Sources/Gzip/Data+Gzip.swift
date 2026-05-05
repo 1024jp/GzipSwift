@@ -181,7 +181,7 @@ extension Data {
                 data.withUnsafeMutableBytes { (outputPointer: UnsafeMutableRawBufferPointer) in
                     let outputStartPosition = Int(stream.total_out)
                     stream.next_out = outputPointer.bindMemory(to: Bytef.self).baseAddress!.advanced(by: outputStartPosition)
-                    stream.avail_out = (outputCount - outputStartPosition).clampedUInt
+                    stream.avail_out = uInt(clamping: outputCount - outputStartPosition)
                     
                     status = deflate(&stream, Z_FINISH)
                     
@@ -252,12 +252,12 @@ extension Data {
                 self.withUnsafeBytes { (inputPointer: UnsafeRawBufferPointer) in
                     let inputStartPosition = totalIn + stream.total_in
                     stream.next_in = UnsafeMutablePointer<Bytef>(mutating: inputPointer.bindMemory(to: Bytef.self).baseAddress!).advanced(by: Int(inputStartPosition))
-                    stream.avail_in = (inputCount - Int(inputStartPosition)).clampedUInt
+                    stream.avail_in = uInt(clamping: inputCount - Int(inputStartPosition))
                     
                     data.withUnsafeMutableBytes { (outputPointer: UnsafeMutableRawBufferPointer) in
                         let outputStartPosition = totalOut + stream.total_out
                         stream.next_out = outputPointer.bindMemory(to: Bytef.self).baseAddress!.advanced(by: Int(outputStartPosition))
-                        stream.avail_out = (outputCount - Int(outputStartPosition)).clampedUInt
+                        stream.avail_out = uInt(clamping: outputCount - Int(outputStartPosition))
                         
                         status = inflate(&stream, Z_SYNC_FLUSH)
                         
@@ -331,19 +331,5 @@ private extension GzipError.Kind {
             default:
                 "Unknown gzip error"
         }
-    }
-}
-
-
-private extension Int {
-    
-    /// The receiver clamped to the range that zlib's `uInt` can represent.
-    var clampedUInt: uInt {
-        
-        guard self > 0 else {
-            return 0
-        }
-        
-        return uInt(Swift.min(UInt(self), UInt(uInt.max)))
     }
 }
