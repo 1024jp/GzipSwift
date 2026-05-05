@@ -37,10 +37,13 @@ public import protocol Foundation.LocalizedError
 
 extension GzipError: LocalizedError {
     
-    /// The zlib error message for Foundation error presentation.
+    /// A localized message describing what error occurred.
+    ///
+    /// - Note: It returns the same value as `localizedDescription` so that the message is
+    ///         surfaced via `Error.localizedDescription` when Foundation is available.
     public var errorDescription: String? {
         
-        self.message
+        self.localizedDescription
     }
 }
 #endif

@@ -111,7 +111,7 @@ public struct GzipError: Swift.Error, Sendable {
     public var message: String
     
     
-    /// The returned message by zlib.
+    /// A localized message describing what error occurred.
     public var localizedDescription: String {
         
         self.message
