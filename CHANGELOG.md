@@ -11,11 +11,13 @@
 ### Changes
 
 - Update Swift version to 6.3.
+- Make `maxWindowBits` a module-level constant.
 - Show zlib error messages when `GzipError` is handled as `Error`.
 
 
 ### Fixes
 
+- Fix accessing types with the `Gzip` module prefix, such as `Gzip.CompressionLevel`.
 - Avoid a crash when compressing or decompressing data larger than 4 GiB; compression now throws an error instead.
 
 

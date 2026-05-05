@@ -96,6 +96,16 @@ struct GzipTests {
     
     
     @Test
+    func moduleQualifiedCompressionLevel() throws {
+        
+        let data = Data("test".utf8)
+        let compressedData = try data.gzipped(level: Gzip.CompressionLevel.defaultCompression)
+        
+        #expect(try compressedData.gunzipped() == data)
+    }
+    
+    
+    @Test
     func fileDecompression() throws {
         
         let url = try #require(Bundle.module.url(forResource: "test.txt.gz", withExtension: nil))
