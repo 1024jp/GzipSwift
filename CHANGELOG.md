@@ -12,6 +12,7 @@
 ### New
 
 - Support typed throw.
+- Conform `GzipError`, `GzipError.Kind`, and `CompressionLevel` to `Hashable`.
 
 
 ### Changes

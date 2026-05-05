@@ -42,7 +42,7 @@ public let maxWindowBits = MAX_WBITS
 
 
 /// Compression level whose rawValue is based on the zlib's constants.
-public struct CompressionLevel: RawRepresentable, Sendable {
+public struct CompressionLevel: RawRepresentable, Hashable, Sendable {
     
     /// Compression level in the range of `0` (no compression) to `9` (maximum compression).
     public var rawValue: Int32
@@ -68,10 +68,10 @@ public struct CompressionLevel: RawRepresentable, Sendable {
 
 
 /// Errors on gzipping/gunzipping based on the zlib error codes.
-public struct GzipError: Swift.Error, Sendable {
+public struct GzipError: Swift.Error, Hashable, Sendable {
     // cf. http://www.zlib.net/manual.html
     
-    public enum Kind: Equatable, Sendable {
+    public enum Kind: Hashable, Sendable {
         /// The stream structure was inconsistent.
         ///
         /// - underlying zlib error: `Z_STREAM_ERROR` (-2)
