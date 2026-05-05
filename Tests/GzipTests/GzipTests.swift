@@ -168,7 +168,7 @@ private extension String {
     /// Generates random letters string for test.
     ///
     /// - Parameter length: The number of characters to generate.
-    /// - Returns: A rondom string.
+    /// - Returns: A random string.
     static func lorem(length: Int) -> String {
         
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "
