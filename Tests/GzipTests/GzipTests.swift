@@ -61,10 +61,14 @@ struct GzipTests {
     func zeroLength() throws {
         
         let zeroLengthData = Data()
+        let gzipped = try zeroLengthData.gzipped()
         
-        #expect(try zeroLengthData.gzipped() == zeroLengthData)
-        #expect(try zeroLengthData.gunzipped() == zeroLengthData)
         #expect(!zeroLengthData.isGzipped)
+        #expect(gzipped.isGzipped)
+        #expect(try gzipped.gunzipped() == zeroLengthData)
+        #expect(throws: GzipError.self) {
+            try zeroLengthData.gunzipped()
+        }
     }
     
     

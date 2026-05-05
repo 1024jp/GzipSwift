@@ -129,7 +129,9 @@ extension Data {
     
     
     /// Creates a new `Data` instance by compressing the receiver using zlib.
+    ///
     /// Throws an error if compression failed.
+    /// If the receiver is empty, the result is a valid gzip stream representing empty data.
     ///
     /// The `wBits` parameter allows for managing the size of the history buffer. The possible values are:
     ///
@@ -143,10 +145,6 @@ extension Data {
     /// - Returns: A Gzip-compressed `Data` instance.
     /// - Throws: `GzipError`
     public func gzipped(level: CompressionLevel = .defaultCompression, wBits: Int32 = maxWindowBits + 16) throws(GzipError) -> Data {
-        
-        guard !self.isEmpty else {
-            return Data()
-        }
         
         guard self.count <= Int(uInt.max) else {
             throw GzipError(kind: .stream, message: "Input data is too large to compress.")
@@ -175,8 +173,8 @@ extension Data {
             let outputCount = data.count
             
             self.withUnsafeBytes { (inputPointer: UnsafeRawBufferPointer) in
-                let inputBase = inputPointer.bindMemory(to: Bytef.self).baseAddress!
-                stream.next_in = UnsafeMutablePointer(mutating: inputBase).advanced(by: Int(stream.total_in))
+                let inputBase = inputPointer.bindMemory(to: Bytef.self).baseAddress
+                stream.next_in = inputBase.map { UnsafeMutablePointer(mutating: $0).advanced(by: Int(stream.total_in)) }
                 stream.avail_in = uInt(inputCount) - uInt(stream.total_in)
                 
                 data.withUnsafeMutableBytes { (outputPointer: UnsafeMutableRawBufferPointer) in
@@ -206,7 +204,8 @@ extension Data {
     
     
     /// Creates a new `Data` instance by decompressing the receiver using zlib.
-    /// Throws an error if decompression failed.
+    ///
+    /// Throws an error if decompression failed, or if the receiver is empty.
     ///
     /// The `wBits` parameter allows for managing the size of the history buffer. The possible values are:
     ///
@@ -222,7 +221,7 @@ extension Data {
     public func gunzipped(wBits: Int32 = maxWindowBits + 32) throws(GzipError) -> Data {
         
         guard !self.isEmpty else {
-            return Data()
+            throw GzipError(kind: .data, message: "Input data is empty.")
         }
         
         var data = Data(capacity: self.count * 2)

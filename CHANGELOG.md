@@ -3,6 +3,12 @@
 6.2.0 (unreleased)
 --------------------------
 
+### Breaking Changes
+
+- Compressing an empty `Data` now produces a valid empty gzip stream instead of returning an empty `Data`.
+- Decompressing an empty `Data` now throws `GzipError` instead of returning an empty `Data`.
+
+
 ### New
 
 - Support typed throw.
