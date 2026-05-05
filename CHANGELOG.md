@@ -1,10 +1,11 @@
 # Change Log
 
-6.2.0 (unreleased)
+7.0.0 (2026-05-05)
 --------------------------
 
 ### Breaking Changes
 
+- Update Swift version to 6.3.
 - Compressing an empty `Data` now produces a valid empty gzip stream instead of returning an empty `Data`.
 - Decompressing an empty `Data` now throws `GzipError` instead of returning an empty `Data`.
 
@@ -18,7 +19,6 @@
 
 ### Changes
 
-- Update Swift version to 6.3.
 - Make `maxWindowBits` a module-level constant.
 - Show zlib error messages when `GzipError` is handled as `Error`.
 - Improve the error message when decompression cannot make progress.

@@ -32,7 +32,7 @@ GzipSwift is SwiftPM-compatible. To install, add this package to your `Package.s
 
 ```swift
 dependencies: [
-    .package(name: "Gzip", url: "https://github.com/1024jp/GzipSwift", from: Version(6, 0, 0)),
+    .package(name: "Gzip", url: "https://github.com/1024jp/GzipSwift", from: Version(7, 0, 0)),
 ],
 ```
 
