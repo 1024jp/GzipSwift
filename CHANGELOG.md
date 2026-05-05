@@ -13,6 +13,7 @@
 - Update Swift version to 6.3.
 - Make `maxWindowBits` a module-level constant.
 - Show zlib error messages when `GzipError` is handled as `Error`.
+- Find zlib headers installed outside `/usr/include` on Linux, such as Linuxbrew.
 
 
 ### Fixes

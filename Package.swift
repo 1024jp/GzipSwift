@@ -10,10 +10,18 @@ let package = Package(
     targets: [
         .target(
             name: "Gzip",
-            dependencies: ["system-zlib"]
+            dependencies: [
+                .target(name: "system-zlib", condition: .when(platforms: [.linux])),
+            ]
         ),
-        .target(
-            name: "system-zlib"
+        .systemLibrary(
+            name: "system-zlib",
+            path: "Sources/system-zlib",
+            pkgConfig: "zlib",
+            providers: [
+                .apt(["zlib1g-dev"]),
+                .brew(["zlib"]),
+            ]
         ),
         .testTarget(
             name: "GzipTests",
@@ -25,7 +33,7 @@ let package = Package(
 )
 
 
-for target in package.targets {
+for target in package.targets where target.name != "system-zlib" {
     target.swiftSettings = [
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
