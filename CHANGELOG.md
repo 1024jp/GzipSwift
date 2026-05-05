@@ -8,6 +8,11 @@
 - Support typed throw.
 
 
+### Changes
+
+- Update Swift version to 6.3.
+
+
 
 6.1.0
 --------------------------
