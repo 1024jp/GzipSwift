@@ -15,6 +15,7 @@
 - Show zlib error messages when `GzipError` is handled as `Error`.
 - Improve the error message when decompression cannot make progress.
 - Find zlib headers installed outside `/usr/include` on Linux, such as Linuxbrew.
+- Improve memory allocation when decompressing small inputs.
 
 
 ### Fixes

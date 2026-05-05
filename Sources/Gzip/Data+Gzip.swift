@@ -245,7 +245,7 @@ extension Data {
             
             repeat {
                 if Int(totalOut + stream.total_out) >= data.count {
-                    data.count += self.count / 2
+                    data.count += Swift.max(Constants.outputChunkSize, self.count / 2)
                 }
                 
                 let inputCount = self.count
