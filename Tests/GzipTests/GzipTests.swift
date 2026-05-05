@@ -38,24 +38,22 @@ import Gzip
 
 struct GzipTests {
     
-    @Test
-    func gzip() throws {
+    @Test(arguments: 0..<10)
+    func gzip(_: Int) throws {
         
-        for _ in 0..<10 {
-            let testSentence = String.lorem(length: Int.random(in: 1..<100_000))
-            
-            let data = Data(testSentence.utf8)
-            let gzipped = try data.gzipped()
-            let uncompressed = try gzipped.gunzipped()
-            let uncompressedSentence = String(data: uncompressed, encoding: .utf8)
-            
-            #expect(gzipped != data)
-            #expect(uncompressedSentence == testSentence)
-            
-            #expect(gzipped.isGzipped)
-            #expect(!data.isGzipped)
-            #expect(!uncompressed.isGzipped)
-        }
+        let testSentence = String.lorem(length: Int.random(in: 1..<100_000))
+        
+        let data = Data(testSentence.utf8)
+        let gzipped = try data.gzipped()
+        let uncompressed = try gzipped.gunzipped()
+        let uncompressedSentence = String(data: uncompressed, encoding: .utf8)
+        
+        #expect(gzipped != data)
+        #expect(uncompressedSentence == testSentence)
+        
+        #expect(gzipped.isGzipped)
+        #expect(!data.isGzipped)
+        #expect(!uncompressed.isGzipped)
     }
     
     
@@ -71,20 +69,18 @@ struct GzipTests {
     
     
     @Test
-    func wrongUngzip() {
+    func wrongUngzip() throws {
         
         // data not compressed
         let data = Data("testString".utf8)
         
-        #expect {
+        let gzipError = try #require(#expect(throws: GzipError.self) {
             try data.gunzipped()
-        } throws: { error in
-            let gzipError = try #require(error as? GzipError)
-            
-            return (gzipError.kind == .data) &&
-            (gzipError.message == "incorrect header check") &&
-            (gzipError.message == gzipError.localizedDescription)
-        }
+        })
+        
+        #expect(gzipError.kind == .data)
+        #expect(gzipError.message == "incorrect header check")
+        #expect(gzipError.message == gzipError.localizedDescription)
     }
     
     
