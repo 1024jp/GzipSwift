@@ -263,7 +263,7 @@ extension Data {
                         stream.next_out = outputBase.advanced(by: Int(outputStartPosition))
                         stream.avail_out = uInt(clamping: outputCount - Int(outputStartPosition))
                         
-                        status = inflate(&stream, Z_SYNC_FLUSH)
+                        status = inflate(&stream, Z_NO_FLUSH)
                         
                         stream.next_out = nil
                     }
@@ -279,7 +279,7 @@ extension Data {
                 // Z_DATA_ERROR   The input data was corrupted (input stream not conforming to the zlib format or incorrect check value).
                 // Z_STREAM_ERROR The stream structure was inconsistent (for example if next_in or next_out was NULL).
                 // Z_MEM_ERROR    There was not enough memory.
-                // Z_BUF_ERROR    No progress is possible or there was not enough room in the output buffer when Z_FINISH is used.
+                // Z_BUF_ERROR    No progress is possible because no more input or output space is available.
                 throw GzipError(code: status, msg: stream.msg)
             }
             
