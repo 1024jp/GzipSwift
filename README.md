@@ -41,7 +41,7 @@ dependencies: [
 1. Install zlib if you haven't installed yet:
 
     ```bash
-    $ apt-get install zlib-dev
+    $ apt-get install zlib1g-dev
     ```
 2. Add this package to your package.swift.
 3. If Swift build failed with a linker error:
