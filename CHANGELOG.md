@@ -11,6 +11,7 @@
 ### Changes
 
 - Update Swift version to 6.3.
+- Show zlib error messages when `GzipError` is handled as `Error`.
 
 
 
