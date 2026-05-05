@@ -8,21 +8,7 @@ let package = Package(
         .library(name: "Gzip", targets: ["Gzip"]),
     ],
     targets: [
-        .target(
-            name: "Gzip",
-            dependencies: [
-                .target(name: "system-zlib", condition: .when(platforms: [.linux])),
-            ]
-        ),
-        .systemLibrary(
-            name: "system-zlib",
-            path: "Sources/system-zlib",
-            pkgConfig: "zlib",
-            providers: [
-                .apt(["zlib1g-dev"]),
-                .brew(["zlib"]),
-            ]
-        ),
+        .target(name: "Gzip"),
         .testTarget(
             name: "GzipTests",
             dependencies: ["Gzip"],
@@ -31,6 +17,19 @@ let package = Package(
     ],
     swiftLanguageModes: [.v6]
 )
+
+#if os(Linux)
+package.targets.append(
+    .systemLibrary(
+        name: "system-zlib",
+        pkgConfig: "zlib",
+        providers: [
+            .apt(["zlib1g-dev"]),
+        ]
+    )
+)
+package.targets.first { $0.name == "Gzip" }!.dependencies.append(.target(name: "system-zlib"))
+#endif
 
 
 for target in package.targets where target.name != "system-zlib" {
