@@ -14,6 +14,11 @@
 - Show zlib error messages when `GzipError` is handled as `Error`.
 
 
+### Fixes
+
+- Avoid a crash when compressing or decompressing data larger than 4 GiB; compression now throws an error instead.
+
+
 
 6.1.0 (2024-06-16)
 --------------------------
