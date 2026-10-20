@@ -4,6 +4,9 @@ import PackageDescription
 
 let package = Package(
     name: "GzipSwift",
+    platforms: [
+        .watchOS(.v9),
+    ],
     products: [
         .library(name: "Gzip", targets: ["Gzip"]),
     ],
