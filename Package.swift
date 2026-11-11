@@ -8,7 +8,20 @@ let package = Package(
         .library(name: "Gzip", targets: ["Gzip"]),
     ],
     targets: [
-        .target(name: "Gzip"),
+        .target(
+            name: "Gzip",
+            dependencies: [
+                // Conditioned on the *target* platform (not the host), so this also
+                // works when cross-compiling, e.g. with the static Linux (musl) SDK.
+                .target(name: "system-zlib", condition: .when(platforms: [.linux])),
+            ]
+        ),
+        .systemLibrary(
+            name: "system-zlib",
+            providers: [
+                .apt(["zlib1g-dev"]),
+            ]
+        ),
         .testTarget(
             name: "GzipTests",
             dependencies: ["Gzip"],
@@ -17,20 +30,6 @@ let package = Package(
     ],
     swiftLanguageModes: [.v6]
 )
-
-#if os(Linux)
-package.targets.append(
-    .systemLibrary(
-        name: "system-zlib",
-        pkgConfig: "zlib",
-        providers: [
-            .apt(["zlib1g-dev"]),
-        ]
-    )
-)
-package.targets.first { $0.name == "Gzip" }!.dependencies.append(.target(name: "system-zlib"))
-#endif
-
 
 for target in package.targets where target.name != "system-zlib" {
     target.swiftSettings = [
